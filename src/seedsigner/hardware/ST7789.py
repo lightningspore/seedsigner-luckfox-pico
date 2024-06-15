@@ -1,5 +1,6 @@
 import spidev
-import RPi.GPIO as GPIO
+# import RPi.GPIO as 
+from periphery import CdevGPIO, GPIO
 import time
 import array
 
@@ -13,16 +14,20 @@ class ST7789(object):
         self.height = 240
 
         #Initialize DC RST pin
-        self._dc = 22
-        self._rst = 13
-        self._bl = 18
+        # self._dc = 22
+        # self._rst = 13
+        # self._bl = 18 # ignore backlight
+        self._dc_pin = 59 # GPIO1_D3_d -> (3*8) + 3 = 27 + (32 * 1) = 59
+        self._rst_pin = 58 # GPIO1_D2_d -> (3*8) + 2 = 26 + (32 * 1) = 58
+        self._dc = GPIO(self._dc_pin, "out")
+        self._rst = GPIO(self._rst_pin, "out")
 
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
-        GPIO.setup(self._dc,GPIO.OUT)
-        GPIO.setup(self._rst,GPIO.OUT)
-        GPIO.setup(self._bl,GPIO.OUT)
-        GPIO.output(self._bl, GPIO.HIGH)
+        # GPIO.setmode(GPIO.BOARD)
+        # GPIO.setwarnings(False)
+        # GPIO.setup(self._dc,GPIO.OUT)
+        # GPIO.setup(self._rst,GPIO.OUT)
+        # GPIO.setup(self._bl,GPIO.OUT)
+        # GPIO.output(self._bl, GPIO.HIGH) # ignore backlight
 
         #Initialize SPI
         self._spi = spidev.SpiDev(0, 0)
@@ -33,11 +38,13 @@ class ST7789(object):
 
     """    Write register address and data     """
     def command(self, cmd):
-        GPIO.output(self._dc, GPIO.LOW)
+        # GPIO.output(self._dc, GPIO.LOW)
+        self._dc.write(False)
         self._spi.writebytes([cmd])
 
     def data(self, val):
-        GPIO.output(self._dc, GPIO.HIGH)
+        # GPIO.output(self._dc, GPIO.HIGH)
+        self._dc.write(True)
         self._spi.writebytes([val])
 
     def init(self):
@@ -122,11 +129,14 @@ class ST7789(object):
 
     def reset(self):
         """Reset the display"""
-        GPIO.output(self._rst,GPIO.HIGH)
+        # GPIO.output(self._rst,GPIO.HIGH)
+        self._rst.write(True)
         time.sleep(0.01)
-        GPIO.output(self._rst,GPIO.LOW)
+        # GPIO.output(self._rst,GPIO.LOW)
+        self._rst.write(False)
         time.sleep(0.01)
-        GPIO.output(self._rst,GPIO.HIGH)
+        # GPIO.output(self._rst,GPIO.HIGH)
+        self._rst.write(True)
         time.sleep(0.01)
         
     def SetWindows(self, Xstart, Ystart, Xend, Yend):
@@ -158,12 +168,14 @@ class ST7789(object):
         arr.byteswap()
         pix = arr.tobytes()
         self.SetWindows ( 0, 0, self.width, self.height)
-        GPIO.output(self._dc,GPIO.HIGH)
+        # GPIO.output(self._dc,GPIO.HIGH)
+        self._dc.write(True)
         self._spi.writebytes2(pix)	
         
     def clear(self):
         """Clear contents of image buffer"""
         _buffer = [0xff]*(self.width * self.height * 2)
         self.SetWindows ( 0, 0, self.width, self.height)
-        GPIO.output(self._dc,GPIO.HIGH)
+        # GPIO.output(self._dc,GPIO.HIGH)
+        self._dc.write(True)
         self._spi.writebytes2(_buffer)	
