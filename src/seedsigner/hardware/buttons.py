@@ -47,17 +47,40 @@ class HardwareButtons(Singleton):
             cls._instance = cls.__new__(cls)
 
             #init GPIO
-            GPIO.setmode(GPIO.BOARD)
-            GPIO.setup(HardwareButtons.KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)      # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)      # Input with pull-up
-            GPIO.setup(HardwareButtons.KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)      # Input with pull-up
+            # GPIO.setmode(GPIO.BOARD)
+            # GPIO.setup(HardwareButtons.KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)      # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY2_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)      # Input with pull-up
+            # GPIO.setup(HardwareButtons.KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)      # Input with pull-up
 
-            cls._instance.GPIO = GPIO
+            pin1 = GPIO(42, "in") # LEFT  # yes-pullup
+            pin2 = GPIO(43, "in") # RIGHT # yes-pullup
+            pin4 = GPIO(55, "in") # UP    # no-pullup
+            pin5 = GPIO(54, "in") # DOWN  # no-pullup
+
+            pin6 = GPIO(53, "in") # PRESS # no-pullup
+
+            pin7 = GPIO(52, "in") # KEY1  # no-pullup
+            pin9 = GPIO(58, "in") # KEY2  # no-pullup
+            pin10 = GPIO(59, "in")# KEY3  # no-pullup
+
+            mapping = {
+                42: pin1,
+                43: pin2,
+                55: pin4,
+                54: pin5,
+                53: pin6,
+                52: pin7,
+                58: pin9,
+                59: pin10
+            }
+
+
+            cls._instance.GPIO = mapping
             cls._instance.override_ind = False
 
             cls._instance.add_events([HardwareButtonsConstants.KEY_UP, HardwareButtonsConstants.KEY_DOWN, HardwareButtonsConstants.KEY_PRESS, HardwareButtonsConstants.KEY_LEFT, HardwareButtonsConstants.KEY_RIGHT, HardwareButtonsConstants.KEY1, HardwareButtonsConstants.KEY2, HardwareButtonsConstants.KEY3])
@@ -73,6 +96,8 @@ class HardwareButtons(Singleton):
 
 
     def wait_for(self, keys=[], check_release=True, release_keys=[]) -> int:
+        print(f"wait for --- {keys}")
+        import random
         # TODO: Refactor to keep control in the Controller and not here
         from seedsigner.controller import Controller
         controller = Controller.get_instance()
@@ -82,6 +107,7 @@ class HardwareButtons(Singleton):
         self.override_ind = False
 
         while True:
+            # print("wait_for loop")
             cur_time = int(time.time() * 1000)
             if cur_time - self.last_input_time > controller.screensaver_activation_ms and not controller.is_screensaver_running:
                 # Start the screensaver. Will block execution until input detected.
@@ -97,11 +123,22 @@ class HardwareButtons(Singleton):
                 # Resume from a fresh loop
                 continue
 
+            # time.sleep(1)
+
+            # print(f"available keys: {keys}")
+            # # random_key = random.choice(keys)
+            # random_key = int(input("what to do?"))    
+            # self.update_last_input_time()
+            # return random_key
+
             for key in keys:
                 if not check_release or ((check_release and key in release_keys and HardwareButtonsConstants.release_lock) or check_release and key not in release_keys):
                     # when check release is False or the release lock is released (True)
-                    if self.GPIO.input(key) == GPIO.LOW or self.override_ind:
-                        HardwareButtonsConstants.release_lock = False
+                    # if self.GPIO.input(key) == GPIO.LOW or self.override_ind:
+                    if self.GPIO[key].read() == False or self.override_ind:
+                        print(f"{key} is pressed! what now?")
+                        # HardwareButtonsConstants.release_lock = False
+                        HardwareButtonsConstants.release_lock = True
                         if self.override_ind:
                             self.override_ind = False
                             return HardwareButtonsConstants.OVERRIDE
@@ -144,12 +181,14 @@ class HardwareButtons(Singleton):
 
 
     def update_last_input_time(self):
+        print("update_last_input_time")
         self.last_input_time = int(time.time() * 1000)
 
 
     def add_events(self, keys=[]):
-        for key in keys:
-            GPIO.add_event_detect(key, self.GPIO.RISING, callback=HardwareButtons.rising_callback)
+        pass
+        # for key in keys:
+        #     GPIO.add_event_detect(key, self.GPIO.RISING, callback=HardwareButtons.rising_callback)
 
 
     def rising_callback(channel):
@@ -170,10 +209,12 @@ class HardwareButtons(Singleton):
         return True
 
     def check_for_low(self, key: int = None, keys: List[int] = None) -> bool:
+        print("check_for_low")
         if key:
             keys = [key]
         for key in keys:
-            if self.GPIO.input(key) == self.GPIO.LOW:
+            # if self.GPIO.input(key) == self.GPIO.LOW:
+            if self.GPIO[key].read() == False:
                 self.update_last_input_time()
                 return True
         else:
@@ -181,34 +222,52 @@ class HardwareButtons(Singleton):
 
     def has_any_input(self) -> bool:
         for key in HardwareButtonsConstants.ALL_KEYS:
-            if self.GPIO.input(key) == GPIO.LOW:
-                return True
+            # if self.GPIO.input(key) == GPIO.LOW:
+            try:
+                if self.GPIO[key].read() == False:
+                    return True
+            except IndexError as e:
+                print(e)
+                print(f"issue with key: {key}")
         return False
 
 # class used as short hand for static button/channel lookup values
 # TODO: Implement `release_lock` functionality as a global somewhere. Mixes up design
 #   patterns to have a static constants class plus a settable global value.
 class HardwareButtonsConstants:
-    if GPIO.RPI_INFO['P1_REVISION'] == 3: #This indicates that we have revision 3 GPIO
-        KEY_UP = 31
-        KEY_DOWN = 35
-        KEY_LEFT = 29
-        KEY_RIGHT = 37
-        KEY_PRESS = 33
+    # if True:
+    # if GPIO.RPI_INFO['P1_REVISION'] == 3: #This indicates that we have revision 3 GPIO
+    KEY_UP = 43
+    KEY_DOWN = 54
+    KEY_LEFT = 42
+    KEY_RIGHT = 53
+    KEY_PRESS = 55
 
-        KEY1 = 40
-        KEY2 = 38
-        KEY3 = 36
-    else:
-        KEY_UP = 5
-        KEY_DOWN = 11
-        KEY_LEFT = 3
-        KEY_RIGHT = 15
-        KEY_PRESS = 7
+    KEY1 = 58
+    KEY2 = 52
+    KEY3 = 59
 
-        KEY1 = 16
-        KEY2 = 12
-        KEY3 = 8
+    # if True:
+    # # if GPIO.RPI_INFO['P1_REVISION'] == 3: #This indicates that we have revision 3 GPIO
+    #     KEY_UP = 31
+    #     KEY_DOWN = 35
+    #     KEY_LEFT = 29
+    #     KEY_RIGHT = 37
+    #     KEY_PRESS = 33
+
+    #     KEY1 = 40
+    #     KEY2 = 38
+        # KEY3 = 36
+    # else:
+    #     KEY_UP = 5
+    #     KEY_DOWN = 11
+    #     KEY_LEFT = 3
+    #     KEY_RIGHT = 15
+    #     KEY_PRESS = 7
+
+    #     KEY1 = 16
+    #     KEY2 = 12
+    #     KEY3 = 8
 
     OVERRIDE = 1000
 

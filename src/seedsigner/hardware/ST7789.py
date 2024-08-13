@@ -17,8 +17,8 @@ class ST7789(object):
         # self._dc = 22
         # self._rst = 13
         # self._bl = 18 # ignore backlight
-        self._dc_pin = 59 # GPIO1_D3_d -> (3*8) + 3 = 27 + (32 * 1) = 59
-        self._rst_pin = 58 # GPIO1_D2_d -> (3*8) + 2 = 26 + (32 * 1) = 58
+        self._dc_pin = 57 # GPIO1_D3_d -> (3*8) + 3 = 27 + (32 * 1) = 59
+        self._rst_pin = 56 # GPIO1_D2_d -> (3*8) + 2 = 26 + (32 * 1) = 58
         self._dc = GPIO(self._dc_pin, "out")
         self._rst = GPIO(self._rst_pin, "out")
 
@@ -56,7 +56,7 @@ class ST7789(object):
 
         self.command(0x3A) 
         self.data(0x05)
-
+        print("initializing display")
         self.command(0xB2)
         self.data(0x0C)
         self.data(0x0C)

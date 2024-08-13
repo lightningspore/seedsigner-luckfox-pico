@@ -1,6 +1,6 @@
 # import the necessary packages
-from picamera.array import PiRGBArray
-from picamera import PiCamera
+# from picamera.array import PiRGBArray
+# from picamera import PiCamera
 from threading import Thread
 import time
 

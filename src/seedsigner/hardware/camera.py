@@ -1,6 +1,6 @@
 import io
 
-from picamera import PiCamera
+# from picamera import PiCamera
 from PIL import Image
 from seedsigner.hardware.pivideostream import PiVideoStream
 from seedsigner.models.settings import Settings, SettingsConstants
