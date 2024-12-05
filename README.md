@@ -4,7 +4,7 @@ Port of the SeedSigner code to the LuckFox Pico Pro/Max embedded ARM(ricv?) linu
 
 ## Dev machine setup
 ```
-brew install android-platform-tools
+brew install homebrew/cask/android-platform-tools
 ```
 
 ## Initial Hardware Setup
