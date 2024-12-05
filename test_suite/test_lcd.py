@@ -1,7 +1,8 @@
-from ST7789 import ST7789
+from hardware.ST7789 import ST7789
 
 from PIL import Image
 import random
+from time import sleep
 
 # Define the dimensions
 width, height = 240, 240
@@ -32,8 +33,31 @@ def solid_color_image(r,g,b):
     img.putdata(pixels)
     return img 
 
+def test_loop():
+    try:
+        while True:
+            rimg = random_image()
+            disp.ShowImage(rimg, 0, 0)
+            sleep(1)
+
+            yellow_img = solid_color_image(255, 238, 109)
+            disp.ShowImage(yellow_img, 0, 0)
+            sleep(1)
+
+            orange_img = solid_color_image(255, 100, 0)
+            disp.ShowImage(orange_img, 0, 0)
+            sleep(1)
+
+            violet_img = solid_color_image(103, 78, 167)
+            disp.ShowImage(violet_img, 0, 0)
+            sleep(1)
+    except KeyboardInterrupt:
+        pass
+
 # Intialize display library
 disp = ST7789()
+
+test_loop()
 
 rimg = random_image()
 disp.ShowImage(rimg, 0, 0)
@@ -44,3 +68,7 @@ disp.ShowImage(yellow_img, 0, 0)
 
 orange_img = solid_color_image(255,100,0)
 disp.ShowImage(orange_img, 0, 0)
+
+
+violet_img = solid_color_image(103,78,167)
+disp.ShowImage(violet_img, 0, 0)
