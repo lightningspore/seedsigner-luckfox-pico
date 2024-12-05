@@ -2,9 +2,19 @@
 Port of the SeedSigner code to the LuckFox Pico Pro/Max embedded ARM(ricv?) linux board
 
 
+## Dev machine setup
+```
+brew install android-platform-tools
+```
+
 ## Initial Hardware Setup
 
-This  configures the GPIO on the device
+## Flash SD Card
+```
+sudo dd bs=4M status=progress if=/Users/lightningspore/Downloads/pro_buildroot_sd/update.img of=/dev/disk5
+```
+
+This configures the GPIO on the device
 ```
 adb push config/luckfox.cfg /etc/luckfox.cfg
 
@@ -32,6 +42,7 @@ adb shell
 ```
 
 ### Test Camera
+ 
 
 
 
