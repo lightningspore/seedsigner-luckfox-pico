@@ -210,46 +210,6 @@ def camera_test():
         return False
 
 
-# def main():
-#     """Main hardware test loop."""
-#     while True:
-#         display_message("Welcome to Hardware Test.\n\nPress KEY1 to start.")
-#         key1_pin = next((pin for name, pin in pins if name == "KEY1"), None)
-        
-#         # Wait for KEY1 press to begin
-#         while key1_pin.read():
-#             time.sleep(0.1)
-        
-#         # Run tests
-#         display_message("Starting Button Test...")
-#         button_results = button_test()
-
-#         display_message("Starting Camera Test...")
-#         camera_result = camera_test()
-        
-#         # Display results summary with ASCII-safe symbols
-#         results_message = "Results:\n"
-#         for button, result in button_results.items():
-#             # Use ASCII symbols instead of Unicode
-#             results_message += f"{button}: {'[OK]' if result else '[FAIL]'}\n"
-#         results_message += f"Camera: {'[OK]' if camera_result else '[FAIL]'}"
-        
-#         display_message(results_message, 5)
-        
-#         display_message("Press KEY1 to exit.\nPress KEY2 for Button Test\nPress IN for Camera Test.")
-#         start_time = time.time()
-        
-#         # Wait for KEY1 press to restart or hold to exit
-#         while True:
-#             if not key1_pin.read():
-#                 if time.time() - start_time > 3:
-#                     display_message("Exiting Test Suite...")
-#                     time.sleep(1)
-#                     return
-#                 else:
-#                     break
-#             time.sleep(0.1)
-
 def main():
     """Main hardware test loop with interactive menu."""
     while True:
