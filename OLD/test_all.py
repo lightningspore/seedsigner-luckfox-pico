@@ -59,6 +59,7 @@ def capture_frame():
     
     return frame_data
 
+
 def convert_nv12_to_rgb(frame_data):
     """
     Converts NV12 frame data to an RGB image with improved error handling.
@@ -111,6 +112,8 @@ def convert_nv12_to_rgb(frame_data):
             rgb_data.extend([r, g, b])
     
     return rgb_data
+
+
 
 def display_on_lcd(rgb_data):
     """
