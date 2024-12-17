@@ -2,6 +2,8 @@
 # Some APT packages are unavailable on ARM!
 FROM ubuntu:22.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Install required packages
 RUN apt-get update && \
     apt-get install -y \
