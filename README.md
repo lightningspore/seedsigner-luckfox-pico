@@ -9,29 +9,16 @@ brew install homebrew/cask/android-platform-tools
 
 ## Initial Hardware Setup
 
-## Flash SD Card
-```
-sudo dd bs=4M status=progress if=/Users/lightningspore/Downloads/pro_buildroot_sd/update.img of=/dev/disk5
-```
 
 This configures the GPIO on the device
 ```
 adb push config/luckfox.cfg /etc/luckfox.cfg
 
-# rebo
-```
-
-## Package individually made OS images to a flashable version
-```
-cd 
-./blkenvflash/buildroot final-image.img
+# reboot the device
 ```
 
 ## Hardware Test Suite
 
-### Test Buttons
-
-### Test LCD
 ```
 # push over the test file
 adb push test_suite /
@@ -41,8 +28,37 @@ adb push test_suite /
 adb shell
 ```
 
-### Test Camera
- 
+### Run Test Suite
+```
+cd /test_suite
+python test.py
+```
+
+## More Setup
+```
+# Make sure pip is available
+python -m ensurepip --default-pip
+```
 
 
 
+## Package individually made OS images to a flashable version
+```
+cd 
+./blkenvflash/buildroot final-image.img
+```
+
+## Flash SD Card
+```
+sudo dd bs=4M status=progress if=/Users/lightningspore/Downloads/pro_buildroot_sd/update.img of=/dev/disk5
+```
+
+# KNOWN ISSUES:
+```
+1. ImportError: The _imagingft C module is not installed
+Related to Pillow Library and Image Font Library
+Possible solution: Re-install Pillow onces dependencies are installed:
+apt install libtiff5-dev libjpeg8-dev libopenjp2-7-dev libfreetype6-dev
+
+
+```

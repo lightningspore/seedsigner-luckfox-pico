@@ -22,8 +22,9 @@ pins = [
     ("IN", GPIO(52, "in")),  # IN (Push directional button in)
     ("UP", GPIO(58, "in")),  # UP
     ("LEFT", GPIO(59, "in")),  # LEFT
+    ("KEY3", GPIO(42, "in")),  # KEY 3 Back Button (Always pressed?)
 ]
-#    ("KEY3", GPIO(42, "in")),  # KEY 3 Back Button (Always pressed?)
+#    
 
 # Initialize the LCD display
 disp = ST7789()
@@ -144,8 +145,9 @@ def display_message(text, display_time = 2):
     img = Image.new('RGB', (width, height), (0, 0, 0))  # Black background
     draw = ImageDraw.Draw(img)
     
-    # Load default font
+    # Load a Font
     font = ImageFont.load_default()
+    # font = ImageFont.truetype("/Poppins-Regular.otf", 24)
     
     # Sanitize text: replace or remove problematic Unicode characters
     # This ensures we only use ASCII or easily encodable characters
