@@ -30,3 +30,7 @@ cp ../.config sysdrv/source/buildroot/buildroot-2023.02.6/.config
 scp -r spore@spore-server:/home/spore/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/output/image .
 
 sudo /Users/spore/Documents/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/project/rkflash.sh update
+
+
+
+pip download --no-binary ":all:" pyzbar@git+https://github.com/seedsigner/pyzbar.git@c3c237821c6a20b17953efe59b90df0b514a1c03
