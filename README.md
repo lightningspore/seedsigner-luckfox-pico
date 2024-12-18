@@ -44,6 +44,21 @@ python test.py
 python -m ensurepip --default-pip
 ```
 
+## Download Python source packages (no wheels!)
+```
+pip download -r requirements.txt --no-binary ":all"
+adb push python_deps /python_deps
+```
+
+
+## Copy over modified SeedSigner code
+```
+git clone https://github.com/lightningspore/seedsigner.git
+cd seedsigner
+git checkout 0.8.0-luckfox
+adb push src /seedsigner
+```
+
 
 
 ## Package individually made OS images to a flashable version
@@ -56,13 +71,4 @@ cd
 ```
 sudo dd bs=4M status=progress if=/Users/lightningspore/Downloads/pro_buildroot_sd/update.img of=/dev/disk5
 ```
-
-# KNOWN ISSUES:
-```
-1. ImportError: The _imagingft C module is not installed
-Related to Pillow Library and Image Font Library
-Possible solution: Re-install Pillow onces dependencies are installed:
-apt install libtiff5-dev libjpeg8-dev libopenjp2-7-dev libfreetype6-dev
-
-
 ```
