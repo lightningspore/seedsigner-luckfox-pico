@@ -26,9 +26,9 @@ RUN apt-get update && \
 # Set the working directory
 WORKDIR /app
 
-
+RUN touch /root/.bash_profile
 
 ENV SDK_PATH=/mnt/host
 
 # Set the entrypoint
-CMD ["sleep", "infinity"]
+CMD ["/bin/bash"]

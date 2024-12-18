@@ -146,8 +146,8 @@ def display_message(text, display_time = 2):
     draw = ImageDraw.Draw(img)
     
     # Load a Font
-    font = ImageFont.load_default()
-    # font = ImageFont.truetype("/Poppins-Regular.otf", 24)
+    #font = ImageFont.load_default()
+    font = ImageFont.truetype("/test_suite/Poppins-Regular.otf", 16)
     
     # Sanitize text: replace or remove problematic Unicode characters
     # This ensures we only use ASCII or easily encodable characters
