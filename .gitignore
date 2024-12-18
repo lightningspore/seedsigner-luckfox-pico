@@ -1,1 +1,4 @@
 **/luckfox-pico
+python_deps/*.whl
+python_deps/*.zip
+python_deps/*.tar.gz
