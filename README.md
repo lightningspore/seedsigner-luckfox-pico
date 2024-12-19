@@ -47,7 +47,12 @@ python -m ensurepip --default-pip
 ## Download Python source packages (no wheels!)
 ```
 pip download -r requirements.txt --no-binary ":all"
-adb push python_deps /python_deps
+# TODO: For each python dep, untar, or unzip the downloaded file from pypi
+adb push python_deps /
+
+# ON LUCKFOX INSTALL OLD FASHIONED WAY
+cd /python_deps/qrcode...
+python setup.py install
 ```
 
 
@@ -59,16 +64,21 @@ git checkout 0.8.0-luckfox
 adb push src /seedsigner
 ```
 
+## Run seedsigner
+```
+cd /seedsigner
+python main.py
+```
+
 
 
 ## Package individually made OS images to a flashable version
 ```
 cd 
-./blkenvflash/buildroot final-image.img
+./blkenvflash final-image.img
 ```
 
 ## Flash SD Card
 ```
 sudo dd bs=4M status=progress if=/Users/lightningspore/Downloads/pro_buildroot_sd/update.img of=/dev/disk5
-```
 ```
