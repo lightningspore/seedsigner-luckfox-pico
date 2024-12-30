@@ -72,10 +72,17 @@ python main.py
 
 
 
-## Package individually made OS images to a flashable version
+## MICROSD CARD: Package individually made OS images to a flashable version
 ```
-cd 
+# cd to directory containing all of the individual images
 ./blkenvflash final-image.img
+```
+
+## ONBOARD! SPI Flash: version directly on device
+```
+# cd to directory containing all of the individual images
+sudo rkflash.sh update
+/Users/lightningspore/Documents/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/rkflash.sh update
 ```
 
 ## Flash SD Card
