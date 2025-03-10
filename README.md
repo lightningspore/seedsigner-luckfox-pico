@@ -26,6 +26,7 @@ adb push config/luckfox.cfg /etc/luckfox.cfg
 ```
 # push over the test file
 adb push test_suite /
+```
 
 # Get to a device shell using adb
 ```
