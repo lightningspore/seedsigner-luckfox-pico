@@ -77,16 +77,34 @@ cp ../configs/config_20241218184332.config sysdrv/source/buildroot/buildroot-202
 ./build.sh buildrootconfig
 ```
 
-Start the image build process:
+Start the image compilation process:
 ```
 ./build.sh uboot
 ./build.sh kernel
 ./build.sh rootfs
 # needed for camera libs
 ./build.sh media
+```
 
+Verify all of the .img files are there:
+```
+$ ls /mnt/host/output/out/           
+S20linkmount  media_out  rootfs_uclibc_rv1106  sysdrv_out
+
+$ ls /mnt/host/output/image/
+boot.img  download.bin  idblock.img  uboot.img
+```
+
+Package:
+```
 # Package up the pieces
 ./build.sh firmware
+```
+
+Double check the output, now all of the expected .img files are there:
+```
+$ ls /mnt/host/output/image/
+boot.img  download.bin  env.img  idblock.img  oem.img  rootfs.img  sd_update.txt  tftp_update.txt  uboot.img  update.img  userdata.img
 ```
 
 
