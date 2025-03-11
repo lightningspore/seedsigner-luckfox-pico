@@ -107,6 +107,11 @@ $ ls /mnt/host/output/image/
 boot.img  download.bin  env.img  idblock.img  oem.img  rootfs.img  sd_update.txt  tftp_update.txt  uboot.img  update.img  userdata.img
 ```
 
+Final Piece of Sanity Checking:
+```
+dbg='yes' ./tools/linux/Linux_Upgrade_Tool/rkdownload.sh -d output/image/
+```
+
 
 # on LINUX x86 dev machine
 scp -r spore@spore-server:/home/spore/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/output/image .
@@ -116,3 +121,9 @@ sudo /Users/spore/Documents/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico
 
 
 pip download --no-binary ":all:" pyzbar@git+https://github.com/seedsigner/pyzbar.git@c3c237821c6a20b17953efe59b90df0b514a1c03
+
+
+# on MacOS ARM dev machine
+```
+git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
+```
