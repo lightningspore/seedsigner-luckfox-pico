@@ -5,7 +5,7 @@ If you're using a Mac (ARM-based), you **must** use a Linux VM to compile the im
 
 1. **Log in to your Linux VM from Mac (Terminal)**
    ```sh
-   ssh -i ~/Downloads/IR.pem ubuntu@52.11.155.222
+   ssh -i ~/Downloads/IR.pem ubuntu@************
    ```
 2. **If the key isn't working, adjust permissions:**
    ```sh
