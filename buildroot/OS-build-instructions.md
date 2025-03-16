@@ -170,7 +170,7 @@ ls -l /mnt/host/output/image/
 Run the following **on your Mac** to copy the built firmware from Ubuntu:
 
 ```sh
-scp -i ~/Downloads/IR.pem -r ubuntu@52.11.155.222:/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico/output/image ~/Downloads/
+scp -i ~/Downloads/IR.pem -r ubuntu@*********:/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico/output/image ~/Downloads/
 ```
 
 Verify the files on your Mac:
