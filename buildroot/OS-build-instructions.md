@@ -21,6 +21,15 @@ Run these commands from `buildroot/luckfox-pico` directory. This is the director
 
 ```
 # YOU MUST ENTER THE CONTAINER IN THE luckfox-pico sdk folder
+LUCKFOX_SDK_DIR=/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico
+SEEDSIGNER_CODE_DIR=/home/ubuntu/seedsigner
+LUCKFOX_BOARD_CFG_DIR=/home/ubuntu/seedsigner-luckfox-pico
+docker run -it --name luckfox-builder \
+    -v $LUCKFOX_SDK_DIR:/mnt/host \
+    -v $SEEDSIGNER_CODE_DIR:/mnt/ss \
+    -v $LUCKFOX_BOARD_CFG_DIR:/mnt/cfg \
+    foxbuilder:latest
+
 docker run -it --name luckfox-builder -v $(pwd):/mnt/host foxbuilder:latest
 ```
 
