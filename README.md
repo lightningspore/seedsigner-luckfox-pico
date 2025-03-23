@@ -1,8 +1,28 @@
 # seedsigner-luckfox-pico
 Port of the SeedSigner code to the LuckFox Pico Pro/Max embedded ARM(ricv?) linux board
 
+## Hardware Photos
+
+![LuckFox Pico Pro Max - Seedsigner](img/luckfox-devboard-front.webp)
+
+![Case From Behind](img/luckfox-devboard-back.webp)
+
+
+
+## OS Image Build With Buildroot
+The OS image can be built using the buildroot scripts in the [buildroot](buildroot/) directory. See [OS-build-instructions.md](OS-build-instructions.md) for detailed build instructions.
+
+![Buildroot Prompt](img/seedsigner-buildroot-setup.webp)
+
+Key files:
+- `sdk_init.sh` - Sets up the build environment inside of the builder container
+- `image_builder.py` - Creates the final disk image from partition images
+- `uboot_parser.py` - Helper script for parsing U-Boot partition info
+
+Follow the instructions in `buildroot/add_package_buildroot.txt` to add the required SeedSigner packages to the buildroot configuration.
 
 ## Dev machine setup
+
 ```
 # mac
 brew install homebrew/cask/android-platform-tools
@@ -12,7 +32,10 @@ sudo apt install android-tools-adb
 ```
 
 ## Initial Hardware Setup
+<b>THESE INSTRUCTIONS NEED TO BE UPDATED</b>
+(Most of this is done in the Buildroot OS Build section)
 
+But seeing how it is done here can help as you go above development using the device.
 
 This configures the GPIO on the device
 ```
@@ -38,24 +61,6 @@ adb shell
 cd /test_suite
 python test.py
 ```
-
-## More Setup
-```
-# Make sure pip is available
-python -m ensurepip --default-pip
-```
-
-## Download Python source packages (no wheels!)
-```
-pip download -r requirements.txt --no-binary ":all"
-# TODO: For each python dep, untar, or unzip the downloaded file from pypi
-adb push python_deps /
-
-# ON LUCKFOX INSTALL OLD FASHIONED WAY
-cd /python_deps/qrcode...
-python setup.py install
-```
-
 
 ## Copy over modified SeedSigner code
 ```
