@@ -1,12 +1,32 @@
 # seedsigner-luckfox-pico
 Port of the SeedSigner code to the LuckFox Pico Pro/Max embedded ARM(ricv?) linux board
 
+## Demo Videos
+
+### First Look: Seedsigner running on Luckfox Pico linux devboard
+[![SeedSigner on LuckFox Pico Pro Max](https://img.youtube.com/vi/WHkOSn-lPG4/0.jpg)](https://www.youtube.com/watch?v=WHkOSn-lPG4)
+
+
 ## Hardware Photos
 
 ![LuckFox Pico Pro Max - Seedsigner](img/luckfox-devboard-front.webp)
 
 ![Case From Behind](img/luckfox-devboard-back.webp)
 
+
+
+## Materials Needed
+- $20 [Luckfox Pico Pro Max](https://www.amazon.com/dp/B0D6QVC178)
+- $16 - [Luckfox Camera SC3336](https://www.amazon.com/dp/B0CJM7S6F6)
+- $1 - [40 Pin Header](https://www.amazon.com/dp/B01461DQ6S)
+- $16 - [Seedsigner LCD Button Board](https://www.amazon.com/dp/B07FDX5PJY)
+- $0.25 - [2 x Row Header Male](https://www.amazon.com/dp/B07R5QDL8D)
+- $5 - TODO: Link to PCB sales
+- $2 - TODO: Link to 3D Printed Case sales
+
+Being lazy and ordering almost everything from Amazon:
+
+<b>Total Cost: ~$60</b>
 
 
 ## OS Image Build With Buildroot
