@@ -28,7 +28,11 @@ WORKDIR /app
 
 RUN touch /root/.bash_profile
 
-ENV SDK_PATH=/mnt/host
+COPY sdk_init.sh /etc/profile.d/
+RUN chmod +x /etc/profile.d/sdk_init.sh && \
+    echo 'source /etc/profile.d/sdk_init.sh' >> /etc/bash.bashrc
+
+SHELL ["/bin/bash", "-c"]
 
 # Set the entrypoint
 CMD ["/bin/bash"]

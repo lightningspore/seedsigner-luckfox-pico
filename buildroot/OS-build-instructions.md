@@ -17,13 +17,13 @@ git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
 
 ## Run OS Build
 
-Run these commands from `buildroot/luckfox-pico` directory. This is the directory/repo we cloned above.
+Run these commands from `buildroot/` directory. This is the directory/repo we cloned above.
 
 ```
-# YOU MUST ENTER THE CONTAINER IN THE luckfox-pico sdk folder
 LUCKFOX_SDK_DIR=/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico
 SEEDSIGNER_CODE_DIR=/home/ubuntu/seedsigner
 LUCKFOX_BOARD_CFG_DIR=/home/ubuntu/seedsigner-luckfox-pico
+
 docker run -it --name luckfox-builder \
     -v $LUCKFOX_SDK_DIR:/mnt/host \
     -v $SEEDSIGNER_CODE_DIR:/mnt/ss \
@@ -103,6 +103,16 @@ S20linkmount  media_out  rootfs_uclibc_rv1106  sysdrv_out
 $ ls /mnt/host/output/image/
 boot.img  download.bin  idblock.img  uboot.img
 ```
+
+Copy over app code and pin configs
+```
+# Pin configs
+cp /mnt/cfg/config/luckfox.cfg /mnt/host/output/out/rootfs_uclibc_rv1106/etc/luckfox.cfg
+
+# Seedsigner code
+cp -r /mnt/ss/src/ /mnt/host/output/out/rootfs_uclibc_rv1106/seedsigner
+```
+
 
 Package:
 ```
