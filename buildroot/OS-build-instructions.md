@@ -131,18 +131,6 @@ Final Piece of Sanity Checking:
 dbg='yes' ./tools/linux/Linux_Upgrade_Tool/rkdownload.sh -d output/image/
 ```
 
+## Official resources
 
-# on LINUX x86 dev machine
-scp -r spore@spore-server:/home/spore/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/output/image .
-
-sudo /Users/spore/Documents/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/project/rkflash.sh update
-
-
-
-pip download --no-binary ":all:" pyzbar@git+https://github.com/seedsigner/pyzbar.git@c3c237821c6a20b17953efe59b90df0b514a1c03
-
-
-# on MacOS ARM dev machine
-```
-git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
-```
+[Luckfox Pico Official Flashing Guide](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/) - Official documentation for flashing images to the Luckfox Pico device on Linux and macOS systems

@@ -30,19 +30,16 @@ Being lazy and ordering almost everything from Amazon:
 
 
 ## OS Image Build With Buildroot
-The OS image can be built using the buildroot scripts in the [buildroot](buildroot/) directory. See [OS-build-instructions.md](buildroot/OS-build-instructions.md) for detailed build instructions.
+The OS image is built using Buildroot in a Docker container. The complete build process is documented in [OS-build-instructions.md](buildroot/OS-build-instructions.md).
 
 ![Buildroot Prompt](img/seedsigner-buildroot-setup.webp)
 
-The build process requires Docker and follows these main steps:
-1. Setup Docker build environment
-2. Clone Luckfox SDK
-3. Configure buildroot packages (RKISP, LIBCAMERA, ZBAR, LIBJPEG)
-4. Build U-Boot, kernel, rootfs, and media components
-5. Package the final firmware image
+For detailed build instructions, package requirements, and troubleshooting, see [OS-build-instructions.md](buildroot/OS-build-instructions.md).
 
 ## Dev machine setup
 
+### Install ADB
+I find developing for the Luckfox Pico device to be fairly convenient since it works with `adb`. You can push files back and forth to your dev machine, and you can access the device as a shell easily.
 ```
 # mac
 brew install homebrew/cask/android-platform-tools
@@ -51,35 +48,61 @@ brew install homebrew/cask/android-platform-tools
 sudo apt install android-tools-adb
 ```
 
+### ADB Connection and Device Management
+
+1. Connect to the device:
+```
+# List connected devices
+adb devices
+
+# Connect to device shell
+adb shell
+
+# Check device info
+adb shell uname -a
+adb shell cat /proc/version
+```
+
+2. File Operations:
+```
+# Push files to device
+adb push local_file.txt /remote/path/
+
+# Pull files from device
+adb pull /remote/path/file.txt .
+
+# List files on device
+
+adb shell ls /path/to/directory
+```
+
+
+
 ## Initial Hardware Setup
 <b>THESE INSTRUCTIONS NEED TO BE UPDATED</b>
 (Most of this is done in the Buildroot OS Build section)
 
-But seeing how it is done here can help as you go above development using the device.
+But seeing how it is done here can help as you go about development using the device.
 
 This configures the GPIO on the device
 ```
 adb push config/luckfox.cfg /etc/luckfox.cfg
 
 # reboot the device
+adb reboot
 ```
 
 ## Hardware Test Suite
 The test suite verifies all hardware components of the device:
 
 ```
-# push over the test file
+# push over the test files
 adb push test_suite /
 ```
 
-# Get to a device shell using adb
-```
-adb shell
-```
-
 # Run Test Suite
-cd /test_suite
-python test.py
+```
+adb shell python3 /test_suite/test.py
 ```
 
 The test suite includes:
@@ -111,10 +134,14 @@ python main.py
 ```
 
 ### ONBOARD! SPI Flash: version directly on device
+*This is also one of the downsides of this device*. The version specified here has onboard flash. There are other versions of the Luckfox Pico which don't have onboard flash, which I am excited to explore in the future. I might try desoldering it from the device, and post a video of the difficulty to do that. If there is no valid OS on the onboard SPI flash it will boot from the MicroSD card.
+
 ```
-# cd to directory containing all of the individual images
+cd /os/build/output/dir/
 sudo rkflash.sh update
 ```
+
+(TODO: Add image showing the console output of the spi flashing process.)
 
 ### Flash MicroSD Card
 ```
