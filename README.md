@@ -30,16 +30,16 @@ Being lazy and ordering almost everything from Amazon:
 
 
 ## OS Image Build With Buildroot
-The OS image can be built using the buildroot scripts in the [buildroot](buildroot/) directory. See [OS-build-instructions.md](OS-build-instructions.md) for detailed build instructions.
+The OS image can be built using the buildroot scripts in the [buildroot](buildroot/) directory. See [OS-build-instructions.md](buildroot/OS-build-instructions.md) for detailed build instructions.
 
 ![Buildroot Prompt](img/seedsigner-buildroot-setup.webp)
 
-Key files:
-- `sdk_init.sh` - Sets up the build environment inside of the builder container
-- `image_builder.py` - Creates the final disk image from partition images
-- `uboot_parser.py` - Helper script for parsing U-Boot partition info
-
-Follow the instructions in `buildroot/add_package_buildroot.txt` to add the required SeedSigner packages to the buildroot configuration.
+The build process requires Docker and follows these main steps:
+1. Setup Docker build environment
+2. Clone Luckfox SDK
+3. Configure buildroot packages (RKISP, LIBCAMERA, ZBAR, LIBJPEG)
+4. Build U-Boot, kernel, rootfs, and media components
+5. Package the final firmware image
 
 ## Dev machine setup
 
@@ -65,6 +65,7 @@ adb push config/luckfox.cfg /etc/luckfox.cfg
 ```
 
 ## Hardware Test Suite
+The test suite verifies all hardware components of the device:
 
 ```
 # push over the test file
@@ -76,11 +77,16 @@ adb push test_suite /
 adb shell
 ```
 
-### Run Test Suite
-```
+# Run Test Suite
 cd /test_suite
 python test.py
 ```
+
+The test suite includes:
+- Button testing (all 8 buttons)
+- Camera testing (capture and display)
+- LCD display testing
+- QR code testing
 
 ## Copy over modified SeedSigner code
 ```
@@ -96,22 +102,22 @@ cd /seedsigner
 python main.py
 ```
 
+## Flashing the Device
 
-
-## MICROSD CARD: Package individually made OS images to a flashable version
+### MICROSD CARD: Package individually made OS images to a flashable version
 ```
 # cd to directory containing all of the individual images
 ./blkenvflash final-image.img
 ```
 
-## ONBOARD! SPI Flash: version directly on device
+### ONBOARD! SPI Flash: version directly on device
 ```
 # cd to directory containing all of the individual images
 sudo rkflash.sh update
-/Users/lightningspore/Documents/repos/seedsigner-luckfox-pico/buildroot/luckfox-pico/rkflash.sh update
 ```
 
-## Flash SD Card
+### Flash MicroSD Card
 ```
-sudo dd bs=4M status=progress if=/Users/lightningspore/Downloads/pro_buildroot_sd/update.img of=/dev/disk5
+sudo dd bs=4M status=progress if=/path/to/update.img of=/dev/diskX
 ```
+Replace `/dev/diskX` with your actual SD card device path.
