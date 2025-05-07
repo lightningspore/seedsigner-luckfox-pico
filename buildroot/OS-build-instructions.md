@@ -1,7 +1,7 @@
 # OS Build Instructions
 
 ## Setup the Docker build environment
-Run these commands from `buildroot` directory.
+Run these commands from `buildroot` directory? No
 
 Build the builder image:
 ```bash
@@ -10,7 +10,6 @@ docker build -t foxbuilder:latest .
 
 Clone the Luckfox SDK repo:
 ```bash
-export SDK_LOCAL_PATH=$(pwd)/luckfox-pico
 git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
 ```
 
@@ -20,26 +19,20 @@ git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
 Run these commands from `buildroot/` directory. This is the directory/repo we cloned above.
 
 ```bash
-LUCKFOX_SDK_DIR=/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico
+LUCKFOX_SDK_DIR=/home/ubuntu/luckfox-pico
 SEEDSIGNER_CODE_DIR=/home/ubuntu/seedsigner
 LUCKFOX_BOARD_CFG_DIR=/home/ubuntu/seedsigner-luckfox-pico
+SEEDSIGNER_OS_DIR=/home/ubuntu/seedsigner-os
 
 docker run -it --name luckfox-builder \
     -v $LUCKFOX_SDK_DIR:/mnt/host \
     -v $SEEDSIGNER_CODE_DIR:/mnt/ss \
     -v $LUCKFOX_BOARD_CFG_DIR:/mnt/cfg \
+    -v $SEEDSIGNER_OS_DIR:/mnt/ssos \
     foxbuilder:latest
 ```
 
 These below commands are run INSIDE of the docker image.
-
-This command sets up some PATHs and changes to the proper working directory.
-```bash
-export SDK_PATH=/mnt/host
-cd $SDK_PATH/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/
-source env_install_toolchain.sh
-cd $SDK_PATH
-```
 
 This commands sets the build targets:
 Select, Pico Pro Max, buildroot, and SPI.

@@ -30,6 +30,8 @@ WORKDIR /app
 RUN touch /root/.bash_profile
 
 COPY sdk_init.sh /etc/profile.d/
+COPY add_package_buildroot.sh .
+
 RUN chmod +x /etc/profile.d/sdk_init.sh && \
     echo 'source /etc/profile.d/sdk_init.sh' >> /etc/bash.bashrc
 
