@@ -13,7 +13,8 @@ RUN apt-get update && \
         python3 \
         python3-pip \
         ssh \
-        make gcc gcc-multilib g++-multilib \
+        make gcc \
+        gcc-multilib g++-multilib \
         module-assistant expect g++ gawk \
         texinfo libssl-dev bison flex \
         fakeroot cmake unzip gperf autoconf \

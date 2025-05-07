@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # global package list
 vi sysdrv/source/buildroot/buildroot-2023.02.6/package/Config.in
 
@@ -11,11 +13,9 @@ cp -r sysdrv/source/buildroot/buildroot-2023.02.6/package/python-boto3 \
 
 git clone https://github.com/SeedSigner/seedsigner-os.git
 cd seedsigner-os/opt
-sudo cp -rv external-packages/ \
-    ~/seedsigner-luckfox-pico/buildroot/luckfox-pico/sysdrv/source/buildroot/buildroot-2023.02.6/
 
 # this is better
-sudo cp -r external-packages/* \
+sudo cp -rv external-packages/* \
     ~/seedsigner-luckfox-pico/buildroot/luckfox-pico/sysdrv/source/buildroot/buildroot-2023.02.6/package/
 
 
@@ -25,9 +25,9 @@ sudo nano ~/seedsigner-luckfox-pico/buildroot/luckfox-pico/sysdrv/source/buildro
 
 
 # Add in the new packages
-nano sysdrv/source/buildroot/buildroot-2023.02.6/package/Config.in
+sudo nano ~/seedsigner-luckfox-pico/buildroot/luckfox-pico/sysdrv/source/buildroot/buildroot-2023.02.6/package/Config.in
 
-
+```text
 menu "SeedSigner"
         source "package/python-urtypes/Config.in"
         source "package/python-pyzbar/Config.in"
@@ -42,6 +42,7 @@ menu "SeedSigner"
         source "package/python-qrcode/Config.in"
         source "package/python-pyqrcode/Config.in"
 endmenu
+```
 
 
 [build.sh:info] If you need to add custom files, \

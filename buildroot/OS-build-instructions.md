@@ -4,12 +4,12 @@
 Run these commands from `buildroot` directory.
 
 Build the builder image:
-```
+```bash
 docker build -t foxbuilder:latest .
 ```
 
 Clone the Luckfox SDK repo:
-```
+```bash
 export SDK_LOCAL_PATH=$(pwd)/luckfox-pico
 git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
 ```
@@ -19,7 +19,7 @@ git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
 
 Run these commands from `buildroot/` directory. This is the directory/repo we cloned above.
 
-```
+```bash
 LUCKFOX_SDK_DIR=/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico
 SEEDSIGNER_CODE_DIR=/home/ubuntu/seedsigner
 LUCKFOX_BOARD_CFG_DIR=/home/ubuntu/seedsigner-luckfox-pico
@@ -29,14 +29,12 @@ docker run -it --name luckfox-builder \
     -v $SEEDSIGNER_CODE_DIR:/mnt/ss \
     -v $LUCKFOX_BOARD_CFG_DIR:/mnt/cfg \
     foxbuilder:latest
-
-docker run -it --name luckfox-builder -v $(pwd):/mnt/host foxbuilder:latest
 ```
 
 These below commands are run INSIDE of the docker image.
 
 This command sets up some PATHs and changes to the proper working directory.
-```
+```bash
 export SDK_PATH=/mnt/host
 cd $SDK_PATH/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/
 source env_install_toolchain.sh
@@ -45,13 +43,13 @@ cd $SDK_PATH
 
 This commands sets the build targets:
 Select, Pico Pro Max, buildroot, and SPI.
-```
+```bash
 # set build configuration
 ./build.sh lunch
 ```
 
 This command allows us to choose what packages to install into our OS image.
-```
+```bash
 # configure packages to install in buildroot
 ./build.sh buildrootconfig
 ## SELECT THESE BELOW PACKAGES
@@ -64,7 +62,7 @@ After selecting the above packages, SAVE the configuration.
 The configuration is saved at: `sysdrv/source/buildroot/buildroot-2023.02.6/.config`
 
 You can sanity check your configuration to ensure the selected packages have been enabled like so:
-```
+```bash
 cat sysdrv/source/buildroot/buildroot-2023.02.6/.config | grep "LIBCAMERA"
 cat sysdrv/source/buildroot/buildroot-2023.02.6/.config | grep "ZBAR"
 cat sysdrv/source/buildroot/buildroot-2023.02.6/.config | grep "LIBJPEG"
@@ -72,12 +70,25 @@ cat sysdrv/source/buildroot/buildroot-2023.02.6/.config | grep "LIBJPEG"
 ```
 
 A final sanity check, this shows all enabled packages... This might be useful as we try and remove any unnecessary packages from the build:
-```
+```bash
 cat sysdrv/source/buildroot/buildroot-2023.02.6/.config | grep -v "^#"
 ```
 
-This command will use one of the saved configurations for the build:
+### Adding Custom Packages
+If you need to add custom packages to the buildroot configuration, you can use the `add_package_buildroot.sh` script. This script:
+1. Adds SeedSigner-specific packages to the buildroot configuration
+2. Copies necessary package files from the seedsigner-os repository
+3. Updates Python paths and configurations
+4. Adds required dependencies like python-pyzbar, python-embit, and camera-related packages
+
+To use the script:
+```bash
+# From the buildroot directory
+./add_package_buildroot.sh
 ```
+
+This command will use one of the saved configurations for the build:
+```bash
 # Use config from repo
 cp ../configs/config_20241218184332.config sysdrv/source/buildroot/buildroot-2023.02.6/.config
 
@@ -87,7 +98,7 @@ cp ../configs/config_20241218184332.config sysdrv/source/buildroot/buildroot-202
 ```
 
 Start the image compilation process:
-```
+```bash
 ./build.sh uboot
 ./build.sh kernel
 ./build.sh rootfs
@@ -96,7 +107,7 @@ Start the image compilation process:
 ```
 
 Verify all of the .img files are there:
-```
+```bash
 $ ls /mnt/host/output/out/           
 S20linkmount  media_out  rootfs_uclibc_rv1106  sysdrv_out
 
@@ -105,7 +116,7 @@ boot.img  download.bin  idblock.img  uboot.img
 ```
 
 Copy over app code and pin configs
-```
+```bash
 # Pin configs
 cp /mnt/cfg/config/luckfox.cfg /mnt/host/output/out/rootfs_uclibc_rv1106/etc/luckfox.cfg
 
@@ -113,23 +124,49 @@ cp /mnt/cfg/config/luckfox.cfg /mnt/host/output/out/rootfs_uclibc_rv1106/etc/luc
 cp -r /mnt/ss/src/ /mnt/host/output/out/rootfs_uclibc_rv1106/seedsigner
 ```
 
-
 Package:
-```
+```bash
 # Package up the pieces
 ./build.sh firmware
 ```
 
 Double check the output, now all of the expected .img files are there:
-```
+```bash
 $ ls /mnt/host/output/image/
 boot.img  download.bin  env.img  idblock.img  oem.img  rootfs.img  sd_update.txt  tftp_update.txt  uboot.img  update.img  userdata.img
 ```
 
 Final Piece of Sanity Checking:
-```
+```bash
 dbg='yes' ./tools/linux/Linux_Upgrade_Tool/rkdownload.sh -d output/image/
 ```
+
+Package into single flashable ISO image:
+```bash
+cd /mnt/host/output/image
+/mnt/cfg/buildroot/blkenvflash seedsigner-luckfox-pico.img
+```
+
+Send back to dev machine (if building on a remote X86 machine):
+```bash
+scp ubuntu@11.22.33.44:/home/ubuntu/seedsigner-luckfox-pico/buildroot/luckfox-pico/output/image/seedsigner-luckfox-pico.img ~/Downloads
+```
+
+Flash to MicroSD Card:
+```bash
+sudo dd bs=4M \
+    status=progress \
+    if=/Users/lightningspore/Downloads/seedsigner-luckfox-pico.img \
+    of=/dev/disk8
+```
+
+Put MicroSD Card into Luckfox Pico Device.
+
+```bash
+adb shell
+```
+
+TODO: Link to next steup in the install/setup process
 
 ## Official resources
 
