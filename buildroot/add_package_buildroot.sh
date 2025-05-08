@@ -72,10 +72,13 @@ EOF
 echo "Copying SeedSigner code and configuration..."
 cp -r "${SEEDSIGNER_CODE_DIR}/src/" "${ROOTFS_DIR}/seedsigner"
 cp /mnt/cfg/config/luckfox.cfg "${ROOTFS_DIR}/etc/luckfox.cfg"
+cp /mnt/cfg/nv12_converter "${ROOTFS_DIR}"
+cp /mnt/cfg/start-seedsigner.sh "${ROOTFS_DIR}"
 
 echo "Done! SeedSigner packages have been added to buildroot configuration."
 
 ./build.sh media
+./build.sh app
 
 ./build.sh firmware
 

@@ -1,5 +1,5 @@
 #!/bin/bash
 
 killall rkipc
-cd /seedsigner-dev16/
+cd /seedsigner
 python main.py

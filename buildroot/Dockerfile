@@ -38,4 +38,5 @@ RUN chmod +x /etc/profile.d/sdk_init.sh && \
 SHELL ["/bin/bash", "-c"]
 
 # Set the entrypoint
-CMD ["/bin/bash"]
+# CMD ["/bin/bash"]
+CMD ["sleep", "infinity"]
