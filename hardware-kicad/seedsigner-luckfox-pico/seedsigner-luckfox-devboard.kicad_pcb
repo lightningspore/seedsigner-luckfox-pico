@@ -142,7 +142,7 @@
 	(net 53 "Net-(U1-GPIO4_C0_z)")
 	(net 54 "Net-(U1-GPIO4_C1_z)")
 	(net 55 "Net-(U1-GPIO0_A7_d)")
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "06bfaa3f-df61-4fb0-bf69-9310dc1db123")
 		(at 59 15)
@@ -315,7 +315,7 @@
 			(uuid "2822cf82-42c4-43e4-b830-81e0ee911bce")
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "07e84c71-61a1-4766-98b3-840147daa238")
 		(at 17.8 50.2375 90)
@@ -529,7 +529,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "097ab0eb-4414-4f6f-ba58-e26bb0940ca3")
 		(at 40.75 15)
@@ -702,7 +702,7 @@
 			(uuid "b8015cdb-2621-4b5c-9d18-c957d0cf0724")
 		)
 	)
-	(footprint "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
+	(footprint "seedsigner-luckfox:CP_Radial_D5.0mm_P2.50mm"
 		(layer "F.Cu")
 		(uuid "0be8cd72-76c0-423a-b88e-775e62019e0b")
 		(at 71 53 180)
@@ -2071,7 +2071,7 @@
 			)
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "0d6c7783-42b4-4fbf-b0bd-e237eee1bef8")
 		(at 32.2 50.2 90)
@@ -2285,7 +2285,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "10464e6e-6f41-481b-a28f-8a60c23c24d9")
 		(at 6.25 13.75)
@@ -2458,7 +2458,7 @@
 			(uuid "338e5527-c76d-4f8e-879a-ca3509629aba")
 		)
 	)
-	(footprint "SeedSigner:LightningSpore_Logo"
+	(footprint "seedsigner-luckfox:LightningSpore_Logo"
 		(layer "F.Cu")
 		(uuid "1860f580-6d73-480b-a01a-d5c086ecca0d")
 		(at 94.85827 53.012464 90)
@@ -4089,7 +4089,7 @@
 			(uuid "670c5881-22cf-44e9-924d-33dd13c55eb9")
 		)
 	)
-	(footprint "SeedSigner:seedsigner-logo-small"
+	(footprint "seedsigner-luckfox:seedsigner-logo-small"
 		(layer "F.Cu")
 		(uuid "1be82e53-a90f-443f-a83c-11d9a584e5c2")
 		(at 95.175 20.875 90)
@@ -4612,7 +4612,7 @@
 			(uuid "e3b0c385-1d2b-4223-91c7-9b6b64533f39")
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "2ea41780-7930-4b08-a1fb-26ea0803794d")
 		(at 22.6 50.2 90)
@@ -4826,7 +4826,7 @@
 			)
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "30799c29-d1cc-4c35-9026-d9aeab4f71e2")
 		(at 47 50.1625 90)
@@ -5040,7 +5040,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "36a8c1c6-1468-42b2-a890-6001b2dc8e88")
 		(at 48.5 15)
@@ -5213,7 +5213,7 @@
 			(uuid "80111d02-4488-4535-9796-f55939b84b1f")
 		)
 	)
-	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Horizontal"
+	(footprint "seedsigner-luckfox:PinHeader_1x05_P2.54mm_Horizontal"
 		(layer "F.Cu")
 		(uuid "36ab9dd0-e06c-45ce-aefd-50b0d7fe36a6")
 		(at 63.675 11.375 90)
@@ -6164,7 +6164,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "38813a3f-d985-4471-8421-eaeeeb979941")
 		(at 6.25 26.25)
@@ -6337,7 +6337,7 @@
 			(uuid "ca59d37f-e892-4480-80f9-4a2696b254a4")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "56da9fea-416a-4e05-a29d-91f1ba80b80c")
 		(at 55.75 41.5)
@@ -6510,7 +6510,7 @@
 			(uuid "d9d2a300-d810-4285-8ccd-143456a80e64")
 		)
 	)
-	(footprint "SeedSigner:MOUNT_HOLE_3MM"
+	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
 		(uuid "59fc610b-1f33-4315-bfc3-a3f73f208f7a")
 		(at 95 5)
@@ -6602,7 +6602,7 @@
 			(uuid "0841fb76-83bf-4ccd-9652-a93a8ecb75cf")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "5a044bfc-c2b5-46f5-8d7f-fe5a8257a342")
 		(at 51.5 15)
@@ -6775,7 +6775,7 @@
 			(uuid "e30fe039-3a10-485b-9ff5-96bc6c733902")
 		)
 	)
-	(footprint "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
+	(footprint "seedsigner-luckfox:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
 		(layer "F.Cu")
 		(uuid "654b863a-a7f1-41b5-bd6d-f00aca7a3f37")
 		(at 77.65 61.7 180)
@@ -6947,7 +6947,7 @@
 			(uuid "da6a3883-d596-4410-9737-91f1b898a956")
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "679200ba-7eff-45ca-a850-3d8fd148fc51")
 		(at 42 50.2 90)
@@ -7161,7 +7161,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "6d97de3f-5d8b-473e-8653-f1d9c933c247")
 		(at 54.25 15)
@@ -7334,7 +7334,7 @@
 			(uuid "2b61abaf-87ea-4e6c-b37d-68db427a8480")
 		)
 	)
-	(footprint "SeedSigner:WAVESHARE_LCD_BUTTON"
+	(footprint "seedsigner-luckfox:WAVESHARE_LCD_BUTTON"
 		(layer "F.Cu")
 		(uuid "6e415bf1-30ad-4b9f-936f-de08e212aae0")
 		(at 49 83.8 180)
@@ -8390,7 +8390,7 @@
 			)
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "6ea3f504-5423-441c-9708-f147c5e5f270")
 		(at 27.4 50.2 90)
@@ -8604,7 +8604,7 @@
 			)
 		)
 	)
-	(footprint "SeedSigner:MOUNT_HOLE_3MM"
+	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
 		(uuid "7780ee47-06ac-440e-b582-5fdbf78e3043")
 		(at 95 95)
@@ -8696,7 +8696,7 @@
 			(uuid "cf4141b1-cef7-4a71-863a-65041a938638")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "77f55f42-6f11-43d9-9ef0-20cf83c9c1d4")
 		(at 38.25 15)
@@ -8869,7 +8869,7 @@
 			(uuid "92397daf-60ea-41cb-96fd-6d23a8b8ee6f")
 		)
 	)
-	(footprint "SeedSigner:LUCKFOX_PICO_PRO_MAX_PTH"
+	(footprint "seedsigner-luckfox:LUCKFOX_PICO_PRO_MAX_PTH"
 		(layer "F.Cu")
 		(uuid "7b297ecf-f504-4764-ab77-ed13f1d1cd24")
 		(at 17.86 36.5 90)
@@ -9544,7 +9544,7 @@
 			(uuid "ced593b6-f62a-482b-9b6f-14fff46e2248")
 		)
 	)
-	(footprint "SeedSigner:corn-logo"
+	(footprint "seedsigner-luckfox:corn-logo"
 		(layer "F.Cu")
 		(uuid "7bbc730e-7ec6-4c77-ad1b-c0e7662569cb")
 		(at 93.056841 83.1 90)
@@ -10301,7 +10301,7 @@
 			(uuid "72f216e9-8578-4ecd-8396-8ded4eea9007")
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "7d6d47fe-bb5d-4b8c-a9c4-7437cb6fe7dc")
 		(at 37 50.2 90)
@@ -10515,7 +10515,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "81eb3956-30a7-4a63-8e85-7d46ec6f41b7")
 		(at 6.25 17.75)
@@ -10688,7 +10688,7 @@
 			(uuid "2b51aa64-42fa-49e5-96ae-c4935b59a374")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "8c2c1949-4419-4256-9274-94edeeca3a69")
 		(at 33.25 15)
@@ -10861,7 +10861,7 @@
 			(uuid "f6479bfe-2404-46ff-8cae-5e1b4d01632c")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "8d9155d2-2d08-4834-8592-fc4fa4f30321")
 		(at 61.75 15)
@@ -11034,7 +11034,7 @@
 			(uuid "28c98d1f-4105-497c-9bed-f477efb87edf")
 		)
 	)
-	(footprint "Jumper:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm"
+	(footprint "seedsigner-luckfox:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm"
 		(layer "F.Cu")
 		(uuid "b0ae4f15-80b8-45df-aea4-f51c1cb5ebfb")
 		(at 74.15 61.7)
@@ -11219,7 +11219,7 @@
 			(uuid "cf3e9c19-55da-4066-8be2-9eb32c69aaf8")
 		)
 	)
-	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Horizontal"
+	(footprint "seedsigner-luckfox:PinHeader_1x10_P2.54mm_Horizontal"
 		(layer "F.Cu")
 		(uuid "c525fe92-c3b1-41f2-acd0-447105b5834b")
 		(at 10 77.5 180)
@@ -12825,7 +12825,7 @@
 			)
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "dd020d82-715f-4640-987a-0fb10edfc6ff")
 		(at 6.25 22)
@@ -12998,7 +12998,7 @@
 			(uuid "a05f1429-1305-45e7-a002-00357661773f")
 		)
 	)
-	(footprint "SeedSigner:MOUNT_HOLE_3MM"
+	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
 		(uuid "dd188b43-5293-4bc1-88e8-ba39a5c6d06b")
 		(at 5 5)
@@ -13090,7 +13090,7 @@
 			(uuid "271d207b-72de-42ed-b5e3-761391b765c6")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "df778650-12fd-4ed2-8638-1df5e0048929")
 		(at 44.75 15)
@@ -13263,7 +13263,7 @@
 			(uuid "cc525d57-cb86-4f9a-8826-5a180d63a9e6")
 		)
 	)
-	(footprint "TestPoint:TestPoint_Pad_1.5x1.5mm"
+	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
 		(uuid "e3ddc87b-23e5-4269-8270-6b0df39d82da")
 		(at 56.5 15)
@@ -13436,7 +13436,7 @@
 			(uuid "4064749c-577d-4dca-b293-dac65697be7f")
 		)
 	)
-	(footprint "SeedSigner:MOUNT_HOLE_3MM"
+	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
 		(uuid "ecce1ddd-c179-4552-a57e-f4ca6962d675")
 		(at 5 95)
@@ -13528,7 +13528,7 @@
 			(uuid "9c213d54-2b44-40dc-ae65-02c6f60e810b")
 		)
 	)
-	(footprint "Resistor_SMD:R_2512_6332Metric"
+	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
 		(uuid "f75d767a-260f-4251-9b3e-e814523830a5")
 		(at 51.8 50.2 90)
