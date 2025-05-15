@@ -1,7 +1,7 @@
 (kicad_pcb
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(general
 		(thickness 1.6)
 		(legacy_teardrops no)
@@ -15,42 +15,43 @@
 	)
 	(layers
 		(0 "F.Cu" signal)
-		(31 "B.Cu" signal)
-		(32 "B.Adhes" user "B.Adhesive")
-		(33 "F.Adhes" user "F.Adhesive")
-		(34 "B.Paste" user)
-		(35 "F.Paste" user)
-		(36 "B.SilkS" user "B.Silkscreen")
-		(37 "F.SilkS" user "F.Silkscreen")
-		(38 "B.Mask" user)
-		(39 "F.Mask" user)
-		(40 "Dwgs.User" user "User.Drawings")
-		(41 "Cmts.User" user "User.Comments")
-		(42 "Eco1.User" user "User.Eco1")
-		(43 "Eco2.User" user "User.Eco2")
-		(44 "Edge.Cuts" user)
-		(45 "Margin" user)
-		(46 "B.CrtYd" user "B.Courtyard")
-		(47 "F.CrtYd" user "F.Courtyard")
-		(48 "B.Fab" user)
-		(49 "F.Fab" user)
-		(50 "User.1" user)
-		(51 "User.2" user)
-		(52 "User.3" user)
-		(53 "User.4" user)
-		(54 "User.5" user)
-		(55 "User.6" user)
-		(56 "User.7" user)
-		(57 "User.8" user)
-		(58 "User.9" user)
+		(2 "B.Cu" signal)
+		(9 "F.Adhes" user "F.Adhesive")
+		(11 "B.Adhes" user "B.Adhesive")
+		(13 "F.Paste" user)
+		(15 "B.Paste" user)
+		(5 "F.SilkS" user "F.Silkscreen")
+		(7 "B.SilkS" user "B.Silkscreen")
+		(1 "F.Mask" user)
+		(3 "B.Mask" user)
+		(17 "Dwgs.User" user "User.Drawings")
+		(19 "Cmts.User" user "User.Comments")
+		(21 "Eco1.User" user "User.Eco1")
+		(23 "Eco2.User" user "User.Eco2")
+		(25 "Edge.Cuts" user)
+		(27 "Margin" user)
+		(31 "F.CrtYd" user "F.Courtyard")
+		(29 "B.CrtYd" user "B.Courtyard")
+		(35 "F.Fab" user)
+		(33 "B.Fab" user)
+		(39 "User.1" user)
+		(41 "User.2" user)
+		(43 "User.3" user)
+		(45 "User.4" user)
+		(47 "User.5" user)
+		(49 "User.6" user)
+		(51 "User.7" user)
+		(53 "User.8" user)
+		(55 "User.9" user)
 	)
 	(setup
 		(pad_to_mask_clearance 0)
 		(allow_soldermask_bridges_in_footprints no)
+		(tenting front back)
 		(grid_origin 12 12)
 		(pcbplotparams
-			(layerselection 0x00010fc_ffffffff)
-			(plot_on_all_layers_selection 0x0000000_00000000)
+			(layerselection 0x00000000_00000000_55555555_5755f5ff)
+			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
 			(usegerberattributes yes)
@@ -60,7 +61,6 @@
 			(dashed_line_gap_ratio 3.000000)
 			(svgprecision 4)
 			(plotframeref no)
-			(viasonmask no)
 			(mode 1)
 			(useauxorigin no)
 			(hpglpennumber 1)
@@ -68,16 +68,19 @@
 			(hpglpendiameter 15.000000)
 			(pdf_front_fp_property_popups yes)
 			(pdf_back_fp_property_popups yes)
+			(pdf_metadata yes)
+			(pdf_single_document no)
 			(dxfpolygonmode yes)
 			(dxfimperialunits yes)
 			(dxfusepcbnewfont yes)
 			(psnegative no)
 			(psa4output no)
-			(plotreference yes)
-			(plotvalue yes)
-			(plotfptext yes)
-			(plotinvisibletext no)
+			(plot_black_and_white yes)
 			(sketchpadsonfab no)
+			(plotpadnumbers no)
+			(hidednponfab no)
+			(sketchdnponfab yes)
+			(crossoutdnponfab yes)
 			(subtractmaskfromsilk no)
 			(outputformat 4)
 			(mirror no)
@@ -166,19 +169,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "05229dc5-fe6c-4d75-918b-77dc6786f6ab")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -314,6 +304,7 @@
 			(pintype "passive")
 			(uuid "73b7fc9f-057d-4e21-a0e5-51a6e0f30976")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
@@ -340,19 +331,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0c2a0a29-be2f-4d67-9cf1-e6471875c920")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -502,7 +480,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -511,12 +489,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 19 "/KEY3")
 			(pintype "passive")
 			(uuid "33f20500-bdb2-4651-8139-6d2a1c1b3420")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -553,19 +532,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "7b0a474f-245e-47b4-9eea-4af91a136355")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -701,6 +667,7 @@
 			(pintype "passive")
 			(uuid "75783c2c-2c8c-4d34-9b29-19dd188deefb")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:CP_Radial_D5.0mm_P2.50mm"
 		(layer "F.Cu")
@@ -727,19 +694,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:CP_Radial_D5.0mm_P2.50mm"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "34696550-dafb-40a2-ac8d-1405f1c79342")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -1982,7 +1936,7 @@
 				(width 0.12)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.SilkS")
 			(uuid "1c31a5cf-7a57-419f-9698-2d47c6d431c5")
 		)
@@ -1993,7 +1947,7 @@
 				(width 0.05)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.CrtYd")
 			(uuid "303033c1-4173-413c-a1eb-32e9617de3d4")
 		)
@@ -2024,7 +1978,7 @@
 				(width 0.1)
 				(type solid)
 			)
-			(fill none)
+			(fill no)
 			(layer "F.Fab")
 			(uuid "54fa08ad-ccb2-4551-8e6c-144f1b4b4676")
 		)
@@ -2059,6 +2013,7 @@
 			(pintype "passive")
 			(uuid "97090e54-41d2-41f3-b3d1-641a109718c3")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Capacitor_THT.3dshapes/CP_Radial_D5.0mm_P2.50mm.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -2096,19 +2051,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e824dca0-6971-47b6-85c8-22b37a697651")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -2258,7 +2200,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -2267,12 +2209,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 4 "/JOYSTICK_RIGHT")
 			(pintype "passive")
 			(uuid "2e17e443-b7be-4849-a75a-c13359d28c7e")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -2309,19 +2252,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c41e16a8-0c6b-4ca8-a3ad-921af87c7d14")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -2457,6 +2387,7 @@
 			(pintype "passive")
 			(uuid "6c9ab90b-8f75-4e9a-b835-85d0dccf932c")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:LightningSpore_Logo"
 		(layer "F.Cu")
@@ -2481,19 +2412,6 @@
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "29b221e6-d3db-4f66-b3c8-9d2b6bad0e5b")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:LightningSpore_Logo"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d4fb2dc3-b382-4796-b058-76510015bd20")
 			(effects
 				(font
 					(size 1 1)
@@ -2538,7 +2456,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "175b1771-ef82-41b1-add9-b395bbc515bf")
 		)
@@ -2550,7 +2468,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "a96f75a4-f702-4986-83c5-a5f915cd31bf")
 		)
@@ -2562,7 +2480,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "9013e447-0cbc-4107-b5e3-7bd996db67bd")
 		)
@@ -2574,7 +2492,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "035e1d3b-0ef0-4624-94c7-b4588c777de9")
 		)
@@ -2586,7 +2504,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "11f39277-628a-4843-9d70-c8c69c804fc1")
 		)
@@ -2598,7 +2516,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "90e0f805-158f-4951-9568-3ab15f5894a7")
 		)
@@ -2611,7 +2529,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "1139fdc5-a8a2-45fa-bd52-4d000c06b39c")
 		)
@@ -2624,7 +2542,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "f9ef9114-edb7-400b-95c7-43b3771fc21a")
 		)
@@ -2637,7 +2555,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "4162a447-6d13-484a-a9a6-7d98943a639b")
 		)
@@ -2650,7 +2568,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "3b8b866d-d504-436b-afcb-bfefdb374cd1")
 		)
@@ -2663,7 +2581,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "ba6f6012-abfc-4703-b998-4d16b74f2370")
 		)
@@ -2676,7 +2594,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "e07ab858-2770-47e4-b3ae-3b9a65feed00")
 		)
@@ -2689,7 +2607,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "575f1788-3c5a-4390-bec7-850debf67bae")
 		)
@@ -2702,7 +2620,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "adc0160b-4628-4fa1-8088-20012c15f08d")
 		)
@@ -2715,7 +2633,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "66f126af-69f7-4b1c-9303-77eebc09f02e")
 		)
@@ -2728,7 +2646,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "ed993564-208e-40e7-a453-94d37e740bab")
 		)
@@ -2741,7 +2659,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "bd0a4e4b-acf8-43d1-9de8-b0d42d881940")
 		)
@@ -2755,7 +2673,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "8017c64b-4348-4ca4-9d41-a69322d85297")
 		)
@@ -2772,7 +2690,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "6248b77f-5a81-4017-8cb5-4f8f26aa9496")
 		)
@@ -2792,7 +2710,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "2ac260e1-e2fd-4a5f-b48a-9b890cbd7411")
 		)
@@ -2815,7 +2733,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "5ce89892-4057-4f87-95bc-e76719dc6492")
 		)
@@ -2839,7 +2757,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "29200f15-db39-4c5f-8b93-3c25b7419095")
 		)
@@ -2863,7 +2781,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "77f3cee6-be04-45ff-8b1e-0ca8c59fca4e")
 		)
@@ -2888,7 +2806,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "12befb1d-423c-4075-bdc3-e6eedf67c7b3")
 		)
@@ -2918,7 +2836,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "3038b8b0-aadc-4586-9fb6-eb49de90ee5d")
 		)
@@ -2949,7 +2867,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "36a4e758-1534-4d17-acfc-8fd8f9fa02ef")
 		)
@@ -2983,7 +2901,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "090bfa62-eca2-473b-b11c-d19cb0c70b04")
 		)
@@ -3017,7 +2935,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "a6310701-4805-42fc-99b4-fb0cc53a82bd")
 		)
@@ -3050,7 +2968,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "ca0e7517-6631-4c7b-bb4c-5eb25071481e")
 		)
@@ -3081,7 +2999,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "129263c5-33d4-475f-befc-78bc68da7a70")
 		)
@@ -3112,7 +3030,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "0e69931b-99c8-42b6-be92-376804f4c659")
 		)
@@ -3144,7 +3062,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "312e0973-c867-4b24-b3cf-5cf8d2f53c7c")
 		)
@@ -3178,7 +3096,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "acd66f83-aef1-433c-8b7a-36e9c6ac7c32")
 		)
@@ -3213,7 +3131,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "002aab68-e33a-412d-9293-0c42c7600842")
 		)
@@ -3249,7 +3167,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "391f26cd-b485-4f79-8ac1-85025eee07a7")
 		)
@@ -3285,7 +3203,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "f7339a8a-83fc-4de1-903c-00e93a01d24d")
 		)
@@ -3322,7 +3240,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "93b471c8-3427-40a4-bf07-9e8c0682d907")
 		)
@@ -3360,7 +3278,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "300f839b-d57a-4151-98fb-28404cebcf40")
 		)
@@ -3399,7 +3317,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "2ee5bc92-fe81-465d-b21e-233ca25ed273")
 		)
@@ -3439,7 +3357,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "a13d3f9f-ae86-4abe-8e4a-b515be57dbd6")
 		)
@@ -3481,7 +3399,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "b4473267-1450-4ead-8017-e76affcbe4d3")
 		)
@@ -3525,7 +3443,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "bf0c59c9-895e-49df-83e6-58a80dac8944")
 		)
@@ -3571,7 +3489,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "2ba579b5-e9d1-4eb0-ba13-e98de28094d5")
 		)
@@ -3618,7 +3536,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "4fe02337-5f24-4a81-a2db-5bbe42917aee")
 		)
@@ -3666,7 +3584,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "2f506c3b-863c-4498-9ac5-0ba40eb093ab")
 		)
@@ -3713,7 +3631,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "8454ddeb-5f88-4114-828f-cfd75d5b0661")
 		)
@@ -3760,7 +3678,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "4ae693ce-9631-473b-bbfa-66ec64d28408")
 		)
@@ -3811,7 +3729,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "344464ce-02ee-43a7-af61-1e28e25587cd")
 		)
@@ -3856,7 +3774,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "9d5e1d11-cfa1-4517-9aa6-1295656528b1")
 		)
@@ -3908,7 +3826,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "a4b26a84-d21c-4df1-bae1-d0b46d2da40c")
 		)
@@ -3954,7 +3872,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "caac7be8-1372-4a8b-9d6b-eedd30983075")
 		)
@@ -4018,7 +3936,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "f153bd27-6e26-4183-b3ba-7d585c66f63b")
 		)
@@ -4084,10 +4002,11 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "670c5881-22cf-44e9-924d-33dd13c55eb9")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:seedsigner-logo-small"
 		(layer "F.Cu")
@@ -4114,18 +4033,6 @@
 				(font
 					(size 1.524 1.524)
 					(thickness 0.3)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:seedsigner-logo-small"
-			(at 0 0 90)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0b1b7c66-b419-4724-9373-0468906d4d08")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -4165,7 +4072,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "5d73d4a7-66bb-46a4-8b16-9b5ebb13ae99")
 		)
@@ -4184,7 +4091,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "df25438e-9e26-4242-b876-c3ddb96a4baf")
 		)
@@ -4209,7 +4116,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "9b1b265d-5ba0-4168-9b53-e6a919d38b1f")
 		)
@@ -4239,7 +4146,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "5287a645-8453-40f8-a8f9-bb7169777c4d")
 		)
@@ -4269,7 +4176,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "645d76ac-f447-496d-8aa7-b97973a741d4")
 		)
@@ -4300,7 +4207,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "47d62d41-737d-4934-8ff1-0d9783c14b3e")
 		)
@@ -4334,7 +4241,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "7e8c69d6-e193-4a20-b196-5087d77b6b8c")
 		)
@@ -4368,7 +4275,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "dcdef939-1037-4fac-8b06-28e3bf510115")
 		)
@@ -4607,10 +4514,11 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "e3b0c385-1d2b-4223-91c7-9b6b64533f39")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
@@ -4637,19 +4545,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "3ad1fc4b-b4ee-4a54-848f-c3cc34296370")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -4799,7 +4694,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -4808,12 +4703,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 17 "/KEY2")
 			(pintype "passive")
 			(uuid "20988645-9277-464b-bf5e-4599490078b1")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -4851,19 +4747,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "3c93286b-5b18-427d-9dfe-80c4fc3bec40")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -5013,7 +4896,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -5022,12 +4905,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 8 "/JOYSTICK_UP")
 			(pintype "passive")
 			(uuid "20a35267-978d-4681-9b8c-c4766505c137")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -5064,19 +4948,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "35b94303-ea57-408f-a137-a3c818b0d469")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -5212,6 +5083,7 @@
 			(pintype "passive")
 			(uuid "b9f0c57e-5af2-4331-a325-a32f594c9aed")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:PinHeader_1x05_P2.54mm_Horizontal"
 		(layer "F.Cu")
@@ -5238,19 +5110,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:PinHeader_1x05_P2.54mm_Horizontal"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "5fbd7b3d-c0c0-4abf-971f-e71ed36d6f15")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6152,6 +6011,7 @@
 			(pintype "passive")
 			(uuid "a78e52d8-a1ee-43fb-a34f-e96c9c0a24e0")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x05_P2.54mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -6188,19 +6048,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "dde61b4b-1b50-45d1-8ed5-4d027da9efd1")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6336,6 +6183,7 @@
 			(pintype "passive")
 			(uuid "817cb570-e598-435c-b678-f1178b7b5ab4")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -6361,19 +6209,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1990a0f2-0483-4f25-963a-ac5f3b7314cd")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6509,6 +6344,7 @@
 			(pintype "passive")
 			(uuid "7b8d47e0-2489-441a-a04f-ad81e4003627")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
@@ -6536,18 +6372,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:MOUNT_HOLE_3MM"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "faffc9c2-3b39-4a05-94b9-28a006894fc0")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6581,26 +6405,14 @@
 		(sheetname "Root")
 		(sheetfile "seedsigner-luckfox-devboard.kicad_sch")
 		(attr through_hole)
-		(fp_text user "${REFERENCE}"
-			(at 0 2.5 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8b18eb8d-7eae-444c-9b74-d2aae04bd9ce")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
 		(pad "" np_thru_hole circle
 			(at 0 0)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "0841fb76-83bf-4ccd-9652-a93a8ecb75cf")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -6626,19 +6438,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "25f3deb2-69a4-4482-b521-4a10a065e5e0")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6774,6 +6573,7 @@
 			(pintype "passive")
 			(uuid "24cbb70b-a29a-4f2a-9925-033ce37f451f")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
 		(layer "F.Cu")
@@ -6799,19 +6599,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "2ff8d75d-b4c3-4eac-8b0a-9097c7915c52")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -6946,6 +6733,7 @@
 			(pintype "passive")
 			(uuid "87fc0cb2-64e9-4383-8219-c4a971fd6b1b")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
@@ -6972,19 +6760,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "5eadf264-b87d-4055-ac8b-6cd5890c4c73")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -7134,7 +6909,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -7143,12 +6918,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 14 "/JOYSTICK_PRESS")
 			(pintype "passive")
 			(uuid "29d16d3b-1ec8-46a5-b8a1-c8dd7d927942")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -7185,19 +6961,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "dd3dd7ec-7d5d-47a6-b764-47b02f969170")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -7333,6 +7096,7 @@
 			(pintype "passive")
 			(uuid "25a031d6-fb46-4345-85fb-111af3f4392a")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:WAVESHARE_LCD_BUTTON"
 		(layer "F.Cu")
@@ -7359,18 +7123,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:WAVESHARE_LCD_BUTTON"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9e2f103b-217b-470f-b401-779d2c37fac8")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -7822,7 +7574,7 @@
 				(width 0.5)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "39a04c59-0829-4393-87c6-797e762ee943")
 		)
@@ -7903,28 +7655,28 @@
 			(at -29 -12 180)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "a51f3b0a-b4dd-4ee3-bbd8-42616751be1d")
 		)
 		(pad "" np_thru_hole circle
 			(at -29 12 180)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "f13cb19d-b74d-4da5-9730-2d5ee2a83b3c")
 		)
 		(pad "" np_thru_hole circle
 			(at 29 -12 180)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "afacec14-abfa-44b8-8fc5-34aed212734f")
 		)
 		(pad "" np_thru_hole circle
 			(at 29 12 180)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "8e91c90f-40cc-4c5a-b6ea-779a0de8107a")
 		)
 		(pad "1" thru_hole rect
@@ -8367,6 +8119,7 @@
 			(pintype "bidirectional")
 			(uuid "1da7e24d-191f-486f-8f7a-cf01552daf96")
 		)
+		(embedded_fonts no)
 		(model "${DOWNLOADS}/LCD_Waveshare_240x240_1.3inch v6.step"
 			(offset
 				(xyz 32 0 0)
@@ -8415,19 +8168,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "65a9764c-8934-48ec-bf6e-ba0bc8e3f69f")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -8577,7 +8317,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -8586,12 +8326,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 23 "/KEY1")
 			(pintype "passive")
 			(uuid "53b82e84-9338-44df-9f83-8b1fca17ae96")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -8634,18 +8375,6 @@
 				)
 			)
 		)
-		(property "Footprint" "seedsigner-luckfox:MOUNT_HOLE_3MM"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "4bc03b84-9751-4834-b94e-47b40634f2db")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
-				)
-			)
-		)
 		(property "Datasheet" ""
 			(at 0 0 0)
 			(layer "F.Fab")
@@ -8675,26 +8404,14 @@
 		(sheetname "Root")
 		(sheetfile "seedsigner-luckfox-devboard.kicad_sch")
 		(attr through_hole)
-		(fp_text user "${REFERENCE}"
-			(at 0 2.5 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "f170788e-feb6-441f-a803-3dd9500e6e12")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
 		(pad "" np_thru_hole circle
 			(at 0 0)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "cf4141b1-cef7-4a71-863a-65041a938638")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -8720,19 +8437,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "7ee525b9-17b8-4835-9c8c-2fc640b7e463")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -8868,6 +8572,7 @@
 			(pintype "passive")
 			(uuid "c1cd0f96-8c27-48e4-a5c3-8371a6235baa")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:LUCKFOX_PICO_PRO_MAX_PTH"
 		(layer "F.Cu")
@@ -8891,19 +8596,6 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(uuid "4ed1713a-2ea6-4296-a40a-456b52f7b525")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:LUCKFOX_PICO_PRO_MAX_PTH"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0f864ea6-2fb7-4529-ba75-05628aa25241")
 			(effects
 				(font
 					(size 1 1)
@@ -9543,6 +9235,7 @@
 			(thermal_bridge_angle 45)
 			(uuid "ced593b6-f62a-482b-9b6f-14fff46e2248")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:corn-logo"
 		(layer "F.Cu")
@@ -9569,18 +9262,6 @@
 				(font
 					(size 1.524 1.524)
 					(thickness 0.3)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:corn-logo"
-			(at 0 0 90)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d57496bc-f3e6-43df-855d-a901648dec4d")
-			(effects
-				(font
-					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -9620,7 +9301,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "d81188da-83fb-4e52-ad60-4d1381f760a5")
 		)
@@ -9632,7 +9313,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "5f99c8b2-7e26-42d1-b085-d2721f4e2892")
 		)
@@ -9644,7 +9325,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "1ad67d3d-790b-4567-a371-eab1b3a2fe20")
 		)
@@ -9656,7 +9337,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "0d471edf-9b3b-4a10-baf1-e74b8c272f45")
 		)
@@ -9668,7 +9349,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "225062a6-968a-4805-a726-28248ef013d4")
 		)
@@ -9680,7 +9361,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "1f1a93ee-16a0-48cb-9bf2-3cc5a886173d")
 		)
@@ -9692,7 +9373,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "b7de000b-fbc3-4154-a757-27606e2860f3")
 		)
@@ -9704,7 +9385,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "8d9044e9-88d5-44f8-a39c-b9984ef84ee9")
 		)
@@ -9716,7 +9397,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "69f6ccfb-50c2-4adb-8483-88eed2ff12fd")
 		)
@@ -9728,7 +9409,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "e15c0595-08ef-4d30-83f6-b5d820e99f8f")
 		)
@@ -9740,7 +9421,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "1e7f0633-7af5-429b-b909-1f275b22910c")
 		)
@@ -9752,7 +9433,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "7c1491f2-0762-4506-b242-9bcc2bba9a5e")
 		)
@@ -9764,7 +9445,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "208827b5-afe8-4589-8e32-70541d05b00a")
 		)
@@ -9777,7 +9458,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "011e1799-8f6e-4d87-84e9-4659b0ee720c")
 		)
@@ -9790,7 +9471,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "1c93a534-6c32-4aee-8844-b7b5b469335b")
 		)
@@ -9803,7 +9484,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "57f6f67c-9e9f-41ca-95be-fa33f5314795")
 		)
@@ -9816,7 +9497,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "31a13790-7027-4ad0-88b5-61a555aae9da")
 		)
@@ -10296,10 +9977,11 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.SilkS")
 			(uuid "72f216e9-8578-4ecd-8396-8ded4eea9007")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
@@ -10326,19 +10008,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "dc879b70-e610-401c-a6c8-631a3b8976fe")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -10488,7 +10157,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -10497,12 +10166,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 13 "/JOYSTICK_DOWN")
 			(pintype "passive")
 			(uuid "e06fc6b5-6533-4473-a6a8-33b79a0f366b")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -10539,19 +10209,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d825ddb4-c5b2-4eac-9e81-a8505a5985e9")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -10687,6 +10344,7 @@
 			(pintype "passive")
 			(uuid "1ad0fc48-8ae6-44e8-8c79-c5f793b27d9b")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -10712,19 +10370,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0f43f3d9-5630-4400-b649-8ec121ca5082")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -10860,6 +10505,7 @@
 			(pintype "passive")
 			(uuid "0bb24f79-aa12-47df-baf8-cbc6f96423e5")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -10885,19 +10531,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "1c10b531-b259-4ae8-9e9e-b8fa20a82feb")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -11033,6 +10666,7 @@
 			(pintype "passive")
 			(uuid "4ae10694-aefd-48fa-93e2-ee30e6784e8e")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm"
 		(layer "F.Cu")
@@ -11058,19 +10692,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "9af9a33c-5c7d-4e95-9f25-04bb58808ebe")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -11116,7 +10737,7 @@
 				(width 0)
 				(type solid)
 			)
-			(fill solid)
+			(fill yes)
 			(layer "F.Cu")
 			(uuid "557e737f-e81d-46b1-94ea-0699e1cf9cb0")
 		)
@@ -11218,6 +10839,7 @@
 			(pintype "passive")
 			(uuid "b4c39a9c-79c9-456d-aa42-0ab04f971986")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:PinHeader_1x10_P2.54mm_Horizontal"
 		(layer "F.Cu")
@@ -11244,19 +10866,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:PinHeader_1x10_P2.54mm_Horizontal"
-			(at 0 0 180)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "5f22e9cf-8739-4390-bd8d-274fd61a4a95")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -12693,7 +12302,7 @@
 			(uuid "3880e9ad-6337-443a-bc39-4923368b75d2")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 2.77 11.43 -90)
+			(at 2.77 11.43 270)
 			(layer "F.Fab")
 			(uuid "158f1fa0-091a-4123-8741-f3fbbb461ccb")
 			(effects
@@ -12813,6 +12422,7 @@
 			(pintype "passive")
 			(uuid "ae46831f-204f-42cb-bd4b-40d38ae00385")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x10_P2.54mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -12849,19 +12459,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "8af5a502-3fc5-49cb-88f4-7fcd76c57316")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -12997,6 +12594,7 @@
 			(pintype "passive")
 			(uuid "1c43c16f-2376-4a1a-8f41-7cf0bd009650")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
@@ -13024,18 +12622,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:MOUNT_HOLE_3MM"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "305956ea-a337-41d8-82c9-0f63c7e1f7fc")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -13069,26 +12655,14 @@
 		(sheetname "Root")
 		(sheetfile "seedsigner-luckfox-devboard.kicad_sch")
 		(attr through_hole)
-		(fp_text user "${REFERENCE}"
-			(at 0 2.5 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "d2f9b7cf-1f80-4961-b876-d3ce763e56ea")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
 		(pad "" np_thru_hole circle
 			(at 0 0)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "271d207b-72de-42ed-b5e3-761391b765c6")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -13114,19 +12688,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "6f97be9c-ee9c-4b41-99df-8925d2f506eb")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -13262,6 +12823,7 @@
 			(pintype "passive")
 			(uuid "9166ff38-7e4b-4d2f-9fbc-dec156cce88c")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
 		(layer "F.Cu")
@@ -13287,19 +12849,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "eda256a7-d53f-4fa9-b40f-c2c29f55ecba")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -13435,6 +12984,7 @@
 			(pintype "passive")
 			(uuid "7e1ab4b0-9a8f-4b8a-987f-a51cf702548b")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:MOUNT_HOLE_3MM"
 		(layer "F.Cu")
@@ -13462,18 +13012,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:MOUNT_HOLE_3MM"
-			(at 0 0 0)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "7f864e3a-6ca0-4dbf-8a53-6f40702807c1")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -13507,26 +13045,14 @@
 		(sheetname "Root")
 		(sheetfile "seedsigner-luckfox-devboard.kicad_sch")
 		(attr through_hole)
-		(fp_text user "${REFERENCE}"
-			(at 0 2.5 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "59bfd552-7680-4afb-bcb7-47fff75f9d18")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
 		(pad "" np_thru_hole circle
 			(at 0 0)
 			(size 3.5 3.5)
 			(drill 3)
-			(layers "F&B.Cu" "*.Mask")
+			(layers "*.Cu" "*.Mask")
 			(uuid "9c213d54-2b44-40dc-ae65-02c6f60e810b")
 		)
+		(embedded_fonts no)
 	)
 	(footprint "seedsigner-luckfox:R_2512_6332Metric"
 		(layer "F.Cu")
@@ -13553,19 +13079,6 @@
 			(effects
 				(font
 					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:R_2512_6332Metric"
-			(at 0 0 90)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "a6c48f97-0581-4117-a99d-d602eea4a09e")
-			(effects
-				(font
-					(size 1.27 1.27)
 					(thickness 0.15)
 				)
 			)
@@ -13715,7 +13228,7 @@
 		(pad "1" smd roundrect
 			(at -2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 2 "+3.3V")
 			(pintype "passive")
@@ -13724,12 +13237,13 @@
 		(pad "2" smd roundrect
 			(at 2.9625 0 90)
 			(size 1.225 3.35)
-			(layers "F.Cu" "F.Paste" "F.Mask")
+			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.204082)
 			(net 11 "/JOYSTICK_LEFT")
 			(pintype "passive")
 			(uuid "db4184ca-5bcf-489d-a782-e54322d2d68b")
 		)
+		(embedded_fonts no)
 		(model "${KICAD8_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_2512_6332Metric.wrl"
 			(offset
 				(xyz 0 0 0)
@@ -13749,7 +13263,7 @@
 			(width 0.25)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "4a584d1d-551c-4cb2-b270-16cc8b9484a9")
 	)
@@ -16279,4 +15793,5 @@
 		(net 55)
 		(uuid "fe487644-955c-44da-9491-535e0ddf3165")
 	)
+	(embedded_fonts no)
 )
