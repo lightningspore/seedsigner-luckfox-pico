@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "seedsigner-luckfox")(type "KiCad")(uri "/Users/samkorn/Documents/repos/seedsigner-luckfox-pico/hardware-kicad/libraries/seedsigner-luckfox.pretty")(options "")(descr ""))
+)

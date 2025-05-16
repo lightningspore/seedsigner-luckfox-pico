@@ -4,3 +4,8 @@ python_deps/*.zip
 python_deps/*.tar.gz
 
 **/.DS_Store
+
+# KiCad cache files
+**/fp-info-cache
+**/*-cache.lib
+**/*-cache
