@@ -1,10 +1,10 @@
 (footprint "WAVESHARE_LCD_BUTTON"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at 33.5 -13.7 -90)
+		(at 33.5 -13.7 270)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "f9fe2214-0a46-4bf0-908f-8d8f1c3be8ce")
@@ -24,18 +24,6 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" "SeedSigner:WAVESHARE_LCD_BUTTON"
-		(at 0 0 180)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "12a294a1-7db0-4bc5-be8a-9c67618f6273")
-		(effects
-			(font
-				(size 1.27 1.27)
 				(thickness 0.15)
 			)
 		)
@@ -484,7 +472,7 @@
 			(width 0.5)
 			(type solid)
 		)
-		(fill solid)
+		(fill yes)
 		(layer "F.SilkS")
 		(uuid "f24d337d-7333-4fe1-86b9-bd77e01da54c")
 	)
@@ -909,15 +897,16 @@
 		(remove_unused_layers no)
 		(uuid "bb6b882c-4e6f-4b2e-9dd2-0b84b33e940d")
 	)
+	(embedded_fonts no)
 	(model "${DOWNLOADS}/LCD_Waveshare_240x240_1.3inch v6.step"
 		(offset
-			(xyz 32 0 0)
+			(xyz 27 0 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz -90 0 -180)
+			(xyz -90 -0 -180)
 		)
 	)
 	(model "${KIPRJMOD}/3d-models/LCD_Waveshare_240x240_1.3inch v6.step"
@@ -929,6 +918,18 @@
 		)
 		(rotate
 			(xyz -90 0 -180)
+		)
+	)
+	(model "/Users/samkorn/Downloads/waveshare-1-44inch-lcd-hat-1.snapshot.7/WaveShare 1.44inch LCD HAT v1.step"
+		(opacity 0.7300)
+		(offset
+			(xyz 0 -1 3.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
 		)
 	)
 )
