@@ -6,12 +6,18 @@ Port of the SeedSigner code to the LuckFox Pico Pro/Max embedded ARM(ricv?) linu
 ### First Look: Seedsigner running on Luckfox Pico linux devboard
 [![SeedSigner on LuckFox Pico Pro Max](https://img.youtube.com/vi/WHkOSn-lPG4/0.jpg)](https://www.youtube.com/watch?v=WHkOSn-lPG4)
 
+## Support the Developer
+If you find this project helpful and would like to support its development, you can buy me a coffee! Your support helps keep this project going and funds future improvements. Help decentralize Bitcoin hardware!
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lightningspore)
 
 ## Hardware Photos
 
 ![LuckFox Pico Pro Max - Seedsigner](img/luckfox-devboard-front.webp)
 
 ![Case From Behind](img/luckfox-devboard-back.webp)
+
+
 
 
 
