@@ -1,7 +1,7 @@
 (footprint "LUCKFOX_PICO_MINI"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -0.5 0)
@@ -20,19 +20,6 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "e482a918-123b-4a3d-95ea-b4c4f99a9929")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "05103136-4f78-4ea8-984e-32eab1c9911b")
 		(effects
 			(font
 				(size 1 1)
@@ -68,24 +55,13 @@
 	)
 	(attr through_hole)
 	(fp_rect
-		(start 4.5 -1.5)
-		(end 13.5 3)
-		(stroke
-			(width 0.1)
-			(type default)
-		)
-		(fill none)
-		(layer "B.SilkS")
-		(uuid "d5f671c4-edee-4413-a027-14a105fd6d35")
-	)
-	(fp_rect
 		(start -2 -1.5)
 		(end 19.5 27)
 		(stroke
 			(width 0.1)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.SilkS")
 		(uuid "3262c98a-b000-49f9-8d08-f78a0b2a9c4a")
 	)
@@ -96,23 +72,31 @@
 			(width 0.1)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.SilkS")
 		(uuid "5f3278d9-b26b-4760-b715-104787fd26ef")
 	)
-	(fp_text user "MicroSD"
-		(at 12 2.5 0)
-		(unlocked yes)
-		(layer "B.SilkS")
-		(uuid "16184e49-d2d8-4143-b6b5-04a42c8190f0")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.2)
-				(bold yes)
-			)
-			(justify left bottom mirror)
+	(fp_rect
+		(start 4.5 -1.5)
+		(end 13.5 3)
+		(stroke
+			(width 0.1)
+			(type default)
 		)
+		(fill no)
+		(layer "B.SilkS")
+		(uuid "d5f671c4-edee-4413-a027-14a105fd6d35")
+	)
+	(fp_rect
+		(start 1.5 -1.5)
+		(end 15.5 16.5)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(fill no)
+		(layer "Edge.Cuts")
+		(uuid "8f87947e-e8cb-4293-924c-02dd9a0e8f59")
 	)
 	(fp_text user "USB-C"
 		(at 4.5 0.75 0)
@@ -126,6 +110,20 @@
 				(bold yes)
 			)
 			(justify left bottom)
+		)
+	)
+	(fp_text user "MicroSD"
+		(at 12 2.5 0)
+		(unlocked yes)
+		(layer "B.SilkS")
+		(uuid "16184e49-d2d8-4143-b6b5-04a42c8190f0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.2)
+				(bold yes)
+			)
+			(justify left bottom mirror)
 		)
 	)
 	(fp_text user "${REFERENCE}"
@@ -316,6 +314,7 @@
 		(remove_unused_layers no)
 		(uuid "eaccbee4-4be9-4442-89e0-7bb6e4094462")
 	)
+	(embedded_fonts no)
 	(model "/Users/samkorn/Documents/repos/seedsigner-luckfox-pico/hardware-kicad/3d_models/Luckfox Pico Mini.step"
 		(offset
 			(xyz -1.5 1.5 1.5)

@@ -508,7 +508,7 @@
       "netlist": "",
       "plot": "",
       "pos_files": "",
-      "specctra_dsn": "seedsigner-luckfox-devboard-t2.dsn",
+      "specctra_dsn": "autoroute-in.dsn",
       "step": "",
       "svg": "",
       "vrml": ""

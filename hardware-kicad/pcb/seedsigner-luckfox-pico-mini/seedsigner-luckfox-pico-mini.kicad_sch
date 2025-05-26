@@ -3301,16 +3301,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 69.85) (xy 210.82 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "382a518b-d56e-4788-8ed2-0413c2cff43c")
-	)
-	(wire
-		(pts
 			(xy 178.435 211.963) (xy 175.387 211.963)
 		)
 		(stroke
@@ -4149,16 +4139,6 @@
 		)
 		(uuid "e3bab5ef-d1dd-4e7f-a195-a9561cc94104")
 	)
-	(label "BACKLIGHT"
-		(at 25.4 55.88 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e775d474-e13b-44ef-bbd1-aaeb545b4cc5")
-	)
 	(label "SPI_MOSI"
 		(at 40.767 76.835 0)
 		(effects
@@ -4178,73 +4158,6 @@
 			(justify left bottom)
 		)
 		(uuid "f8275a8d-51e4-4bab-a8e7-0ded94181c49")
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 313.69 29.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "02be63a4-22b4-4016-8690-1d94859f91c8")
-		(property "Reference" "TP2"
-			(at 316.23 24.6379 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 316.23 27.1779 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 318.77 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 318.77 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 313.69 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "29fc4eb8-84aa-42b7-acbf-641862e5eadb")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP2")
-					(unit 1)
-				)
-			)
-		)
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
@@ -4378,7 +4291,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Small_Bridged")
-		(at 181.61 82.55 0)
+		(at 181.61 91.44 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom yes)
@@ -4387,7 +4300,7 @@
 		(fields_autoplaced yes)
 		(uuid "1075b20f-a4b4-4ac8-82bf-d8b9368ed4a7")
 		(property "Reference" "JP1"
-			(at 181.61 77.47 0)
+			(at 181.61 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4395,7 +4308,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Small_Bridged"
-			(at 181.61 80.01 0)
+			(at 181.61 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4403,7 +4316,7 @@
 			)
 		)
 		(property "Footprint" "seedsigner-luckfox:SolderJumper-2_P1.3mm_Bridged_Pad1.0x1.5mm"
-			(at 181.61 82.55 0)
+			(at 181.61 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4412,7 +4325,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 181.61 82.55 0)
+			(at 181.61 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4421,7 +4334,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, small symbol, bridged"
-			(at 181.61 82.55 0)
+			(at 181.61 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4874,7 +4787,7 @@
 				)
 			)
 		)
-		(property "Footprint" "luckfox:LUCKFOX_PICO_MINI"
+		(property "Footprint" "seedsigner-luckfox:LUCKFOX_PICO_MINI"
 			(at 322.58 160.02 0)
 			(effects
 				(font
@@ -5169,139 +5082,6 @@
 			(project "seedsigner-luckfox-devboard"
 				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
 					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 54.61 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5c8be90b-5db3-467e-a301-f38ec8d15099")
-		(property "Reference" "TP13"
-			(at 294.386 54.61 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 299.974 54.61 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3dbf9b5d-b746-495a-9a77-12c8f01571cf")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 294.64 29.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5cbee9cb-454c-43a1-96d9-f9bddba4b657")
-		(property "Reference" "TP1"
-			(at 297.18 24.6379 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 297.18 27.1779 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 299.72 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 299.72 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 294.64 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d25bf595-a658-4196-8f45-b7cd05939526")
-		)
-		(instances
-			(project ""
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -5674,72 +5454,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 46.99 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "66c9f65b-be5b-4e2d-8fea-d354dd2f333d")
-		(property "Reference" "TP15"
-			(at 294.386 46.99 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 299.974 46.99 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c6a3e7d4-aa61-4587-a76a-6ade55dee724")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 108.077 94.615 0)
 		(unit 1)
@@ -5939,72 +5653,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 72.39 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6f6952fb-6443-4c3c-a605-1d23b586de45")
-		(property "Reference" "TP8"
-			(at 294.132 72.39 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 298.45 72.39 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f54e7ec7-4616-4a9b-af9a-1600c797ecab")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 199.39 137.16 270)
 		(unit 1)
@@ -6138,138 +5786,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 77.47 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8accfe3f-ba41-4d01-b58b-adb83a8d7d4e")
-		(property "Reference" "TP7"
-			(at 294.132 77.47 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 298.45 77.47 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d4df72cd-fb41-4f7d-a11f-81588a900ddd")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 69.85 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8b007370-4919-409a-b60e-e85fe346cc6c")
-		(property "Reference" "TP9"
-			(at 294.386 69.85 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 298.704 69.85 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b7deeb38-fb84-44c7-ae60-5533cdd0c1b3")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 142.24 160.02 0)
 		(mirror y)
@@ -6341,73 +5857,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 27.94 53.34 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "91240d3e-6efe-4697-80f7-e5fa778cfc90")
-		(property "Reference" "#PWR012"
-			(at 27.94 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 27.94 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 27.94 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 27.94 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "729cb38f-c935-410e-ba0a-b4a3b2461d7d")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Jumper:Jumper_2_Small_Open")
-		(at 181.61 91.44 0)
+		(at 181.61 82.55 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom yes)
@@ -6416,7 +5867,7 @@
 		(fields_autoplaced yes)
 		(uuid "b4f949e8-a2dc-454c-b632-1262bde1c2ea")
 		(property "Reference" "JP2"
-			(at 181.61 85.09 0)
+			(at 181.61 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6424,7 +5875,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Small_Open"
-			(at 181.61 87.63 0)
+			(at 181.61 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6432,7 +5883,7 @@
 			)
 		)
 		(property "Footprint" "seedsigner-luckfox:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm"
-			(at 181.61 91.44 0)
+			(at 181.61 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6441,7 +5892,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 181.61 91.44 0)
+			(at 181.61 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6450,7 +5901,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, small symbol, open"
-			(at 181.61 91.44 0)
+			(at 181.61 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6673,204 +6124,6 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 289.56 67.31 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bf06e73d-4bfa-4ec1-a173-da588f9ca133")
-		(property "Reference" "TP10"
-			(at 294.132 67.31 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 299.466 67.31 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9a146308-bf3f-42fd-babe-d2f339898bcf")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 52.07 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bf3aff36-5bef-4619-b10c-3f8b53e939d9")
-		(property "Reference" "TP14"
-			(at 294.386 52.07 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 299.974 52.07 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5ab43de5-8919-482d-ab79-b63803a5ef84")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 59.69 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c2275e38-af6c-427c-9721-a814e538bc07")
-		(property "Reference" "TP12"
-			(at 294.386 59.69 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 299.974 59.69 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "be35f039-4c3d-4d56-990d-1ac709907bbd")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
 		(at 323.85 38.1 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6931,72 +6184,6 @@
 			(project "seedsigner-luckfox-devboard"
 				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
 					(reference "TP3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 80.01 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c35ca2fa-6181-48cb-951b-b813c8fe55e1")
-		(property "Reference" "TP6"
-			(at 294.386 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 298.45 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "74ae75d5-95a3-4f0e-bb54-e481692b8f4b")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -7209,73 +6396,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 210.82 67.31 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "dcfca60e-be91-4c6d-a2c2-f9396cc6dc37")
-		(property "Reference" "TP5"
-			(at 213.36 62.7379 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 213.36 65.2779 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 215.9 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 215.9 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 210.82 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e071076b-36e2-47b3-b7b1-275c9eda5747")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 294.64 120.65 90)
 		(unit 1)
@@ -7467,72 +6587,6 @@
 			(project "seedsigner-luckfox-devboard"
 				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
 					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 289.56 64.77 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e844bd6a-7a72-459a-b9e5-bd765ad78d43")
-		(property "Reference" "TP11"
-			(at 294.386 64.77 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 299.212 64.77 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "seedsigner-luckfox:TestPoint_Pad_1.5x1.5mm"
-			(at 289.56 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 289.56 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 289.56 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "42cf9d25-e8b2-46f6-8ab6-76827ca7eb4f")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "TP11")
 					(unit 1)
 				)
 			)

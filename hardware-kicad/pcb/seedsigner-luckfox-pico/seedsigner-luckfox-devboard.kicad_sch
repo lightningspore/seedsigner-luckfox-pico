@@ -5216,16 +5216,6 @@
 		)
 		(uuid "e3bab5ef-d1dd-4e7f-a195-a9561cc94104")
 	)
-	(label "BACKLIGHT"
-		(at 25.4 55.88 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "e775d474-e13b-44ef-bbd1-aaeb545b4cc5")
-	)
 	(label "SPI_MOSI"
 		(at 40.767 76.835 0)
 		(effects
@@ -7434,71 +7424,6 @@
 			(project "seedsigner-luckfox-devboard"
 				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
 					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 27.94 53.34 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "91240d3e-6efe-4697-80f7-e5fa778cfc90")
-		(property "Reference" "#PWR012"
-			(at 27.94 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 27.94 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 27.94 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 27.94 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 27.94 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "729cb38f-c935-410e-ba0a-b4a3b2461d7d")
-		)
-		(instances
-			(project "seedsigner-luckfox-devboard"
-				(path "/dd9f0a7b-8b90-4e47-9769-d29b64af2c20"
-					(reference "#PWR012")
 					(unit 1)
 				)
 			)
