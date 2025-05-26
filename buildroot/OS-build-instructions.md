@@ -8,6 +8,12 @@ Build the builder image:
 docker build -t foxbuilder:latest .
 ```
 
+We need all of these directories to be setup:
+```bash
+ls ~
+luckfox-pico  seedsigner  seedsigner-luckfox-pico  seedsigner-os
+```
+
 Clone the Luckfox SDK repo:
 ```bash
 git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
@@ -19,10 +25,10 @@ git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
 Run these commands from `buildroot/` directory. This is the directory/repo we cloned above.
 
 ```bash
-LUCKFOX_SDK_DIR=/home/ubuntu/luckfox-pico
-SEEDSIGNER_CODE_DIR=/home/ubuntu/seedsigner
-LUCKFOX_BOARD_CFG_DIR=/home/ubuntu/seedsigner-luckfox-pico
-SEEDSIGNER_OS_DIR=/home/ubuntu/seedsigner-os
+LUCKFOX_SDK_DIR=$HOME/luckfox-pico
+SEEDSIGNER_CODE_DIR=$HOME/seedsigner
+LUCKFOX_BOARD_CFG_DIR=$HOME/seedsigner-luckfox-pico
+SEEDSIGNER_OS_DIR=$HOME/seedsigner-os
 
 docker run -it --name luckfox-builder \
     -v $LUCKFOX_SDK_DIR:/mnt/host \
@@ -164,3 +170,13 @@ TODO: Link to next steup in the install/setup process
 ## Official resources
 
 [Luckfox Pico Official Flashing Guide](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/) - Official documentation for flashing images to the Luckfox Pico device on Linux and macOS systems
+
+
+
+## Hardware Device Overlay Config
+```
+cat luckfox-pico/sysdrv/source/kernel/arch/arm/boot/dts/rv1103g-luckfox-pico.dts
+cat luckfox-pico/sysdrv/source/kernel/arch/arm/boot/dts/rv1103.dtsi
+cat luckfox-pico/sysdrv/source/kernel/arch/arm/boot/dts/rv1103-luckfox-pico-ipc.dtsi
+cat luckfox-pico/sysdrv/source/kernel/arch/arm/boot/dts/rv1106-evb.dtsi
+```

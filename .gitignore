@@ -9,3 +9,4 @@ python_deps/*.tar.gz
 **/fp-info-cache
 **/*-cache.lib
 **/*-cache
+*.zip
