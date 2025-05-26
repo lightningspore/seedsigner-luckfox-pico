@@ -10,3 +10,4 @@ python_deps/*.tar.gz
 **/*-cache.lib
 **/*-cache
 *.zip
+*.lck
