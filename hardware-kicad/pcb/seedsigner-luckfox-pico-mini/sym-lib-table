@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Luckfox")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/luckfox.kicad_sym")(options "")(descr ""))
+  (lib (name "LightningSpore")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/lightningspore.kicad_sym")(options "")(descr ""))
+  (lib (name "SeedSigner")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/seedsigner.kicad_sym")(options "")(descr ""))
+)
