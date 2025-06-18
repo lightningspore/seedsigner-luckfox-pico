@@ -154,3 +154,35 @@ sudo rkflash.sh update
 sudo dd bs=4M status=progress if=/path/to/update.img of=/dev/diskX
 ```
 Replace `/dev/diskX` with your actual SD card device path.
+
+
+## Luckfox Pico OS Modifications
+We have forked the [Luckfox Pico SDK](https://github.com/lightningspore/luckfox-pico) in order to enable various hardware features like pull-up resistors, adjust video RAM, and other things.
+
+### Camera Memory
+The Luckfox devotes some of its memory for camera related algorithms, but we don't use this feature. Particularly on the Luckfox Pico Mini device, which only has 64MB of RAM, it is beneficial for us to reclaim a bit of this memory.
+
+Memory usage WITHOUT modification:
+```bash
+[root@luckfox ]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:          33.0M       24.3M        1.4M      476.0K        7.3M        5.4M
+Swap:             0           0           0
+```
+
+Memory usage WITH modification:
+```bash
+[root@luckfox ]# free -h
+              total        used        free      shared  buff/cache   available
+Mem:          53.0M       23.6M        1.9M      472.0K       27.5M       25.3M
+Swap:             0           0           0
+```
+
+### Pull-up Resistors
+Our current dev board has external pull-up resistors, since we didn't know how to enable these at the time, and it is always smart to plan ahead when designing PCBs. NOTE: Even with this commit with this change, the internal pull-ups don't seem to work.
+
+### SPI Buffer Size
+While it is possible to send SPI data in chunks, you are able to increase the SPI buffer size to slightly increase throughput, which is useful for larger displays.
+
+### PWM Output
+In order to control the LCD screen backlight and support true dimming of the display (instead of just changing the background color of the QR code, for example), we had to enable a PWM on a specific output pin.
