@@ -446,7 +446,9 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
+    "pinned_footprint_libs": [
+      "seedsigner-luckfox"
+    ],
     "pinned_symbol_libs": []
   },
   "meta": {
@@ -612,6 +614,10 @@
     [
       "80ddcc25-987b-44b8-ab4f-432d39ad0241",
       "Root"
+    ],
+    [
+      "222e5f2c-dab4-4664-8d92-d1f9b6ad3cfc",
+      "Buttons"
     ]
   ],
   "text_variables": {}
