@@ -1,13 +1,18 @@
 #!/bin/bash
 
+# Base Paths
+SEEDSIGNER_OS_DIR="/mnt/ssos"
+SEEDSIGNER_CODE_DIR="/mnt/ss"
+SEEDSIGNER_LUCKFOX_DIR="/mnt/cfg/"
+LUCKFOX_SDK_DIR="/mnt/host"
+
 # Define common paths
 BUILDROOT_DIR="/mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6"
 PACKAGE_DIR="${BUILDROOT_DIR}/package"
 CONFIG_IN="${PACKAGE_DIR}/Config.in"
 PYZBAR_PATCH="${PACKAGE_DIR}/python-pyzbar/0001-PATH-fixed-by-hand.patch"
-ROOTFS_DIR="/mnt/host/output/out/rootfs_uclibc_rv1106"
-SEEDSIGNER_OS_DIR="/mnt/ssos"
-SEEDSIGNER_CODE_DIR="/mnt/ss"
+ROOTFS_DIR="${LUCKFOX_SDK_DIR}/output/out/rootfs_uclibc_rv1106"
+
 
 
 # Check if buildroot directory exists
@@ -36,11 +41,12 @@ if [ ! -d "${SEEDSIGNER_OS_DIR}" ]; then
     exit 1
 fi
 
+./build.sh buildrootconfig
 
 # Copy external packages
 echo "Copying external packages..."
 # TODO: PACKAGE_DIR doesnt exist until `./build.sh buildrootconfig`
-cp -rv /mnt/ssos/opt/external-packages/* "${PACKAGE_DIR}/"
+cp -rv $SEEDSIGNER_OS_DIR/opt/external-packages/* "${PACKAGE_DIR}/"
 
 # Update Python path in pyzbar patch
 echo "Updating Python path in pyzbar patch..."
@@ -67,6 +73,12 @@ EOF
 
 # NOW RUN ./build.sh buildrootconfig
 # select all these packages required for seedsigner from the menu above
+
+# builds the first 3 parts:
+./build.sh uboot
+./build.sh kernel
+./build.sh rootfs
+
 
 # Copy SeedSigner code and config
 echo "Copying SeedSigner code and configuration..."
