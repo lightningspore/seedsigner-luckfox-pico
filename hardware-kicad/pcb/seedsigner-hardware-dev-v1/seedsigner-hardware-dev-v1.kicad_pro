@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 2.54
+          "drill": 3.0,
+          "height": 3.5,
+          "width": 3.5
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -490,12 +490,12 @@
       "netlist": "",
       "plot": "",
       "pos_files": "",
-      "specctra_dsn": "",
+      "specctra_dsn": "seedsigner-hardware-dev-v1.dsn",
       "step": "",
       "svg": "",
       "vrml": ""
     },
-    "page_layout_descr_file": ""
+    "page_layout_descr_file": "kicad-embed://blank-sheet.kicad_wks"
   },
   "schematic": {
     "annotate_start_num": 0,
