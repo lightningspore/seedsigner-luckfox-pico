@@ -1,19 +1,25 @@
 #!/bin/bash
 
-# Base Paths
-SEEDSIGNER_OS_DIR="/mnt/ssos"
-SEEDSIGNER_CODE_DIR="/mnt/ss"
-SEEDSIGNER_LUCKFOX_DIR="/mnt/cfg/"
-LUCKFOX_SDK_DIR="/mnt/host"
+# Base Paths - now using environment variables defined in Docker
+# These are set in the Dockerfile and sdk_init.sh
+# SEEDSIGNER_OS_DIR="/mnt/ssos"
+# SEEDSIGNER_CODE_DIR="/mnt/ss"
+# SEEDSIGNER_LUCKFOX_DIR="/mnt/cfg/"
+# LUCKFOX_SDK_DIR="/mnt/host"
 
-# Define common paths
-BUILDROOT_DIR="/mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6"
-PACKAGE_DIR="${BUILDROOT_DIR}/package"
-CONFIG_IN="${PACKAGE_DIR}/Config.in"
-PYZBAR_PATCH="${PACKAGE_DIR}/python-pyzbar/0001-PATH-fixed-by-hand.patch"
-ROOTFS_DIR="${LUCKFOX_SDK_DIR}/output/out/rootfs_uclibc_rv1106"
+# Define common paths - now using environment variables
+# BUILDROOT_DIR="/mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6"
+# PACKAGE_DIR="${BUILDROOT_DIR}/package"
+# CONFIG_IN="${PACKAGE_DIR}/Config.in"
+# PYZBAR_PATCH="${PACKAGE_DIR}/python-pyzbar/0001-PATH-fixed-by-hand.patch"
+# ROOTFS_DIR="${LUCKFOX_SDK_DIR}/output/out/rootfs_uclibc_rv1106"
 
-
+# Check if environment variables are set
+if [ -z "$SEEDSIGNER_OS_DIR" ] || [ -z "$SEEDSIGNER_CODE_DIR" ] || [ -z "$LUCKFOX_SDK_DIR" ] || [ -z "$BUILDROOT_DIR" ]; then
+    echo "Error: Required environment variables are not set. Please ensure you're running in the Docker container."
+    echo "Required variables: SEEDSIGNER_OS_DIR, SEEDSIGNER_CODE_DIR, LUCKFOX_SDK_DIR, BUILDROOT_DIR"
+    exit 1
+fi
 
 # Check if buildroot directory exists
 if [ ! -d "${BUILDROOT_DIR}" ]; then
