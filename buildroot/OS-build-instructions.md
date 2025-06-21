@@ -1,22 +1,38 @@
 # OS Build Instructions
 
 ## Setup the Docker build environment
-Run these commands from `buildroot` directory? No
+Run these commands from `buildroot` directory.
 
 Build the builder image:
 ```bash
+cd buildroot/
 docker build -t foxbuilder:latest .
 ```
 
-We need all of these directories to be setup:
+*IMPORTANT* We need all of these directories to be setup, and cloned in our `$HOME` directory:
 ```bash
 ls ~
 luckfox-pico  seedsigner  seedsigner-luckfox-pico  seedsigner-os
 ```
+The `seedsigner-luckfox-pico` directory is this repo we are already in!
+
 
 Clone the Luckfox SDK repo:
 ```bash
-git clone https://github.com/LuckfoxTECH/luckfox-pico.git --depth=1
+git clone https://github.com/lightningspore/luckfox-pico.git \
+    --depth=1 --single-branch
+```
+
+Clone the Seedsigner OS repo:
+```bash
+git clone https://github.com/seedsigner/seedsigner-os.git \
+    --depth=1 --single-branch
+```
+
+Clone the Seedsigner repo:
+```bash
+git clone https://github.com/lightningspore/seedsigner.git \
+    --depth=1 -b luckfox-dev --single-branch
 ```
 
 
@@ -30,7 +46,9 @@ SEEDSIGNER_CODE_DIR=$HOME/seedsigner
 LUCKFOX_BOARD_CFG_DIR=$HOME/seedsigner-luckfox-pico
 SEEDSIGNER_OS_DIR=$HOME/seedsigner-os
 
-docker run -it --name luckfox-builder \
+# TODO check all these above paths exist
+
+docker run -d --name luckfox-builder \
     -v $LUCKFOX_SDK_DIR:/mnt/host \
     -v $SEEDSIGNER_CODE_DIR:/mnt/ss \
     -v $LUCKFOX_BOARD_CFG_DIR:/mnt/cfg \
@@ -39,6 +57,17 @@ docker run -it --name luckfox-builder \
 ```
 
 These below commands are run INSIDE of the docker image.
+
+Enter the container:
+```bash
+docker exec -it luckfox-builder bash
+```
+
+Start the build:
+```bash
+/mnt/cfg/buildroot/add_package_buildroot.sh
+```
+
 
 This commands sets the build targets:
 Select, Pico Pro Max, buildroot, and SPI.
@@ -51,13 +80,14 @@ This command allows us to choose what packages to install into our OS image.
 ```bash
 # configure packages to install in buildroot
 ./build.sh buildrootconfig
-## SELECT THESE BELOW PACKAGES
-# RKISP
-# LIBCAMERA
-# ZBAR
-# LIBJPEG
 ```
-After selecting the above packages, SAVE the configuration.
+
+![Buildroot Setup](../img/seedsigner-buildroot-setup.webp)
+
+
+![Buildroot Package Selection](../img/seedsigner-buildroot-select.webp)
+
+After selecting all the above packages, SAVE the configuration.
 The configuration is saved at: `sysdrv/source/buildroot/buildroot-2023.02.6/.config`
 
 You can sanity check your configuration to ensure the selected packages have been enabled like so:

@@ -2,17 +2,17 @@
 
 # Base Paths - now using environment variables defined in Docker
 # These are set in the Dockerfile and sdk_init.sh
-# SEEDSIGNER_OS_DIR="/mnt/ssos"
-# SEEDSIGNER_CODE_DIR="/mnt/ss"
-# SEEDSIGNER_LUCKFOX_DIR="/mnt/cfg/"
-# LUCKFOX_SDK_DIR="/mnt/host"
+SEEDSIGNER_OS_DIR="/mnt/ssos"
+SEEDSIGNER_CODE_DIR="/mnt/ss"
+SEEDSIGNER_LUCKFOX_DIR="/mnt/cfg/"
+LUCKFOX_SDK_DIR="/mnt/host"
 
 # Define common paths - now using environment variables
-# BUILDROOT_DIR="/mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6"
-# PACKAGE_DIR="${BUILDROOT_DIR}/package"
-# CONFIG_IN="${PACKAGE_DIR}/Config.in"
-# PYZBAR_PATCH="${PACKAGE_DIR}/python-pyzbar/0001-PATH-fixed-by-hand.patch"
-# ROOTFS_DIR="${LUCKFOX_SDK_DIR}/output/out/rootfs_uclibc_rv1106"
+BUILDROOT_DIR="${LUCKFOX_SDK_DIR}/sysdrv/source/buildroot/buildroot-2023.02.6"
+PACKAGE_DIR="${BUILDROOT_DIR}/package"
+CONFIG_IN="${PACKAGE_DIR}/Config.in"
+PYZBAR_PATCH="${PACKAGE_DIR}/python-pyzbar/0001-PATH-fixed-by-hand.patch"
+ROOTFS_DIR="${LUCKFOX_SDK_DIR}/output/out/rootfs_uclibc_rv1106"
 
 # Check if environment variables are set
 if [ -z "$SEEDSIGNER_OS_DIR" ] || [ -z "$SEEDSIGNER_CODE_DIR" ] || [ -z "$LUCKFOX_SDK_DIR" ] || [ -z "$BUILDROOT_DIR" ]; then
@@ -21,13 +21,18 @@ if [ -z "$SEEDSIGNER_OS_DIR" ] || [ -z "$SEEDSIGNER_CODE_DIR" ] || [ -z "$LUCKFO
     exit 1
 fi
 
+./build.sh clean
+
+echo -e "\n\n\n" | timeout 5s ./build.sh buildrootconfig
+
+# TODO: Put this checks before we enter the container 
 # Check if buildroot directory exists
 if [ ! -d "${BUILDROOT_DIR}" ]; then
     echo "Error: ${BUILDROOT_DIR} does not exist. Please run './build.sh buildrootconfig' first"
     exit 1
 fi
 
-# Check if Config.in exists
+Check if Config.in exists
 if [ ! -f "${CONFIG_IN}" ]; then
     echo "Error: ${CONFIG_IN} does not exist. Please run './build.sh buildrootconfig' first"
     exit 1
@@ -47,7 +52,6 @@ if [ ! -d "${SEEDSIGNER_OS_DIR}" ]; then
     exit 1
 fi
 
-./build.sh buildrootconfig
 
 # Copy external packages
 echo "Copying external packages..."
@@ -75,14 +79,62 @@ menu "SeedSigner"
         source "package/python-qrcode/Config.in"
         source "package/python-pyqrcode/Config.in"
 endmenu
+
+# Default selections for SeedSigner packages
+config BR2_PACKAGE_PYTHON_URTYPES
+	default y
+
+config BR2_PACKAGE_PYTHON_PYZBAR
+	default y
+
+config BR2_PACKAGE_PYTHON_MOCK
+	default y
+
+config BR2_PACKAGE_PYTHON_EMBIT
+	default y
+
+config BR2_PACKAGE_PYTHON_PILLOW
+	default y
+
+config BR2_PACKAGE_LIBCAMERA
+	default y
+
+config BR2_PACKAGE_LIBCAMERA_APPS
+	default y
+
+config BR2_PACKAGE_ZBAR
+	default y
+
+config BR2_PACKAGE_JPEG_TURBO
+	default y
+
+config BR2_PACKAGE_JPEG
+	default y
+
+config BR2_PACKAGE_PYTHON_QRCODE
+	default y
+
+config BR2_PACKAGE_PYTHON_PYQRCODE
+	default y
 EOF
 
 # NOW RUN ./build.sh buildrootconfig
+# OR 
+# FIGURE OUT HOW TO COPY THE BUILDROOT CONFIG
+
 # select all these packages required for seedsigner from the menu above
+#cp -v /mnt/cfg/buildroot/config-latest /mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6/.config
+
+echo "Running ./build.sh buildrootconfig a 2nd time, ensure all packages are selected!" 
+./build.sh buildrootconfig
+
 
 # builds the first 3 parts:
+echo "*** Building U-Boot..."
 ./build.sh uboot
+echo "*** Building Kernel..."
 ./build.sh kernel
+echo "*** Building Rootfs..."
 ./build.sh rootfs
 
 
@@ -99,12 +151,16 @@ cp -v /mnt/cfg/S99seedsigner "${ROOTFS_DIR}/etc/init.d/"
 
 echo "Done! SeedSigner packages have been added to buildroot configuration."
 
+echo "*** Building Media..."
 ./build.sh media
+echo "*** Building App..."
 ./build.sh app
-
+echo "*** Building Firmware..."
 ./build.sh firmware
 
+echo "Building Final Image..."
 cd /mnt/host/output/image
+TS=$(date +%Y%m%d_%H%M%S)
+/mnt/cfg/buildroot/blkenvflash seedsigner-luckfox-pico-${TS}.img
 
-/mnt/cfg/buildroot/blkenvflash seedsigner-luckfox-pico-$(date +%Y%m%d_%H%M%S).img
-
+echo "Done! Final image is at /mnt/host/output/image/seedsigner-luckfox-pico-${TS}.img"
