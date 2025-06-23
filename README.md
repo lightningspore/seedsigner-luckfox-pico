@@ -14,8 +14,9 @@ If you find this project helpful and would like to support its development, you 
 ## Hardware Photos
 
 ![LuckFox Pico Pro Max - Seedsigner](img/luckfox-devboard-front.webp)
-
+![Luckfox Pico Mini - Seedsigner](img/slp-2.webp)
 ![Case From Behind](img/luckfox-devboard-back.webp)
+![Luckfox Pico Mini - Seedsigner 2](img/slp-1.webp)
 
 
 
