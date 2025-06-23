@@ -22,17 +22,7 @@ If you find this project helpful and would like to support its development, you 
 
 
 ## Materials Needed
-- $20 [Luckfox Pico Pro Max](https://www.amazon.com/dp/B0D6QVC178)
-- $16 - [Luckfox Camera SC3336](https://www.amazon.com/dp/B0CJM7S6F6)
-- $1 - [40 Pin Header](https://www.amazon.com/dp/B01461DQ6S)
-- $16 - [Seedsigner LCD Button Board](https://www.amazon.com/dp/B07FDX5PJY)
-- $0.25 - [2 x Row Header Male](https://www.amazon.com/dp/B07R5QDL8D)
-- $5 - TODO: Link to PCB sales
-- $2 - TODO: Link to 3D Printed Case sales
-
-Being lazy and ordering almost everything from Amazon:
-
-<b>Total Cost: ~$60</b>
+Check out the shopping list for a parts list of various Luckfox-based hardware configurations: [here](docs/shopping_list.md)
 
 
 ## OS Image Build With Buildroot
@@ -45,7 +35,7 @@ For detailed build instructions, package requirements, and troubleshooting, see 
 ## Dev machine setup
 
 ### Install ADB
-I find developing for the Luckfox Pico device to be fairly convenient since it works with `adb`. You can push files back and forth to your dev machine, and you can access the device as a shell easily.
+Developing for the Luckfox Pico device is quite convenient since the devices never connect to the internet and you can access the device shell using `adb`. You can push files back and forth to your dev machine, and you can access the device as a shell easily.
 ```
 # mac
 brew install homebrew/cask/android-platform-tools
@@ -78,76 +68,20 @@ adb push local_file.txt /remote/path/
 adb pull /remote/path/file.txt .
 
 # List files on device
-
 adb shell ls /path/to/directory
 ```
 
-
-
-## Initial Hardware Setup
-<b>THESE INSTRUCTIONS NEED TO BE UPDATED</b>
-(Most of this is done in the Buildroot OS Build section)
-
-But seeing how it is done here can help as you go about development using the device.
-
-This configures the GPIO on the device
-```
-adb push config/luckfox.cfg /etc/luckfox.cfg
-
-# reboot the device
-adb reboot
-```
-
-## Hardware Test Suite
-The test suite verifies all hardware components of the device:
+## Hardware Identification
+Notice the left device has an empty PCB footprint pattern on it. This is where the optional SPI flash is soldered on to. For the SeedSigner project we don't want permanent storage, so avoid devices with soldered on SPI flash.
 
 ```
-# push over the test files
-adb push test_suite /
+Luckfox Pico Mini A -> No Flash
+Luckfox Pico Mini B -> Soldered Flash
 ```
+![Luckfox Pico Mini](img/luckfox-pico-mini-storage.webp)
 
-# Run Test Suite
-```
-adb shell python3 /test_suite/test.py
-```
-
-The test suite includes:
-- Button testing (all 8 buttons)
-- Camera testing (capture and display)
-- LCD display testing
-- QR code testing
-
-## Copy over modified SeedSigner code
-```
-git clone https://github.com/lightningspore/seedsigner.git
-cd seedsigner
-git checkout 0.8.0-luckfox
-adb push src /seedsigner
-```
-
-## Run seedsigner
-```
-cd /seedsigner
-python main.py
-```
 
 ## Flashing the Device
-
-### MICROSD CARD: Package individually made OS images to a flashable version
-```
-# cd to directory containing all of the individual images
-./blkenvflash final-image.img
-```
-
-### ONBOARD! SPI Flash: version directly on device
-*This is also one of the downsides of this device*. The version specified here has onboard flash. There are other versions of the Luckfox Pico which don't have onboard flash, which I am excited to explore in the future. I might try desoldering it from the device, and post a video of the difficulty to do that. If there is no valid OS on the onboard SPI flash it will boot from the MicroSD card.
-
-```
-cd /os/build/output/dir/
-sudo rkflash.sh update
-```
-
-(TODO: Add image showing the console output of the spi flashing process.)
 
 ### Flash MicroSD Card
 ```
