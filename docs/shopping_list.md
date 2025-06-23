@@ -3,11 +3,23 @@
 This document contains all the materials needed to build your own SeedSigner using the LuckFox Pico Pro/Max development board.
 
 ## Hardware Components
+There are multiple PCB revisions available in this repository, some which support the Luckfox Pico Pro Max, with its two rows of 20 pins, and some designs supports the Luckfox Pico Mini, with its two rows of 11 pins.
+
+Small form factor, no SPI flash:
+![Luckfox Pico Mini BM](../img/luckfox-pico-mini-b.webp)
+
+Larger form factor, no SPI flash:
+![Luckfox Pico M](../img/luckfox-pico-m.webp)
+
+Larger form factor, SPI flash, ethernet port:
+![Luckfox Pico Pro Max](../img/luckfox-pico-pro-max.webp)
 
 ### Core Components
 | Item | Price | Link | Notes |
 |------|-------|------|-------|
 | LuckFox Pico Pro Max | $20 | [Amazon](https://www.amazon.com/dp/B0D6QVC178) | Main development board |
+| LuckFox Pico Mini-BM | $8 | [Amazon](https://www.amazon.com//dp/B0D6VSMND4) | Main development board 2 |
+
 | LuckFox Camera SC3336 | $16 | [Amazon](https://www.amazon.com/dp/B0CJM7S6F6) | Camera module for QR code scanning |
 | SeedSigner LCD Button Board | $16 | [Amazon](https://www.amazon.com/dp/B07FDX5PJY) | Display and button interface |
 
