@@ -141,13 +141,13 @@ echo "*** Building Rootfs..."
 # Copy SeedSigner code and config
 echo "Copying SeedSigner code and configuration..."
 cp -rv "${SEEDSIGNER_CODE_DIR}/src/" "${ROOTFS_DIR}/seedsigner"
-cp -v /mnt/cfg/config/luckfox.cfg "${ROOTFS_DIR}/etc/luckfox.cfg"
+cp -v /mnt/cfg/buildroot/files/luckfox.cfg "${ROOTFS_DIR}/etc/luckfox.cfg"
 
 # TODO: Document nv12_converter. Very important!
 # Re-obtain the C code. It was removed from the repo.
-cp -v /mnt/cfg/nv12_converter "${ROOTFS_DIR}"
-cp -v /mnt/cfg/start-seedsigner.sh "${ROOTFS_DIR}"
-cp -v /mnt/cfg/S99seedsigner "${ROOTFS_DIR}/etc/init.d/"
+cp -v /mnt/cfg/buildroot/files/nv12_converter "${ROOTFS_DIR}"
+cp -v /mnt/cfg/buildroot/files/start-seedsigner.sh "${ROOTFS_DIR}"
+cp -v /mnt/cfg/buildroot/files/S99seedsigner "${ROOTFS_DIR}/etc/init.d/"
 
 echo "Done! SeedSigner packages have been added to buildroot configuration."
 
