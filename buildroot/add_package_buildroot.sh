@@ -79,43 +79,6 @@ menu "SeedSigner"
         source "package/python-qrcode/Config.in"
         source "package/python-pyqrcode/Config.in"
 endmenu
-
-# Default selections for SeedSigner packages
-config BR2_PACKAGE_PYTHON_URTYPES
-	default y
-
-config BR2_PACKAGE_PYTHON_PYZBAR
-	default y
-
-config BR2_PACKAGE_PYTHON_MOCK
-	default y
-
-config BR2_PACKAGE_PYTHON_EMBIT
-	default y
-
-config BR2_PACKAGE_PYTHON_PILLOW
-	default y
-
-config BR2_PACKAGE_LIBCAMERA
-	default y
-
-config BR2_PACKAGE_LIBCAMERA_APPS
-	default y
-
-config BR2_PACKAGE_ZBAR
-	default y
-
-config BR2_PACKAGE_JPEG_TURBO
-	default y
-
-config BR2_PACKAGE_JPEG
-	default y
-
-config BR2_PACKAGE_PYTHON_QRCODE
-	default y
-
-config BR2_PACKAGE_PYTHON_PYQRCODE
-	default y
 EOF
 
 # NOW RUN ./build.sh buildrootconfig
@@ -123,10 +86,11 @@ EOF
 # FIGURE OUT HOW TO COPY THE BUILDROOT CONFIG
 
 # select all these packages required for seedsigner from the menu above
-#cp -v /mnt/cfg/buildroot/config-latest /mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6/.config
+cp -v /mnt/cfg/buildroot/configs/luckfox_pico_defconfig /mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6/configs/luckfox_pico_defconfig
+cp -v /mnt/cfg/buildroot/configs/luckfox_pico_defconfig /mnt/host/sysdrv/source/buildroot/buildroot-2023.02.6/.config
 
 echo "Running ./build.sh buildrootconfig a 2nd time, ensure all packages are selected!" 
-./build.sh buildrootconfig
+#./build.sh buildrootconfig
 
 
 # builds the first 3 parts:
@@ -136,6 +100,12 @@ echo "*** Building Kernel..."
 ./build.sh kernel
 echo "*** Building Rootfs..."
 ./build.sh rootfs
+
+# These next parts are needed to enable the camera
+echo "*** Building Media..."
+./build.sh media
+echo "*** Building App..."
+./build.sh app
 
 
 # Copy SeedSigner code and config
@@ -151,16 +121,14 @@ cp -v /mnt/cfg/buildroot/files/S99seedsigner "${ROOTFS_DIR}/etc/init.d/"
 
 echo "Done! SeedSigner packages have been added to buildroot configuration."
 
-echo "*** Building Media..."
-./build.sh media
-echo "*** Building App..."
-./build.sh app
-echo "*** Building Firmware..."
+
+echo "*** Packaging Firmware..."
 ./build.sh firmware
 
-echo "Building Final Image..."
+echo "*** Building Final Image..."
 cd /mnt/host/output/image
 TS=$(date +%Y%m%d_%H%M%S)
-/mnt/cfg/buildroot/blkenvflash seedsigner-luckfox-pico-${TS}.img
+IMAGE=seedsigner-luckfox-pico-${TS}.img
+/mnt/cfg/buildroot/blkenvflash $IMAGE
 
 echo "Done! Final image is at /mnt/host/output/image/seedsigner-luckfox-pico-${TS}.img"
