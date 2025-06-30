@@ -443,6 +443,213 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "SeedSigner:LCD_ST7789"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "LCD"
+				(at 0 12.446 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "ST7789"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LCD_ST7789_1_1"
+				(rectangle
+					(start -6.35 11.43)
+					(end 6.35 -11.43)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -8.89 8.89 0)
+					(length 2.54)
+					(name "BL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 6.35 0)
+					(length 2.54)
+					(name "RST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 3.81 0)
+					(length 2.54)
+					(name "DC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 1.27 0)
+					(length 2.54)
+					(name "SPI_CS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -1.27 0)
+					(length 2.54)
+					(name "SPI_SCLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -3.81 0)
+					(length 2.54)
+					(name "SPI_MOSI"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -6.35 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -8.89 -8.89 0)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_names
@@ -715,7 +922,7 @@
 		(uuid "1d97da26-0079-42f9-ad11-cef78b6f4312")
 	)
 	(label "SPI_SCLK"
-		(at 116.84 106.68 180)
+		(at 124.46 107.95 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -735,7 +942,7 @@
 		(uuid "4a98f3aa-200e-43c3-bb55-e80ca7e9c6bf")
 	)
 	(label "SPI_CS"
-		(at 116.84 104.14 180)
+		(at 124.46 105.41 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -765,7 +972,7 @@
 		(uuid "63c6ec4f-461b-44d6-adb2-58a7116e7f96")
 	)
 	(label "BACKLIGHT"
-		(at 116.84 96.52 180)
+		(at 124.46 97.79 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -775,7 +982,7 @@
 		(uuid "7b469054-1270-42a2-b504-67e195ea3239")
 	)
 	(label "SPI_MOSI"
-		(at 116.84 109.22 180)
+		(at 124.46 110.49 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -785,7 +992,7 @@
 		(uuid "bf379eb7-c3a7-42c9-8b53-249579ec4eb6")
 	)
 	(label "DC"
-		(at 116.84 101.6 180)
+		(at 124.46 102.87 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -795,7 +1002,7 @@
 		(uuid "e685e7ea-3f8c-4fb9-9fd1-585edaa5b994")
 	)
 	(label "RST"
-		(at 116.84 99.06 180)
+		(at 124.46 100.33 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -869,6 +1076,94 @@
 		)
 	)
 	(symbol
+		(lib_id "SeedSigner:LCD_ST7789")
+		(at 133.35 106.68 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0a3febfb-88ca-4c1c-97db-c87247b02ba9")
+		(property "Reference" "LCD1"
+			(at 140.97 106.0449 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "ST7789"
+			(at 140.97 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical"
+			(at 133.35 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 133.35 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 133.35 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c4074599-21a7-4016-ba3d-d3e738252ee8")
+		)
+		(pin "2"
+			(uuid "b7eff1cc-2726-41c6-ade0-c1a891eabdbc")
+		)
+		(pin "3"
+			(uuid "d1cd2020-b301-4caf-8688-3062b5929bfe")
+		)
+		(pin "4"
+			(uuid "a1bff531-ab1f-47bd-a7a3-171ef7b453b1")
+		)
+		(pin "5"
+			(uuid "53b6d279-4beb-4987-ad48-8cda522f64c7")
+		)
+		(pin "6"
+			(uuid "3fab8000-83ef-4604-a2d1-552a4cff00ae")
+		)
+		(pin "7"
+			(uuid "5501a81f-4107-446a-8915-bc4158c12afb")
+		)
+		(pin "8"
+			(uuid "1aed5a1d-9419-4d7e-95e8-0cbe509568b3")
+		)
+		(instances
+			(project ""
+				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241"
+					(reference "LCD1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 242.443 103.124 0)
 		(unit 1)
@@ -927,97 +1222,6 @@
 			(project "seedsigner-hardware-dev-v1"
 				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241"
 					(reference "H2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector_Generic_MountingPin:Conn_01x08_MountingPin")
-		(at 121.92 104.14 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2c5dd74c-a5e2-432e-be57-19584123d2b9")
-		(property "Reference" "J2"
-			(at 124.46 104.4955 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Conn_01x08_MountingPin"
-			(at 124.46 107.0355 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Horizontal"
-			(at 121.92 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 121.92 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connectable mounting pin connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 121.92 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "MP"
-			(uuid "d6f5bd95-a125-4a5b-8909-7887b6d8b19f")
-		)
-		(pin "1"
-			(uuid "ceb8d872-cdac-462a-8485-c959a7be78cf")
-		)
-		(pin "6"
-			(uuid "71969ff1-40b4-411b-afd8-8f506526a81d")
-		)
-		(pin "7"
-			(uuid "f35dec10-e8fb-438d-b2f4-4ffb12e5328d")
-		)
-		(pin "2"
-			(uuid "23068986-a8fb-4796-8af8-9774cd4622df")
-		)
-		(pin "3"
-			(uuid "ecc1f11c-6b73-4ab4-bec0-4b77d9eb57fc")
-		)
-		(pin "5"
-			(uuid "9a19fd80-1e63-432a-a962-9e5872634b90")
-		)
-		(pin "8"
-			(uuid "abd4e91d-ba24-466e-96a0-982096f886e9")
-		)
-		(pin "4"
-			(uuid "25a962cc-51d8-453c-be17-d2ded58356fa")
-		)
-		(instances
-			(project "seedsigner-hardware-dev-v1"
-				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241"
-					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -1089,7 +1293,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 116.84 111.76 270)
+		(at 124.46 113.03 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1098,7 +1302,7 @@
 		(fields_autoplaced yes)
 		(uuid "8676d89d-c71f-4e8d-aa82-c741260b5a58")
 		(property "Reference" "#PWR02"
-			(at 110.49 111.76 0)
+			(at 118.11 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1107,7 +1311,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 113.03 111.7599 90)
+			(at 120.65 113.0299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1116,7 +1320,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 111.76 0)
+			(at 124.46 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1125,7 +1329,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 111.76 0)
+			(at 124.46 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1134,7 +1338,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 116.84 111.76 0)
+			(at 124.46 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1156,7 +1360,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 116.84 114.3 90)
+		(at 124.46 115.57 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1165,7 +1369,7 @@
 		(fields_autoplaced yes)
 		(uuid "9e597a90-e5be-4929-b72e-314cf2295639")
 		(property "Reference" "#PWR01"
-			(at 120.65 114.3 0)
+			(at 128.27 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1174,7 +1378,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 113.03 114.2999 90)
+			(at 120.65 115.5699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1183,7 +1387,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 114.3 0)
+			(at 124.46 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1192,7 +1396,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 116.84 114.3 0)
+			(at 124.46 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1201,7 +1405,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 116.84 114.3 0)
+			(at 124.46 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)

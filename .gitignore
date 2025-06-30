@@ -11,3 +11,7 @@ python_deps/*.tar.gz
 **/*-cache
 *.zip
 *.lck
+
+## kicad autorouting files
+**/*.dsn
+**/*.ses
