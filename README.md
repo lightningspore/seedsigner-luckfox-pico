@@ -1,42 +1,40 @@
 # seedsigner-luckfox-pico
-Port of the SeedSigner code to the LuckFox Pico Pro/Max embedded ARM(ricv?) linux board
+Port of the SeedSigner code to support the LuckFox Pico Linux board family. Since this device is still an embedded Linux device, like the Raspberry Pi, the changes are fairly minimal in order to access the buttons and the camera. This repo mostly pertains to the Buildroot OS build instructions, the KiCAD schematic and PCB design files, and 3D models of cases for the assembled device.
+
+SeedSigner code fork: https://github.com/lightningspore/seedsigner/tree/0.8.5-luckfox
+
+
+## Hardware Photos
+_Most Recent Iteration: LuckFox Pico Mini B with no onboard SPI flash_
+![LuckFox Pico Mini - SeedSigner](img/slp-2.webp)
+![LuckFox Pico Mini - SeedSigner 2](img/slp-1.webp)
+
+
+_Previous Iteration: LuckFox Pico Pro Max (More Flash, SPI Flash)_
+![LuckFox Pico Pro Max - SeedSigner](img/luckfox-devboard-front.webp)
+![Case From Behind](img/luckfox-devboard-back.webp)
 
 ## Demo Videos
 
-### First Look: Seedsigner running on Luckfox Pico linux devboard
+### First Look: SeedSigner running on LuckFox Pico Linux devboard
 [![SeedSigner on LuckFox Pico Pro Max](https://img.youtube.com/vi/WHkOSn-lPG4/0.jpg)](https://www.youtube.com/watch?v=WHkOSn-lPG4)
-
-## Support the Developer
-If you find this project helpful and would like to support its development, you can buy me a coffee! Your support helps keep this project going and funds future improvements. Help decentralize Bitcoin hardware!
-
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lightningspore)
-
-## Hardware Photos
-
-![LuckFox Pico Pro Max - Seedsigner](img/luckfox-devboard-front.webp)
-![Luckfox Pico Mini - Seedsigner](img/slp-2.webp)
-![Case From Behind](img/luckfox-devboard-back.webp)
-![Luckfox Pico Mini - Seedsigner 2](img/slp-1.webp)
-
-
-
 
 
 ## Materials Needed
-Check out the shopping list for a parts list of various Luckfox-based hardware configurations: [here](docs/shopping_list.md)
+Check out the shopping list for a parts list of various LuckFox-based hardware configurations: [here](docs/shopping_list.md)
+
+These example builds can build a device for around $60.
 
 
-## OS Image Build With Buildroot
-The OS image is built using Buildroot in a Docker container. The complete build process is documented in [OS-build-instructions.md](buildroot/OS-build-instructions.md).
+## OS Image Build with Buildroot
+The OS image is built using Buildroot in a Docker container. The complete build instructions, package requirements, and troubleshooting process are documented in [OS-build-instructions.md](docs/OS-build-instructions.md).
 
 ![Buildroot Prompt](img/seedsigner-buildroot-setup.webp)
 
-For detailed build instructions, package requirements, and troubleshooting, see [OS-build-instructions.md](buildroot/OS-build-instructions.md).
-
-## Dev machine setup
+## Dev Machine Setup
 
 ### Install ADB
-Developing for the Luckfox Pico device is quite convenient since the devices never connect to the internet and you can access the device shell using `adb`. You can push files back and forth to your dev machine, and you can access the device as a shell easily.
+Developing for the LuckFox Pico device is quite convenient since the devices never connect to the internet and you can access the device shell using `adb`. You can push files back and forth to your dev machine, and you can access the device as a shell easily.
 ```
 # mac
 brew install homebrew/cask/android-platform-tools
@@ -54,10 +52,6 @@ adb devices
 
 # Connect to device shell
 adb shell
-
-# Check device info
-adb shell uname -a
-adb shell cat /proc/version
 ```
 
 2. File Operations:
@@ -65,37 +59,40 @@ adb shell cat /proc/version
 # Push files to device
 adb push local_file.txt /remote/path/
 
+# Sync the code repo for local development
+adb push /repos/seedsigner/src /seedsigner
+
 # Pull files from device
-adb pull /remote/path/file.txt .
+adb pull /seedsigner/config.json .
 
 # List files on device
 adb shell ls /path/to/directory
 ```
 
 ## Hardware Identification
-Notice the left device has an empty PCB footprint pattern on it. This is where the optional SPI flash is soldered on to. For the SeedSigner project we don't want permanent storage, so avoid devices with soldered on SPI flash.
+Notice the left device has an empty PCB footprint pattern on it. This is where the optional SPI flash is soldered on. For the SeedSigner project we don't want permanent storage, so avoid devices with soldered SPI flash.
 
 ```
-Luckfox Pico Mini A -> No Flash
-Luckfox Pico Mini B -> Soldered Flash
+LEFT:  LuckFox Pico Mini A -> No Flash
+RIGHT: LuckFox Pico Mini B -> Soldered Flash
 ```
-![Luckfox Pico Mini](img/luckfox-pico-mini-storage.webp)
+![LuckFox Pico Mini](img/luckfox-pico-mini-storage.webp)
 
 
 ## Flashing the Device
 
 ### Flash MicroSD Card
 ```
-sudo dd bs=4M status=progress if=/path/to/update.img of=/dev/diskX
+sudo dd bs=4M status=progress if=seedsigner-luckfox-pico-YYYYmmdd_hhmmss.img of=/dev/diskX
 ```
 Replace `/dev/diskX` with your actual SD card device path.
 
 
-## Luckfox Pico OS Modifications
-We have forked the [Luckfox Pico SDK](https://github.com/lightningspore/luckfox-pico) in order to enable various hardware features like pull-up resistors, adjust video RAM, and other things.
+## LuckFox Pico OS Modifications
+We have forked the [LuckFox Pico SDK](https://github.com/lightningspore/luckfox-pico) in order to enable various hardware features like pull-up resistors, adjust video RAM, and other things.
 
 ### Camera Memory
-The Luckfox devotes some of its memory for camera related algorithms, but we don't use this feature. Particularly on the Luckfox Pico Mini device, which only has 64MB of RAM, it is beneficial for us to reclaim a bit of this memory.
+The LuckFox devotes some of its memory for camera-related algorithms, but we don't use this feature. Particularly on the LuckFox Pico Mini device, which only has 64MB of RAM, it is beneficial for us to reclaim a bit of this memory.
 
 Memory usage WITHOUT modification:
 ```bash
@@ -114,10 +111,15 @@ Swap:             0           0           0
 ```
 
 ### Pull-up Resistors
-Our current dev board has external pull-up resistors, since we didn't know how to enable these at the time, and it is always smart to plan ahead when designing PCBs. NOTE: Even with this commit with this change, the internal pull-ups don't seem to work.
+Our current dev board has external pull-up resistors, since we didn't know how to enable these at the time, and it is always smart to plan ahead when designing PCBs. NOTE: Even with this commit and this change, the internal pull-ups don't seem to work.
 
 ### SPI Buffer Size
-While it is possible to send SPI data in chunks, you are able to increase the SPI buffer size to slightly increase throughput, which is useful for larger displays.
+While it is possible to send SPI data in chunks, you can increase the SPI buffer size to slightly increase throughput, which is useful for larger displays.
 
 ### PWM Output
 In order to control the LCD screen backlight and support true dimming of the display (instead of just changing the background color of the QR code, for example), we had to enable a PWM on a specific output pin.
+
+## Support the Developer
+If you find this project helpful and would like to support its development, you can buy me a coffee! Your support helps keep this project going and funds future improvements. Help decentralize Bitcoin hardware!
+
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lightningspore)
