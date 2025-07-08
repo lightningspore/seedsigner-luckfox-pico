@@ -1,0 +1,7 @@
+### Footprint positions - created on 2025-07-03T12:43:33-0600 ###
+### Printed by KiCad version 9.0.2
+## Unit = mm, Angle = deg.
+## Side : bottom
+# Ref     Val                    Package                PosX       PosY       Rot  Side
+U1        LuckFox_Pico_PLUS_PRO  LUCKFOX_PICO        55.7400   -33.0000   90.0000  bottom
+## End

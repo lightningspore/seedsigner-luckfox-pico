@@ -1,0 +1,20 @@
+### Footprint positions - created on 2025-07-03T12:43:33-0600 ###
+### Printed by KiCad version 9.0.2
+## Unit = mm, Angle = deg.
+## Side : top
+# Ref     Val           Package                                           PosX       PosY       Rot  Side
+ART1      ~             LightningSpore_Logo                            65.3000   -35.0000   90.0000  top
+H1        MountingHole  MOUNT_HOLE_3MM                                  3.0000    -3.0000    0.0000  top
+H2        MountingHole  MOUNT_HOLE_3MM                                 67.0000    -3.0000    0.0000  top
+H3        MountingHole  MOUNT_HOLE_3MM                                 67.0000   -77.0000    0.0000  top
+H4        MountingHole  MOUNT_HOLE_3MM                                  3.0000   -77.0000    0.0000  top
+LCD1      ST7789        ST7789_LCD_MOD1                                63.5500   -41.6000  180.0000  top
+R1        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    44.1000   -44.0000   90.0000  top
+R2        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    47.0500   -44.0000   90.0000  top
+R3        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    50.0000   -44.0000   90.0000  top
+R4        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    13.2000   -44.0000   90.0000  top
+R5        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    19.0000   -44.0000   90.0000  top
+R6        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    16.0000   -44.0000   90.0000  top
+R7        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    22.0000   -44.0000   90.0000  top
+R8        10K           R_0805_2012Metric_Pad1.20x1.40mm_HandSolder    25.0000   -44.0000   90.0000  top
+## End

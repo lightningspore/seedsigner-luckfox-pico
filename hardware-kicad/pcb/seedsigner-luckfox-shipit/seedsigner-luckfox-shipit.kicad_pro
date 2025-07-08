@@ -486,8 +486,8 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
-      "pos_files": "",
+      "plot": "gerbers-take1/",
+      "pos_files": "gerbers-take1/",
       "specctra_dsn": "seedsigner-luckfox-shipit.dsn",
       "step": "",
       "svg": "",
@@ -624,6 +624,10 @@
     [
       "879c7470-b785-4ed3-8be4-92f0f2171d5c",
       "ArtAndSymbols"
+    ],
+    [
+      "8b34a83d-1a9c-416a-bb16-b31baa43a54e",
+      "TestPoints"
     ]
   ],
   "text_variables": {}

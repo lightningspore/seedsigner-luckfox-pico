@@ -77,40 +77,32 @@
 			)
 		)
 	)
-	(pad "" np_thru_hole roundrect
+	(pad "" np_thru_hole circle
 		(at 2.2 2.2)
-		(size 1.905 1.27)
+		(size 2.1 2.1)
 		(drill 2.1)
 		(layers "F&B.Cu" "*.Mask")
-		(roundrect_rratio 0.15)
-		(thermal_bridge_angle 45)
 		(uuid "dade0e4c-0b19-414e-a84d-861419b5f1ed")
 	)
-	(pad "" np_thru_hole roundrect
+	(pad "" np_thru_hole circle
 		(at 2.2 33.1)
-		(size 1.905 1.27)
+		(size 2.1 2.1)
 		(drill 2.1)
 		(layers "F&B.Cu" "*.Mask")
-		(roundrect_rratio 0.15)
-		(thermal_bridge_angle 45)
 		(uuid "92e55af2-5d1d-4195-9a4d-f9ef5a1ea4a1")
 	)
-	(pad "" np_thru_hole roundrect
+	(pad "" np_thru_hole circle
 		(at 56.05 2.2)
-		(size 1.905 1.27)
+		(size 2.1 2.1)
 		(drill 2.1)
 		(layers "F&B.Cu" "*.Mask")
-		(roundrect_rratio 0.15)
-		(thermal_bridge_angle 45)
 		(uuid "0afdea1f-3d48-4a30-a68e-9eaf5a1397b6")
 	)
-	(pad "" np_thru_hole roundrect
+	(pad "" np_thru_hole circle
 		(at 56.05 33.1)
-		(size 1.905 1.27)
+		(size 2.1 2.1)
 		(drill 2.1)
 		(layers "F&B.Cu" "*.Mask")
-		(roundrect_rratio 0.15)
-		(thermal_bridge_angle 45)
 		(uuid "23249025-ad00-46d0-9ce4-164ebda5c7b9")
 	)
 	(pad "1" thru_hole circle

@@ -471,6 +471,48 @@
 			)
 		)
 	)
+	(sheet
+		(at 195.58 68.58)
+		(size 20.32 15.24)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "8b34a83d-1a9c-416a-bb16-b31baa43a54e")
+		(property "Sheetname" "TestPoints"
+			(at 195.58 67.8684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "testpoints.kicad_sch"
+			(at 195.58 84.4046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "seedsigner-luckfox-shipit"
+				(path "/cdb42d61-6e7c-45da-bb95-2df00473b6b5"
+					(page "5")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")

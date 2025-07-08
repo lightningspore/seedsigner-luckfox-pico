@@ -3,4 +3,5 @@
   (lib (name "Luckfox")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/luckfox.kicad_sym")(options "")(descr ""))
   (lib (name "LightningSpore")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/lightningspore.kicad_sym")(options "")(descr ""))
   (lib (name "SeedSigner")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/seedsigner.kicad_sym")(options "")(descr ""))
+  (lib (name "test")(type "KiCad")(uri "${CUSTOM_LIBRARY_DIR}/PCA9539PW_112.kicad_sym")(options "")(descr ""))
 )
