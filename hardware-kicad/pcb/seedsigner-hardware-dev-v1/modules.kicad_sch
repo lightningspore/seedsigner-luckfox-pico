@@ -2937,26 +2937,6 @@
 		)
 		(uuid "5bac047e-8e42-4501-a3ab-13860a5ac580")
 	)
-	(label "RST"
-		(at 219.71 71.12 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "5e4ab85e-d7a1-48af-b664-faec8e96bf73")
-	)
-	(label "BACKLIGHT"
-		(at 270.51 76.2 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "627feee4-5a42-4f6a-9279-8463646ff5e1")
-	)
 	(label "JOYSTICK_LEFT"
 		(at 85.09 67.31 0)
 		(effects
@@ -3115,6 +3095,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IO_RST"
+		(shape input)
+		(at 270.51 91.44 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "12055520-5464-4560-9637-b3351aa9dd08")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 279.8452 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3845,6 +3847,95 @@
 			)
 		)
 	)
+	(global_label "IO_RST"
+		(shape input)
+		(at 96.52 186.69 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f43cb7fc-b78c-40c2-841e-79fac09b99d1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 105.8552 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 270.51 96.52 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "01c9a863-f626-4445-a5da-6d12e7793918")
+		(property "Reference" "#PWR026"
+			(at 276.86 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 274.32 96.5199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 270.51 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 270.51 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 270.51 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "40ae7179-fb11-4ad6-9aeb-53a4266b8560")
+		)
+		(instances
+			(project "seedsigner-hardware-dev-v1"
+				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241/89a188ea-2ffe-4b1b-bc62-2c5693986b4f"
+					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(symbol
 		(lib_id "Luckfox:LuckFox_Pico_PLUS_PRO")
 		(at 68.58 189.23 0)
@@ -4156,6 +4247,73 @@
 			(project "seedsigner-hardware-dev-v1"
 				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241/89a188ea-2ffe-4b1b-bc62-2c5693986b4f"
 					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 96.52 181.61 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2321c919-7da6-4f0a-b5e8-10c960a22c98")
+		(property "Reference" "#PWR027"
+			(at 102.87 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 100.33 181.6099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 96.52 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 96.52 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 96.52 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d9ab9599-9002-414c-8528-68eba83772f6")
+		)
+		(instances
+			(project "seedsigner-hardware-dev-v1"
+				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241/89a188ea-2ffe-4b1b-bc62-2c5693986b4f"
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)

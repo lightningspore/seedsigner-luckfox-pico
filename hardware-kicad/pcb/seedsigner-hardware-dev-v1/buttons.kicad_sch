@@ -2281,6 +2281,28 @@
 			)
 		)
 	)
+	(global_label "IO_RST"
+		(shape input)
+		(at 41.91 73.66 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8ba2545b-0145-4748-918e-2e27b0eaa97a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 51.2452 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "JOYSTICK_PRESS"
 		(shape input)
 		(at 73.66 99.06 180)

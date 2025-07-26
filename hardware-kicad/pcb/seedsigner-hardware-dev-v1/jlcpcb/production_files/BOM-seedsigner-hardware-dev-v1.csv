@@ -1,8 +1,9 @@
 Comment,Designator,Footprint,LCSC,Quantity
 PCA9539PW_112,U5,SOP65P640X110-24N,C129516,1
+Conn_01x04,J1,NS-Tech_Grove_1x04_P2mm_Vertical,C157926,1
 10K,"R1,R10,R11,R12,R13,R14,R2,R3,R4,R5,R6,R7,R8,R9",R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,C17414,14
 ST7789,"LCD1,LCD2",PinHeader_1x08_P2.54mm_Vertical,C190820,2
-LuckFox_Pico_PLUS_PRO,"U4,U6",LUCKFOX_PICO,C25503124,2
+LuckFox_Pico_PLUS_PRO,"U4,U6",LUCKFOX_PICO,C25503124,1
 RPI_ZERO,U3,RPi_Zero,C2685093,1
 0.1uF,C1,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,C49678,1
 WAVESHARE_LCD_BUTTON_BOARD_1.3in,U2,WAVESHARE_LCD_BUTTON,C5224014,1
@@ -20,3 +21,7 @@ TestPoint,TP3,TestPoint_Pad_D1.0mm,,1
 SW_Push,SW8,BTN_SPST_NO_PTH,,1
 TestPoint,TP5,TestPoint_Pad_D1.0mm,,1
 SW_Push,SW4,BTN_SPST_NO_PTH,,1
+TestPoint,TP9,TestPoint_Pad_D1.0mm,,1
+TestPoint,TP7,TestPoint_Pad_D1.0mm,,1
+TestPoint,TP10,TestPoint_Pad_D1.0mm,,1
+TestPoint,TP8,TestPoint_Pad_D1.0mm,,1

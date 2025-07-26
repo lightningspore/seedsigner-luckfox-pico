@@ -925,6 +925,70 @@
 	)
 	(symbol
 		(lib_id "seedsigner:LIGHTNINGSPORE")
+		(at 95.25 91.44 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a93481cd-1d89-4208-aa72-6286978f210c")
+		(property "Reference" "ART2"
+			(at 100.33 90.8049 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Modulo"
+			(at 100.33 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "seedsigner-luckfox:modulo-1"
+			(at 95.25 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 95.25 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 95.25 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "seedsigner-hardware-dev-v1"
+				(path "/80ddcc25-987b-44b8-ab4f-432d39ad0241/5cb8505d-b540-42ed-b4a9-9676439affb7"
+					(reference "ART2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "seedsigner:LIGHTNINGSPORE")
 		(at 95.25 74.93 0)
 		(unit 1)
 		(exclude_from_sim no)
