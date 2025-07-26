@@ -21,28 +21,18 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-      
-    - name: Free up disk space
-      run: |
-        # Remove unnecessary packages to free up space
-        sudo rm -rf /usr/local/lib/android
-        sudo rm -rf /usr/share/dotnet
-        sudo rm -rf /opt/ghc
-        sudo rm -rf /usr/local/share/boost
-        sudo apt-get clean
-        df -h
-    
+
     - name: Setup required repositories
       run: |
         cd $HOME
-        echo "📦 Cloning luckfox-pico SDK..."
+        echo "Cloning luckfox-pico SDK..."
         git clone https://github.com/lightningspore/luckfox-pico.git --depth=1 --single-branch
         
-        echo "📦 Cloning seedsigner-os packages..."
+        echo "Cloning seedsigner-os packages..."
         git clone https://github.com/seedsigner/seedsigner-os.git --depth=1 --single-branch
         
-        echo "📦 Cloning seedsigner code..."
-        git clone https://github.com/lightningspore/seedsigner.git --depth=1 -b luckfox-dev --single-branch
+        echo "Cloning seedsigner code..."
+        git clone https://github.com/lightningspore/seedsigner.git --depth=1 -b upstream-luckfox-staging-1 --single-branch
         
         # Verify repositories
         ls -la $HOME/
@@ -57,7 +47,7 @@ jobs:
     - name: Build SeedSigner OS
       run: |
         cd buildroot
-        echo "🚀 Starting SeedSigner build..."
+        echo "Starting SeedSigner build..."
         
         if [ "${{ github.event.inputs.force_rebuild }}" = "true" ]; then
           ./build.sh build --force
@@ -72,11 +62,11 @@ jobs:
         ./build.sh extract || true
         
         # Show what was built
-        echo "📋 Build output contents:"
+        echo "Build output contents:"
         ls -la build-output/ || echo "No build output directory found"
         
         # Find any generated images
-        echo "🔍 Searching for generated images:"
+        echo "Searching for generated images:"
         find $HOME -name "*.img" -type f 2>/dev/null | head -10 || echo "No .img files found"
     
     - name: Upload build artifacts

@@ -1,10 +1,12 @@
+version: '3.8'
+
 services:
   seedsigner-builder:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - TARGETPLATFORM=linux/amd64
+      platforms:
+        - linux/amd64
     platform: linux/amd64
     container_name: seedsigner-luckfox-builder
     volumes:
@@ -12,7 +14,7 @@ services:
       # These directories must exist before running docker-compose
       - ${HOME}/luckfox-pico:/mnt/host
       - ${HOME}/seedsigner:/mnt/ss  
-      - ${SEEDSIGNER_LUCKFOX_REPO_PATH:-${HOME}/seedsigner-luckfox-pico}:/mnt/cfg
+      - ${HOME}/seedsigner-luckfox-pico:/mnt/cfg
       - ${HOME}/seedsigner-os:/mnt/ssos
       # Optional: Mount a directory for extracting build artifacts
       - ${BUILD_OUTPUT_DIR:-./build-output}:/mnt/output
@@ -21,8 +23,6 @@ services:
       - SEEDSIGNER_CODE_DIR=/mnt/ss
       - SEEDSIGNER_LUCKFOX_DIR=/mnt/cfg
       - SEEDSIGNER_OS_DIR=/mnt/ssos
-      - BUILD_JOBS=${BUILD_JOBS:-}
-      - MAKEFLAGS=-j${BUILD_JOBS:-$(nproc)}
     # Override the default command for different modes
     # Use 'docker-compose run seedsigner-builder interactive' for interactive mode
     # Use 'docker-compose run seedsigner-builder shell' for direct shell access
@@ -33,14 +33,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - TARGETPLATFORM=linux/amd64
+      platforms:
+        - linux/amd64
     platform: linux/amd64
     container_name: seedsigner-luckfox-dev
     volumes:
       - ${HOME}/luckfox-pico:/mnt/host
       - ${HOME}/seedsigner:/mnt/ss
-      - ${SEEDSIGNER_LUCKFOX_REPO_PATH:-${HOME}/seedsigner-luckfox-pico}:/mnt/cfg  
+      - ${HOME}/seedsigner-luckfox-pico:/mnt/cfg  
       - ${HOME}/seedsigner-os:/mnt/ssos
       - ${BUILD_OUTPUT_DIR:-./build-output}:/mnt/output
     environment:
@@ -48,8 +48,6 @@ services:
       - SEEDSIGNER_CODE_DIR=/mnt/ss
       - SEEDSIGNER_LUCKFOX_DIR=/mnt/cfg
       - SEEDSIGNER_OS_DIR=/mnt/ssos
-      - BUILD_JOBS=${BUILD_JOBS:-}
-      - MAKEFLAGS=-j${BUILD_JOBS:-$(nproc)}
     command: ["interactive"]
     stdin_open: true
     tty: true

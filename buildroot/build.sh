@@ -11,9 +11,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 
 print_header() { echo -e "${BLUE}=== $1 ===${NC}"; }
-print_success() { echo -e "${GREEN}✅ $1${NC}"; }
-print_warning() { echo -e "${YELLOW}⚠️  $1${NC}"; }
-print_error() { echo -e "${RED}❌ $1${NC}"; }
+print_success() { echo -e "${GREEN}[SUCCESS] $1${NC}"; }
+print_warning() { echo -e "${YELLOW}[WARNING] $1${NC}"; }
+print_error() { echo -e "${RED}[ERROR] $1${NC}"; }
 
 show_usage() {
     cat << 'USAGE'
@@ -100,19 +100,45 @@ check_docker() {
 check_repositories() {
     print_header "Checking Repositories"
     
-    local repos=(
-        "$HOME/luckfox-pico"
-        "$HOME/seedsigner"
-        "$HOME/seedsigner-os"
-        "$HOME/seedsigner-luckfox-pico"
-    )
+    # Detect GitHub Actions environment
+    if [[ -n "${GITHUB_WORKSPACE:-}" ]]; then
+        # In GitHub Actions, repos are in different locations
+        local repos=(
+            "$HOME/luckfox-pico"
+            "$HOME/seedsigner"
+            "$HOME/seedsigner-os"
+            "$GITHUB_WORKSPACE"  # Current repo is checked out here
+        )
+        local repo_names=(
+            "luckfox-pico"
+            "seedsigner"
+            "seedsigner-os"
+            "seedsigner-luckfox-pico"
+        )
+    else
+        # Local environment
+        local repos=(
+            "$HOME/luckfox-pico"
+            "$HOME/seedsigner"
+            "$HOME/seedsigner-os"
+            "$HOME/seedsigner-luckfox-pico"
+        )
+        local repo_names=(
+            "luckfox-pico"
+            "seedsigner"
+            "seedsigner-os"
+            "seedsigner-luckfox-pico"
+        )
+    fi
     
     local missing=()
-    for repo in "${repos[@]}"; do
+    for i in "${!repos[@]}"; do
+        local repo="${repos[$i]}"
+        local name="${repo_names[$i]}"
         if [[ -d "$repo" && "$(ls -A "$repo" 2>/dev/null)" ]]; then
-            print_success "$(basename "$repo") exists"
+            print_success "$name exists"
         else
-            print_warning "$(basename "$repo") missing: $repo"
+            print_warning "$name missing: $repo"
             missing+=("$repo")
         fi
     done
@@ -177,6 +203,17 @@ run_build() {
     cd "$SCRIPT_DIR"
     mkdir -p build-output
     
+    # Set the appropriate path for the current repository
+    if [[ -n "${GITHUB_WORKSPACE:-}" ]]; then
+        # In GitHub Actions, current repo is at GITHUB_WORKSPACE
+        export SEEDSIGNER_LUCKFOX_REPO_PATH="$GITHUB_WORKSPACE"
+        print_success "GitHub Actions detected: Using $GITHUB_WORKSPACE for current repo"
+    else
+        # Local environment, current repo is at HOME
+        export SEEDSIGNER_LUCKFOX_REPO_PATH="$HOME/seedsigner-luckfox-pico"
+        print_success "Local environment: Using $HOME/seedsigner-luckfox-pico for current repo"
+    fi
+    
     case "$mode" in
         "auto")
             $DOCKER_COMPOSE up --build seedsigner-builder
@@ -228,7 +265,7 @@ extract_artifacts() {
 }
 
 show_github_instructions() {
-    print_header "🚀 GitHub Actions Build Setup"
+    print_header "GitHub Actions Build Setup"
     
     # Check if we're in a git repository
     if [[ -d .git ]]; then
@@ -243,31 +280,31 @@ show_github_instructions() {
     
     cat << 'GITHUB_INFO'
 
-📋 GitHub Actions builds provide:
-  ✅ Native x86_64 performance (no emulation)
-  ✅ Reliable, consistent builds
-  ✅ Automatic artifact storage
-  ✅ 45-90 minute build time
+GitHub Actions builds provide:
+  - Native x86_64 performance (no emulation)
+  - Reliable, consistent builds
+  - Automatic artifact storage
+  - 45-90 minute build time
 
-🛠️  Setup Steps:
+Setup Steps:
 
 1. Push this repository to GitHub:
    git push origin <branch>
 
 2. GitHub Actions will automatically:
-   📥 Clone required repositories
-   🔨 Build the SeedSigner OS
-   📦 Package build artifacts
+   - Clone required repositories
+   - Build the SeedSigner OS
+   - Package build artifacts
 
 3. Monitor and download:
-   🌐 Go to: https://github.com/YOUR_USERNAME/seedsigner-luckfox-pico/actions
-   👀 Watch the "Build SeedSigner OS" workflow
-   📥 Download artifacts when complete
+   - Go to: https://github.com/YOUR_USERNAME/seedsigner-luckfox-pico/actions
+   - Watch the "Build SeedSigner OS" workflow
+   - Download artifacts when complete
 
-🎯 Manual Trigger:
+Manual Trigger:
    - Go to Actions tab → "Build SeedSigner OS" → "Run workflow"
 
-💡 Pro Tips:
+Pro Tips:
    - Builds trigger automatically on push to main/develop
    - Artifacts are kept for 30 days
    - Use 'Force rebuild' if you need to update dependencies
@@ -303,9 +340,9 @@ backup_config() {
 show_status() {
     print_header "Build System Status"
     
-    echo "📍 Current directory: $(pwd)"
-    echo "🏠 Script directory: $SCRIPT_DIR"
-    echo "📦 Architecture: $(uname -m)"
+    echo "Current directory: $(pwd)"
+    echo "Script directory: $SCRIPT_DIR"
+    echo "Architecture: $(uname -m)"
     
     if check_repositories; then
         print_success "All repositories present"
@@ -376,7 +413,7 @@ main() {
     
     # Show build configuration if jobs specified
     if [[ -n "$build_jobs" ]]; then
-        echo "🔧 Build Configuration: Using $build_jobs parallel jobs"
+        echo "Build Configuration: Using $build_jobs parallel jobs"
     fi
     
     # Always check requirements for most commands
@@ -400,18 +437,18 @@ main() {
         "build")
             # Check if we should recommend GitHub Actions
             if [[ "$USE_EMULATION" == "true" && "$force_local" == "false" ]]; then
-                print_header "🌟 GitHub Actions Recommended for ARM64"
+                print_header "GitHub Actions Recommended for ARM64"
                 cat << 'ARM64_WARNING'
 
 You're on an ARM64 system (Apple Silicon Mac). For the best experience:
 
-1. 🚀 Use GitHub Actions (recommended):
+1. Use GitHub Actions (recommended):
    ./build.sh github    # Show setup instructions
 
-2. 🔧 Force local build (slower, may fail):
+2. Force local build (slower, may fail):
    ./build.sh build --local
 
-3. 📖 See other options in documentation
+3. See other options in documentation
 
 ARM64_WARNING
                 

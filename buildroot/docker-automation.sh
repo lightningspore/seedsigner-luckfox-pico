@@ -26,9 +26,9 @@ export FORCE_UNSAFE_CONFIGURE=1
 # Colors for output
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC='\033[0m'
 
-print_step() { echo -e "\n${BLUE}🔧 $1${NC}\n"; }
-print_success() { echo -e "\n${GREEN}✅ $1${NC}\n"; }
-print_error() { echo -e "\n${RED}❌ $1${NC}\n"; }
+print_step() { echo -e "\n${BLUE}[STEP] $1${NC}\n"; }
+print_success() { echo -e "\n${GREEN}[SUCCESS] $1${NC}\n"; }
+print_error() { echo -e "\n${RED}[ERROR] $1${NC}\n"; }
 
 show_usage() {
     echo "Usage: $0 [auto|interactive|shell|validate]"
@@ -54,11 +54,11 @@ validate_environment() {
     for dir in "${required_dirs[@]}"; do
         if [[ ! -d "$dir" ]]; then
             missing_dirs+=("$dir")
-            echo "❌ Missing: $dir"
+            echo "[ERROR] Missing: $dir"
         elif [[ -z "$(ls -A "$dir" 2>/dev/null | grep -v -E '\.(DS_Store|git|github|gitignore)$')" ]]; then
-            echo "⚠️ Empty: $dir"
+            echo "[WARNING] Empty: $dir"
         else
-            echo "✅ Found: $dir"
+            echo "[OK] Found: $dir"
         fi
     done
     
@@ -74,9 +74,9 @@ validate_environment() {
     for file in "${required_files[@]}"; do
         if [[ ! -e "$file" ]]; then
             missing_files+=("$file")
-            echo "❌ Missing file/directory: $file"
+            echo "[ERROR] Missing file/directory: $file"
         else
-            echo "✅ Required file/directory exists: $file"
+            echo "[OK] Required file/directory exists: $file"
         fi
     done
     
@@ -104,14 +104,14 @@ setup_sdk_environment() {
     
     # Source the toolchain environment carefully
     if [[ -f "env_install_toolchain.sh" ]]; then
-        echo "📦 Sourcing toolchain environment..."
+        echo "Sourcing toolchain environment..."
         set +e  # Temporarily disable exit on error
         source env_install_toolchain.sh 
         local source_result=$?
         set -e  # Re-enable exit on error
         
         if [[ $source_result -ne 0 ]]; then
-            echo "⚠️ Toolchain environment sourcing had issues, continuing..."
+            echo "[WARNING] Toolchain environment sourcing had issues, continuing..."
         fi
     else
         print_error "Toolchain environment script not found!"
@@ -127,7 +127,7 @@ run_automated_build() {
     print_step "Starting Automated SeedSigner Build"
     
     # Show parallel build configuration
-    echo "🚀 Parallel Build Configuration:"
+    echo "Parallel Build Configuration:"
     echo "   CPU Cores Available: $(nproc)"
     echo "   Build Jobs: ${BUILD_JOBS}"
     echo "   MAKEFLAGS: ${MAKEFLAGS}"
@@ -225,7 +225,7 @@ CONFIGMENU
     print_success "Build Complete! Final image: ${LUCKFOX_SDK_DIR}/output/image/$IMAGE"
     
     # List final outputs
-    echo "📦 Build outputs:"
+    echo "Build outputs:"
     ls -la "${LUCKFOX_SDK_DIR}/output/image/"
 }
 
@@ -234,23 +234,23 @@ MODE="${1:-auto}"
 
 case "$MODE" in
     "auto")
-        echo "🚀 Starting automated SeedSigner build process..."
+        echo "Starting automated SeedSigner build process..."
         run_automated_build
         ;;
     "interactive")
-        echo "🔧 Starting interactive mode..."
+        echo "Starting interactive mode..."
         validate_environment
         setup_sdk_environment
         print_success "Environment validated. Dropping into interactive shell."
-        echo "💡 To run the automated build, execute: /app/docker-automation.sh auto"
+        echo "To run the automated build, execute: /app/docker-automation.sh auto"
         exec /bin/bash
         ;;
     "shell")
-        echo "🐚 Dropping into shell..."
+        echo "Dropping into shell..."
         exec /bin/bash
         ;;
     "validate")
-        echo "🔍 Running environment validation only..."
+        echo "Running environment validation only..."
         validate_environment
         exit 0
         ;;
@@ -268,9 +268,9 @@ esac
 # If we get here from auto mode, keep container alive
 if [[ "$MODE" == "auto" ]]; then
     print_success "Automated build process completed!"
-    echo "🐚 Keeping container alive for artifact extraction..."
-    echo "💡 Use 'docker cp' to extract build artifacts from the container"
-    echo "💡 Press Ctrl+C to stop the container"
+    echo "Keeping container alive for artifact extraction..."
+    echo "Use 'docker cp' to extract build artifacts from the container"
+    echo "Press Ctrl+C to stop the container"
     
     # Keep container alive for artifact extraction
     sleep infinity
