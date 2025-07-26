@@ -32,7 +32,7 @@ if [ ! -d "${BUILDROOT_DIR}" ]; then
     exit 1
 fi
 
-Check if Config.in exists
+# Check if Config.in exists
 if [ ! -f "${CONFIG_IN}" ]; then
     echo "Error: ${CONFIG_IN} does not exist. Please run './build.sh buildrootconfig' first"
     exit 1
