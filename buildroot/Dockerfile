@@ -1,14 +1,9 @@
-# THIS MUST BE BUILD ON A X86/64 MACHINE OR WITH X86 EMULATION!
-# Some APT packages are unavailable on ARM!
-
-# Use buildx for cross-platform builds with emulation
-# This allows ARM64 Macs to run x86_64 builds via emulation  
-ARG TARGETPLATFORM=linux/amd64
+# SeedSigner Self-Contained Build - No Home Directory Pollution!
 FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# Install required packages
+# Install all required packages including ca-certificates for git cloning
 RUN apt-get update && \
     apt-get install -y \
         build-essential \
@@ -25,25 +20,39 @@ RUN apt-get update && \
         device-tree-compiler libncurses5-dev \
         pkg-config bc python-is-python3 passwd openssl \
         openssh-server openssh-client vim file cpio rsync \
+        ca-certificates \
         && \
     rm -rf /var/lib/apt/lists/*
 
-# Set the working directory
-WORKDIR /app
+# Set working directory for self-contained builds
+WORKDIR /build
 
+# Create directories for all components
+RUN mkdir -p /build/repos /build/output
+
+# Copy build scripts and configuration files
+COPY configs/ /build/configs/
+COPY files/ /build/files/
+COPY add_package_buildroot.sh /build/
+COPY blkenvflash /build/
+COPY sdk_init.sh /build/
+
+# Make scripts executable
+RUN chmod +x /build/*.sh /build/blkenvflash 2>/dev/null || true
+
+# Set up git configuration (required for cloning repositories inside container)
+RUN git config --global user.email "build@seedsigner.luckfox" && \
+    git config --global user.name "SeedSigner Build"
+
+# Create required files for SDK toolchain
 RUN touch /root/.bash_profile
-
-COPY sdk_init.sh /etc/profile.d/
-COPY add_package_buildroot.sh .
-
-RUN chmod +x /etc/profile.d/sdk_init.sh
 
 SHELL ["/bin/bash", "-c"]
 
-# Copy consolidated build automation script
-COPY docker-automation.sh /app/
-RUN chmod +x /app/docker-automation.sh
+# Copy build automation script
+COPY docker-automation.sh /build/
+RUN chmod +x /build/docker-automation.sh
 
-# Set the entrypoint - can be overridden for interactive mode
-ENTRYPOINT ["/app/docker-automation.sh"]
+# Set the entrypoint
+ENTRYPOINT ["/build/docker-automation.sh"]
 CMD ["auto"]

@@ -1,14 +1,27 @@
 #!/bin/bash
-# Consolidated Docker Build Automation Script
-# Combines: build_automation.sh + validate_environment.sh + add_package_buildroot.sh + sdk_init.sh
+# SeedSigner Self-Contained Build Script - No Home Directory Pollution!
+# All repositories cloned inside container - completely portable
 
 set -e
 
-# Environment setup (from sdk_init.sh)
-export LUCKFOX_SDK_DIR="/mnt/host"
-export SEEDSIGNER_OS_DIR="/mnt/ssos"
-export SEEDSIGNER_CODE_DIR="/mnt/ss"
-export SEEDSIGNER_LUCKFOX_DIR="/mnt/cfg"
+# Environment setup - everything happens inside /build
+export BUILD_DIR="/build"
+export REPOS_DIR="/build/repos"
+export OUTPUT_DIR="/build/output"
+
+# Repository URLs for cloning
+export LUCKFOX_REPO_URL="https://github.com/lightningspore/luckfox-pico.git"
+export SEEDSIGNER_REPO_URL="https://github.com/lightningspore/seedsigner.git"
+export SEEDSIGNER_BRANCH="upstream-luckfox-staging-1"
+export SEEDSIGNER_OS_REPO_URL="https://github.com/seedsigner/seedsigner-os.git"
+
+# Internal paths (after cloning)
+export LUCKFOX_SDK_DIR="$REPOS_DIR/luckfox-pico"
+export SEEDSIGNER_CODE_DIR="$REPOS_DIR/seedsigner"
+export SEEDSIGNER_OS_DIR="$REPOS_DIR/seedsigner-os"
+export SEEDSIGNER_LUCKFOX_DIR="/build"
+
+# Common paths (computed after SDK directory is determined)
 export BUILDROOT_DIR="${LUCKFOX_SDK_DIR}/sysdrv/source/buildroot/buildroot-2023.02.6"
 export PACKAGE_DIR="${BUILDROOT_DIR}/package"
 export CONFIG_IN="${PACKAGE_DIR}/Config.in"
@@ -19,8 +32,6 @@ export ROOTFS_DIR="${LUCKFOX_SDK_DIR}/output/out/rootfs_uclibc_rv1106"
 export BUILD_JOBS="${BUILD_JOBS:-$(nproc)}"
 export MAKEFLAGS="-j${BUILD_JOBS}"
 export BR2_JLEVEL="${BUILD_JOBS}"
-
-# Export parallel build variables for compatibility
 export FORCE_UNSAFE_CONFIGURE=1
 
 # Colors for output
@@ -29,25 +40,80 @@ RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; BLUE='\033[0;34m'; NC
 print_step() { echo -e "\n${BLUE}[STEP] $1${NC}\n"; }
 print_success() { echo -e "\n${GREEN}[SUCCESS] $1${NC}\n"; }
 print_error() { echo -e "\n${RED}[ERROR] $1${NC}\n"; }
+print_info() { echo -e "\n${YELLOW}[INFO] $1${NC}\n"; }
 
 show_usage() {
-    echo "Usage: $0 [auto|interactive|shell|validate]"
+    echo "SeedSigner Self-Contained Build System"
+    echo "Usage: $0 [auto|interactive|shell|clone-only]"
     echo ""
-    echo "  auto        - Run the full automated build (default)"
-    echo "  interactive - Drop into interactive shell after validation"
-    echo "  shell       - Drop directly into shell (skip validation)"
-    echo "  validate    - Only run environment validation"
+    echo "  auto        - Run full automated build with repo cloning (default)"
+    echo "  interactive - Clone repos + drop into interactive shell"
+    echo "  shell       - Drop directly into shell (no setup)"
+    echo "  clone-only  - Only clone repositories and exit"
     echo ""
+    echo "Features:"
+    echo "  - All repositories cloned inside container"
+    echo "  - No host directory pollution"
+    echo "  - Self-contained and portable"
+    echo ""
+}
+
+clone_repositories() {
+    print_step "Cloning Required Repositories"
+    
+    mkdir -p "$REPOS_DIR"
+    cd "$REPOS_DIR"
+    
+    # Clone luckfox-pico SDK
+    if [[ ! -d "luckfox-pico" ]]; then
+        print_info "Cloning luckfox-pico SDK..."
+        git clone "$LUCKFOX_REPO_URL" --depth=1 --single-branch luckfox-pico
+        print_success "luckfox-pico cloned"
+    else
+        print_info "luckfox-pico already exists"
+    fi
+    
+    # Clone SeedSigner OS packages
+    if [[ ! -d "seedsigner-os" ]]; then
+        print_info "Cloning seedsigner-os packages..."
+        git clone "$SEEDSIGNER_OS_REPO_URL" --depth=1 --single-branch seedsigner-os
+        print_success "seedsigner-os cloned"
+    else
+        print_info "seedsigner-os already exists"
+    fi
+    
+    # Clone SeedSigner code (specific branch)
+    if [[ ! -d "seedsigner" ]]; then
+        print_info "Cloning seedsigner code (branch: $SEEDSIGNER_BRANCH)..."
+        git clone "$SEEDSIGNER_REPO_URL" --depth=1 -b "$SEEDSIGNER_BRANCH" --single-branch seedsigner
+        print_success "seedsigner cloned"
+    else
+        print_info "seedsigner already exists"
+    fi
+    
+    # Show repository status
+    print_info "Repository Status:"
+    echo "  luckfox-pico: $(du -sh luckfox-pico 2>/dev/null | cut -f1 || echo 'missing')"
+    echo "  seedsigner-os: $(du -sh seedsigner-os 2>/dev/null | cut -f1 || echo 'missing')"  
+    echo "  seedsigner: $(du -sh seedsigner 2>/dev/null | cut -f1 || echo 'missing')"
+    echo "  Total: $(du -sh . 2>/dev/null | cut -f1 || echo 'unknown')"
+    
+    print_success "All repositories cloned successfully"
 }
 
 validate_environment() {
     print_step "Validating Build Environment"
     
     local required_dirs=(
-        "/mnt/host"          # LUCKFOX_SDK_DIR
-        "/mnt/ss"            # SEEDSIGNER_CODE_DIR  
-        "/mnt/cfg"           # SEEDSIGNER_LUCKFOX_DIR
-        "/mnt/ssos"          # SEEDSIGNER_OS_DIR
+        "$LUCKFOX_SDK_DIR"
+        "$SEEDSIGNER_CODE_DIR"  
+        "$SEEDSIGNER_OS_DIR"
+    )
+    
+    local required_items=(
+        "$LUCKFOX_SDK_DIR/build.sh"
+        "$SEEDSIGNER_CODE_DIR/src"
+        "$SEEDSIGNER_OS_DIR/opt/external-packages"
     )
     
     local missing_dirs=()
@@ -55,37 +121,26 @@ validate_environment() {
         if [[ ! -d "$dir" ]]; then
             missing_dirs+=("$dir")
             echo "[ERROR] Missing: $dir"
-        elif [[ -z "$(ls -A "$dir" 2>/dev/null | grep -v -E '\.(DS_Store|git|github|gitignore)$')" ]]; then
-            echo "[WARNING] Empty: $dir"
         else
             echo "[OK] Found: $dir"
         fi
     done
     
-    # Check specific required files/directories
-    local required_files=(
-        "/mnt/host/build.sh"
-        "/mnt/ss/src"
-        "/mnt/cfg/buildroot/add_package_buildroot.sh"
-        "/mnt/ssos/opt/external-packages"
-    )
-    
-    local missing_files=()
-    for file in "${required_files[@]}"; do
-        if [[ ! -e "$file" ]]; then
-            missing_files+=("$file")
-            echo "[ERROR] Missing file/directory: $file"
+    local missing_items=()
+    for item in "${required_items[@]}"; do
+        if [[ ! -e "$item" ]]; then
+            missing_items+=("$item")
+            echo "[ERROR] Missing: $item"
         else
-            echo "[OK] Required file/directory exists: $file"
+            echo "[OK] Found: $item"
         fi
     done
     
-    if [[ ${#missing_dirs[@]} -ne 0 || ${#missing_files[@]} -ne 0 ]]; then
+    if [[ ${#missing_dirs[@]} -ne 0 || ${#missing_items[@]} -ne 0 ]]; then
         print_error "Environment validation failed"
         echo "Missing directories: ${missing_dirs[*]}"
-        echo "Missing files: ${missing_files[*]}"
-        echo ""
-        echo "Please ensure all required repositories are cloned and properly mounted"
+        echo "Missing items: ${missing_items[*]}"
+        echo "Try running with 'clone-only' mode first to setup repositories"
         exit 1
     fi
     
@@ -95,75 +150,81 @@ validate_environment() {
 setup_sdk_environment() {
     print_step "Setting Up SDK Environment"
     
-    # Save current directory and script path
-    local original_dir=$(pwd)
-    local script_path="/app/docker-automation.sh"
+    cd "$LUCKFOX_SDK_DIR"
     
-    # Change to toolchain directory and source environment
-    cd "${LUCKFOX_SDK_DIR}/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/"
+    # Initialize SDK if needed (creates .BoardConfig.mk)
+    if [[ ! -f ".BoardConfig.mk" ]]; then
+        print_info "Initializing SDK (first time setup)..."
+        # Run the SDK init which creates the board config
+        echo -e "\n\n\n" | timeout 10s ./build.sh lunch 2>/dev/null || {
+            print_info "SDK lunch completed (timeout expected)"
+        }
+    fi
     
-    # Source the toolchain environment carefully
-    if [[ -f "env_install_toolchain.sh" ]]; then
-        echo "Sourcing toolchain environment..."
+    # Source the toolchain environment
+    local toolchain_dir="$LUCKFOX_SDK_DIR/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf"
+    if [[ -f "$toolchain_dir/env_install_toolchain.sh" ]]; then
+        print_info "Sourcing toolchain environment..."
+        cd "$toolchain_dir"
         set +e  # Temporarily disable exit on error
-        source env_install_toolchain.sh 
+        source env_install_toolchain.sh 2>/dev/null
         local source_result=$?
         set -e  # Re-enable exit on error
         
-        if [[ $source_result -ne 0 ]]; then
-            echo "[WARNING] Toolchain environment sourcing had issues, continuing..."
-        fi
+        cd "$LUCKFOX_SDK_DIR"
+        print_success "Toolchain environment configured"
     else
-        print_error "Toolchain environment script not found!"
+        print_error "Toolchain environment script not found at: $toolchain_dir/env_install_toolchain.sh"
         exit 1
     fi
-    
-    # Return to SDK directory
-    cd "${LUCKFOX_SDK_DIR}"
-    print_success "SDK environment configured"
 }
 
 run_automated_build() {
     print_step "Starting Automated SeedSigner Build"
     
-    # Show parallel build configuration
-    echo "Parallel Build Configuration:"
+    # Show build configuration
+    print_info "Build Configuration:"
     echo "   CPU Cores Available: $(nproc)"
-    echo "   Build Jobs: ${BUILD_JOBS}"
-    echo "   MAKEFLAGS: ${MAKEFLAGS}"
-    echo ""
+    echo "   Build Jobs: $BUILD_JOBS"
+    echo "   MAKEFLAGS: $MAKEFLAGS"
+    echo "   Build Directory: $BUILD_DIR"
+    echo "   Output Directory: $OUTPUT_DIR"
     
-    # Environment setup
+    # Setup repositories and environment
+    clone_repositories
     validate_environment
     setup_sdk_environment
     
-    # Clean previous build
+    # Clean any previous builds
     print_step "Cleaning Previous Build"
+    cd "$LUCKFOX_SDK_DIR"
     ./build.sh clean
     
-    # Initial buildroot config
+    # Initial buildroot configuration
     print_step "Initial Buildroot Configuration"
     echo -e "\n\n\n" | timeout 5s ./build.sh buildrootconfig || {
-        print_error "buildrootconfig failed, continuing anyway"
+        print_error "buildrootconfig failed, continuing..."
     }
     
-    # Check if buildroot directory exists after config
+    # Verify buildroot directory exists
     if [[ ! -d "$BUILDROOT_DIR" ]]; then
-        print_error "$BUILDROOT_DIR missing after buildrootconfig"
+        print_error "Buildroot directory not found: $BUILDROOT_DIR"
         exit 1
     fi
     
-    # Copy external packages
+    # Install SeedSigner packages
     print_step "Installing SeedSigner Packages"
-    cp -rv "${SEEDSIGNER_OS_DIR}/opt/external-packages/"* "${PACKAGE_DIR}/"
+    cp -rv "$SEEDSIGNER_OS_DIR/opt/external-packages/"* "$PACKAGE_DIR/"
     
     # Update Python path in pyzbar patch
     print_step "Updating pyzbar Configuration"
-    sed -i 's|path = ".*/site-packages/zbar.so"|path = "/usr/lib/python3.11/site-packages/zbar.so"|' "${PYZBAR_PATCH}"
+    if [[ -f "$PYZBAR_PATCH" ]]; then
+        sed -i 's|path = ".*/site-packages/zbar.so"|path = "/usr/lib/python3.11/site-packages/zbar.so"|' "$PYZBAR_PATCH"
+    fi
     
     # Add SeedSigner packages to Config.in
     print_step "Adding SeedSigner Menu to Buildroot"
-    cat << 'CONFIGMENU' >> "${CONFIG_IN}"
+    cat << 'CONFIGMENU' >> "$CONFIG_IN"
 menu "SeedSigner"
         source "package/python-urtypes/Config.in"
         source "package/python-pyzbar/Config.in"
@@ -180,14 +241,19 @@ menu "SeedSigner"
 endmenu
 CONFIGMENU
     
-    # Apply configuration
+    # Apply SeedSigner configuration
     print_step "Applying SeedSigner Configuration"
-    cp -v "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/configs/luckfox_pico_defconfig" \
-          "${LUCKFOX_SDK_DIR}/sysdrv/source/buildroot/buildroot-2023.02.6/configs/luckfox_pico_defconfig"
-    cp -v "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/configs/luckfox_pico_defconfig" \
-          "${LUCKFOX_SDK_DIR}/sysdrv/source/buildroot/buildroot-2023.02.6/.config"
+    if [[ -f "/build/configs/luckfox_pico_defconfig" ]]; then
+        cp -v "/build/configs/luckfox_pico_defconfig" \
+              "$LUCKFOX_SDK_DIR/sysdrv/source/buildroot/buildroot-2023.02.6/configs/luckfox_pico_defconfig"
+        cp -v "/build/configs/luckfox_pico_defconfig" \
+              "$LUCKFOX_SDK_DIR/sysdrv/source/buildroot/buildroot-2023.02.6/.config"
+    else
+        print_error "SeedSigner configuration file not found"
+        exit 1
+    fi
     
-    # Build components
+    # Build components in order
     print_step "Building U-Boot"
     ./build.sh uboot
     
@@ -203,13 +269,15 @@ CONFIGMENU
     print_step "Building Applications"
     ./build.sh app
     
-    # Install SeedSigner code and configuration
+    # Install SeedSigner code and configuration files
     print_step "Installing SeedSigner Code"
-    cp -rv "${SEEDSIGNER_CODE_DIR}/src/" "${ROOTFS_DIR}/seedsigner"
-    cp -v "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/files/luckfox.cfg" "${ROOTFS_DIR}/etc/luckfox.cfg"
-    cp -v "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/files/nv12_converter" "${ROOTFS_DIR}/"
-    cp -v "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/files/start-seedsigner.sh" "${ROOTFS_DIR}/"
-    cp -v "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/files/S99seedsigner" "${ROOTFS_DIR}/etc/init.d/"
+    cp -rv "$SEEDSIGNER_CODE_DIR/src/" "$ROOTFS_DIR/seedsigner"
+    
+    # Copy configuration files if they exist
+    [[ -f "/build/files/luckfox.cfg" ]] && cp -v "/build/files/luckfox.cfg" "$ROOTFS_DIR/etc/luckfox.cfg"
+    [[ -f "/build/files/nv12_converter" ]] && cp -v "/build/files/nv12_converter" "$ROOTFS_DIR/"
+    [[ -f "/build/files/start-seedsigner.sh" ]] && cp -v "/build/files/start-seedsigner.sh" "$ROOTFS_DIR/"
+    [[ -f "/build/files/S99seedsigner" ]] && cp -v "/build/files/S99seedsigner" "$ROOTFS_DIR/etc/init.d/"
     
     # Package firmware
     print_step "Packaging Firmware"
@@ -217,61 +285,96 @@ CONFIGMENU
     
     # Create final image
     print_step "Creating Final Image"
-    cd "${LUCKFOX_SDK_DIR}/output/image"
+    cd "$LUCKFOX_SDK_DIR/output/image"
+    
+    # Generate timestamped image name
     TS=$(date +%Y%m%d_%H%M%S)
     IMAGE="seedsigner-luckfox-pico-${TS}.img"
-    "${SEEDSIGNER_LUCKFOX_DIR}/buildroot/blkenvflash" "$IMAGE"
     
-    print_success "Build Complete! Final image: ${LUCKFOX_SDK_DIR}/output/image/$IMAGE"
+    # Create the final image
+    if [[ -f "/build/blkenvflash" ]]; then
+        "/build/blkenvflash" "$IMAGE"
+    else
+        print_error "blkenvflash tool not found"
+        exit 1
+    fi
     
-    # List final outputs
-    echo "Build outputs:"
-    ls -la "${LUCKFOX_SDK_DIR}/output/image/"
+    # Copy output to standardized location
+    mkdir -p "$OUTPUT_DIR"
+    cp -v "$IMAGE" "$OUTPUT_DIR/"
+    cp -v * "$OUTPUT_DIR/" 2>/dev/null || true  # Copy other build artifacts
+    
+    print_success "Build Complete!"
+    echo "Final image: $OUTPUT_DIR/$IMAGE"
+    echo ""
+    echo "Build artifacts:"
+    ls -la "$OUTPUT_DIR/"
 }
 
-# Handle command line arguments
-MODE="${1:-auto}"
-
-case "$MODE" in
-    "auto")
-        echo "Starting automated SeedSigner build process..."
-        run_automated_build
-        ;;
-    "interactive")
-        echo "Starting interactive mode..."
-        validate_environment
-        setup_sdk_environment
-        print_success "Environment validated. Dropping into interactive shell."
-        echo "To run the automated build, execute: /app/docker-automation.sh auto"
-        exec /bin/bash
-        ;;
-    "shell")
-        echo "Dropping into shell..."
-        exec /bin/bash
-        ;;
-    "validate")
-        echo "Running environment validation only..."
-        validate_environment
-        exit 0
-        ;;
-    "help"|"-h"|"--help")
-        show_usage
-        exit 0
-        ;;
-    *)
-        echo "Unknown mode: $MODE"
-        show_usage
-        exit 1
-        ;;
-esac
-
-# If we get here from auto mode, keep container alive
-if [[ "$MODE" == "auto" ]]; then
-    print_success "Automated build process completed!"
-    echo "Keeping container alive for artifact extraction..."
-    echo "Use 'docker cp' to extract build artifacts from the container"
-    echo "Press Ctrl+C to stop the container"
+start_interactive_mode() {
+    print_step "Starting Interactive Mode"
     
-    # Keep container alive for artifact extraction
+    clone_repositories
+    validate_environment
+    setup_sdk_environment
+    
+    print_success "Environment ready!"
+    echo ""
+    echo "Available commands:"
+    echo "  - cd $LUCKFOX_SDK_DIR && ./build.sh [command]"
+    echo "  - /build/docker-automation.sh auto  # Run full build"
+    echo "  - exit  # Exit interactive mode"
+    echo ""
+    echo "Build artifacts will be available in: $OUTPUT_DIR"
+    
+    # Switch to SDK directory for convenience
+    cd "$LUCKFOX_SDK_DIR"
+    exec /bin/bash
+}
+
+# Main entry point
+main() {
+    local mode="${1:-auto}"
+    
+    case "$mode" in
+        "auto")
+            print_info "Starting automated build mode..."
+            run_automated_build
+            ;;
+        "interactive")
+            print_info "Starting interactive mode..."
+            start_interactive_mode
+            ;;
+        "shell")
+            print_info "Starting direct shell..."
+            exec /bin/bash
+            ;;
+        "clone-only")
+            print_info "Cloning repositories only..."
+            clone_repositories
+            print_success "Repositories cloned. Container exiting."
+            ;;
+        "help"|"-h"|"--help")
+            show_usage
+            exit 0
+            ;;
+        *)
+            print_error "Unknown mode: $mode"
+            show_usage
+            exit 1
+            ;;
+    esac
+}
+
+# Run main function
+main "$@"
+
+# For auto mode, keep container alive for artifact extraction
+if [[ "${1:-auto}" == "auto" ]]; then
+    print_success "Build process completed!"
+    echo ""
+    echo "Container staying alive for artifact extraction..."
+    echo "To extract artifacts run: docker cp <container-name>:/build/output/ ./build-output/"
+    echo "Press Ctrl+C to stop the container"
     sleep infinity
 fi

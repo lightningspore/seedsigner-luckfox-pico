@@ -22,24 +22,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup required repositories
-      run: |
-        cd $HOME
-        echo "Cloning luckfox-pico SDK..."
-        git clone https://github.com/lightningspore/luckfox-pico.git --depth=1 --single-branch
-        
-        echo "Cloning seedsigner-os packages..."
-        git clone https://github.com/seedsigner/seedsigner-os.git --depth=1 --single-branch
-        
-        echo "Cloning seedsigner code..."
-        git clone https://github.com/lightningspore/seedsigner.git --depth=1 -b upstream-luckfox-staging-1 --single-branch
-        
-        # Verify repositories
-        ls -la $HOME/
-        echo "Repository sizes:"
-        du -sh $HOME/luckfox-pico $HOME/seedsigner-os $HOME/seedsigner
-    
-    - name: Validate build environment
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build system status
       run: |
         cd buildroot
         ./build.sh status
@@ -47,62 +33,82 @@ jobs:
     - name: Build SeedSigner OS
       run: |
         cd buildroot
-        echo "Starting SeedSigner build..."
+        echo "🚀 Starting SeedSigner self-contained build..."
+        echo "✅ All repos cloned inside container - no CI pollution!"
+        echo "✅ Persistent Docker volumes for faster subsequent builds!"
         
+        # Set build options
+        BUILD_ARGS=""
         if [ "${{ github.event.inputs.force_rebuild }}" = "true" ]; then
-          ./build.sh build --force
-        else
-          ./build.sh build
+          BUILD_ARGS="--force"
         fi
+        
+        # Run the build with artifact output to workspace
+        ./build.sh build $BUILD_ARGS --output ../build-artifacts
     
-    - name: Extract build artifacts
+    - name: List build artifacts
       if: always()
       run: |
-        cd buildroot
-        ./build.sh extract || true
+        echo "🎯 Build artifacts:"
+        ls -la build-artifacts/ || echo "No build artifacts found"
         
-        # Show what was built
-        echo "Build output contents:"
-        ls -la build-output/ || echo "No build output directory found"
+        echo ""
+        echo "🔍 Searching for generated images:"
+        find build-artifacts -name "*.img" -type f 2>/dev/null || echo "No .img files found"
         
-        # Find any generated images
-        echo "Searching for generated images:"
-        find $HOME -name "*.img" -type f 2>/dev/null | head -10 || echo "No .img files found"
+        echo ""
+        echo "📊 Artifact sizes:"
+        du -sh build-artifacts/* 2>/dev/null || echo "No artifacts to measure"
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: seedsigner-os-image-${{ github.run_number }}
-        path: |
-          buildroot/build-output/
-          ${{ runner.temp }}/build-logs.txt
+        name: seedsigner-os-${{ github.run_number }}
+        path: build-artifacts/
         retention-days: 30
         if-no-files-found: warn
     
-    - name: Upload build logs
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: build-logs-${{ github.run_number }}
-        path: |
-          buildroot/build-output/
-          /tmp/*.log
-        retention-days: 7
-        if-no-files-found: ignore
-    
-    - name: Post-build summary
+    - name: Build summary
       if: always()
       run: |
-        echo "## Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "## 🎯 SeedSigner Build Summary" >> $GITHUB_STEP_SUMMARY
         echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
         echo "- **Run Number**: ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
         echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+        echo "- **Build System**: ✅ Self-contained, ✅ No CI pollution, ✅ Persistent volumes" >> $GITHUB_STEP_SUMMARY
         
-        if [ -d "buildroot/build-output" ]; then
-          echo "- **Artifacts**: Available in build-output/" >> $GITHUB_STEP_SUMMARY
-          echo "### Generated Files:" >> $GITHUB_STEP_SUMMARY
+        if [ -d "build-artifacts" ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Generated Files:" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          ls -la buildroot/build-output/ >> $GITHUB_STEP_SUMMARY || echo "No files found" >> $GITHUB_STEP_SUMMARY
+          ls -la build-artifacts/ >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "No files found" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          # Find and highlight .img files
+          IMG_FILES=$(find build-artifacts -name "*.img" 2>/dev/null || true)
+          if [ -n "$IMG_FILES" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🎯 Ready to Flash:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$IMG_FILES" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            
+            # Add flashing instructions
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 💾 How to Use:" >> $GITHUB_STEP_SUMMARY
+            echo "1. Download the artifact from this build" >> $GITHUB_STEP_SUMMARY
+            echo "2. Extract the .img file" >> $GITHUB_STEP_SUMMARY
+            echo "3. Flash to SD card using Raspberry Pi Imager or dd" >> $GITHUB_STEP_SUMMARY
+            echo "4. Insert SD card into device and boot!" >> $GITHUB_STEP_SUMMARY
+          fi
+        else
+          echo "- **Artifacts**: ❌ None found" >> $GITHUB_STEP_SUMMARY
         fi
+        
+        # Add performance info
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### ⚡ Build Performance:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Repository Cloning**: Inside container (no CI pollution)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Persistence**: Docker volumes for subsequent builds" >> $GITHUB_STEP_SUMMARY
+        echo "- **Portability**: Self-contained, works anywhere" >> $GITHUB_STEP_SUMMARY

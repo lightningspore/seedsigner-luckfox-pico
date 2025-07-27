@@ -3,6 +3,9 @@ python_deps/*.whl
 python_deps/*.zip
 python_deps/*.tar.gz
 
+# Built OS images
+buildroot/build-output/
+
 **/.DS_Store
 
 # KiCad cache files

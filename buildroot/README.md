@@ -1,198 +1,74 @@
-# SeedSigner Luckfox Pico - Automated Build System
+# SeedSigner Build System
 
-This directory contains an improved Docker-based build system for creating SeedSigner OS images for the Luckfox Pico device.
+Docker-based build system for SeedSigner OS that uses containerized compilation without host filesystem pollution.
 
-## 🚀 Quick Start
+## Requirements
 
-### 1. Setup (First Time Only)
-```bash
-cd buildroot/
-./build.sh setup
-```
-This will automatically clone all required repositories to your `$HOME` directory.
+- Docker (any recent version)
+- 4GB+ RAM recommended
+- 3GB free disk space
+- Linux, macOS, or Windows with WSL2
 
-### 2. Build the OS Image
+## Quick Start
+
 ```bash
 ./build.sh build
-```
-This runs the complete automated build process.
-
-### 3. Extract Build Artifacts
-After the build completes, extract the final image:
-```bash
 ./build.sh extract
 ```
-The built OS image will be available in `buildroot/build-output/`.
 
-## 📋 Available Commands
+## Commands
 
 | Command | Description |
 |---------|-------------|
-| `./build.sh setup` | Clone required repositories |
-| `./build.sh build` | Run automated build |
-| `./build.sh interactive` | Start container in interactive mode |
-| `./build.sh shell` | Drop directly into container shell |
-| `./build.sh status` | Check repository status |
-| `./build.sh clean` | Clean containers and artifacts |
+| `./build.sh build` | Full automated build |
+| `./build.sh build --jobs N` | Build with N parallel jobs |
+| `./build.sh interactive` | Interactive debugging mode |
+| `./build.sh shell` | Direct shell access |
 | `./build.sh extract` | Extract build artifacts |
+| `./build.sh clean` | Clean containers and volumes |
+| `./build.sh status` | Show system status |
 
-## 🔧 Build Modes
+## Build Process
 
-### Automated Mode (Default)
-Runs the complete build process without user interaction:
-```bash
-./build.sh build
-```
+1. Creates Docker container with cross-compilation toolchain
+2. Clones required repositories inside container:
+   - luckfox-pico SDK
+   - seedsigner code (upstream-luckfox-staging-1 branch)
+   - seedsigner-os packages
+3. Compiles U-Boot bootloader
+4. Builds Linux kernel with device drivers
+5. Creates root filesystem with SeedSigner application
+6. Packages components into flashable image
 
-### Interactive Mode
-Validates environment then drops into shell for manual build steps:
-```bash
-./build.sh interactive
-```
-In interactive mode, you can run individual commands:
-```bash
-# Inside container
-/mnt/cfg/buildroot/add_package_buildroot.sh  # Full build
-# Or individual steps:
-./build.sh uboot
-./build.sh kernel
-./build.sh rootfs
-```
+## Output
 
-### Shell Mode
-Direct shell access (skips validation):
-```bash
-./build.sh shell
-```
+Build artifacts are placed in `./build-output/`:
+- `seedsigner-luckfox-pico-YYYYMMDD_HHMMSS.img` - Flashable OS image
+- Additional build logs and intermediate files
 
-## 📁 Directory Structure
+## Performance
 
-After setup, your `$HOME` directory should contain:
-```
-~/
-├── luckfox-pico/           # Luckfox SDK
-├── seedsigner/             # SeedSigner code (luckfox-dev branch)
-├── seedsigner-os/          # SeedSigner OS packages
-└── seedsigner-luckfox-pico/ # This repository
-```
+- First build: 30-90 minutes (includes repository cloning)
+- Subsequent builds: 15-45 minutes (reuses cached repositories)
 
-## 🐳 Docker Details
+Repository caching uses Docker volume `seedsigner-repos` which persists between builds.
 
-### Build Environment
-- **Base Image**: Ubuntu 22.04
-- **Architecture**: Must run on x86_64 (cross-compiles for ARM)
-- **Mount Points**:
-  - `/mnt/host` → `~/luckfox-pico` (SDK)
-  - `/mnt/ss` → `~/seedsigner` (SeedSigner code)
-  - `/mnt/cfg` → `~/seedsigner-luckfox-pico` (This repo)
-  - `/mnt/ssos` → `~/seedsigner-os` (OS packages)
-  - `/mnt/output` → `./build-output` (Build artifacts)
+## Configuration
 
-### Using Docker Compose
-You can also use Docker Compose directly:
-```bash
-# Automated build
-docker-compose up seedsigner-builder
+Build parallelization is automatically configured based on available CPU cores.
+Override with `--jobs N` option or `BUILD_JOBS` environment variable.
 
-# Interactive mode
-docker-compose run seedsigner-dev
+ARM64 hosts use x86_64 emulation which significantly increases build time.
 
-# With custom environment
-BUILD_OUTPUT_DIR=./my-builds docker-compose up seedsigner-builder
-```
+## Troubleshooting
 
-## 🛠 Build Process Details
+For build failures, use interactive mode to debug individual steps:
 
-The automated build performs these steps:
-
-1. **Environment Validation**: Checks all required directories and files
-2. **Package Setup**: Adds SeedSigner packages to buildroot configuration
-3. **Component Build**: Builds U-Boot, kernel, rootfs, media components
-4. **SeedSigner Integration**: Copies SeedSigner code and configuration
-5. **Firmware Packaging**: Creates final flashable image
-
-## 📤 Output Files
-
-After a successful build, you'll find these files in the build output:
-
-- `seedsigner-luckfox-pico-TIMESTAMP.img` - Final flashable OS image
-- `boot.img`, `rootfs.img`, etc. - Individual component images
-- `update.img` - Alternative update image
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-**"Missing directories" error**:
-```bash
-./build.sh setup  # Clone missing repositories
-```
-
-**Docker permission errors**:
-```bash
-sudo usermod -aG docker $USER  # Add user to docker group
-newgrp docker  # Refresh group membership
-```
-
-**Build fails with package errors**:
-```bash
-./build.sh clean     # Clean environment
-./build.sh build --force  # Force rebuild
-```
-
-**Container keeps running**:
-The container stays alive after build completion for artifact extraction. Stop it with:
-```bash
-docker stop seedsigner-luckfox-builder
-```
-
-### Advanced Debugging
-
-**Interactive debugging**:
 ```bash
 ./build.sh interactive
-# Inside container:
-cd /mnt/host
-./build.sh buildrootconfig  # Manual package selection
+cd /build/repos/luckfox-pico
+./build.sh clean
+./build.sh buildrootconfig
 ```
 
-**Check build logs**:
-```bash
-docker logs seedsigner-luckfox-builder
-```
-
-**Manual container management**:
-```bash
-# List containers
-docker ps -a
-
-# Connect to running container
-docker exec -it seedsigner-luckfox-builder bash
-
-# Copy files from container
-docker cp seedsigner-luckfox-builder:/mnt/host/output/image/ ./build-output/
-```
-
-## 🔄 Development Workflow
-
-### Making Changes
-1. Modify source code in respective repositories
-2. Run `./build.sh build` to rebuild
-3. Test the generated image
-
-### Updating Configurations
-- Buildroot config: Modify `configs/luckfox_pico_defconfig`
-- SeedSigner config: Update files in `files/` directory
-- Build scripts: Edit `add_package_buildroot.sh` or `build_automation.sh`
-
-### Contributing
-When contributing improvements:
-1. Test with `./build.sh build`
-2. Verify with `./build.sh interactive` for debugging
-3. Update documentation as needed
-
-## 📖 Related Documentation
-
-- [Original Build Instructions](../docs/OS-build-instructions.md)
-- [Luckfox Pico Official Guide](https://wiki.luckfox.com/Luckfox-Pico/Linux-MacOS-Burn-Image/)
-- [SeedSigner Project](https://github.com/seedsigner/seedsigner)
+Check Docker resource allocation if builds fail due to memory constraints.
