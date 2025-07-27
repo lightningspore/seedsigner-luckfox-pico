@@ -36,13 +36,6 @@ Options:
   --jobs, -j N   - Set number of parallel build jobs
   --output DIR   - Set output directory (default: ./build-output)
 
-Key Features:
-  ✅ All repos cloned INSIDE container (no $HOME pollution)
-  ✅ No docker-compose needed (simple docker run)
-  ✅ Persistent Docker volume for repos (faster subsequent builds)
-  ✅ Completely portable and self-contained
-  ✅ Automatic parallel build optimization
-
 Examples:
   ./build.sh build             # Standard build
   ./build.sh build --jobs 8    # Use 8 parallel jobs
@@ -59,7 +52,7 @@ Performance:
   First build:  30-90 min (clones ~500MB+ of repos)
   Later builds: 15-45 min (reuses persistent repos)
 
-No more $HOME pollution! 🎉 Fast subsequent builds! ⚡
+Fast subsequent builds! ⚡
 USAGE
 }
 

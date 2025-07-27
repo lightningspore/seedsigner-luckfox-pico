@@ -33,9 +33,8 @@ RUN mkdir -p /build/repos /build/output
 # Copy build scripts and configuration files
 COPY configs/ /build/configs/
 COPY files/ /build/files/
-COPY add_package_buildroot.sh /build/
 COPY blkenvflash /build/
-COPY sdk_init.sh /build/
+
 
 # Make scripts executable
 RUN chmod +x /build/*.sh /build/blkenvflash 2>/dev/null || true
@@ -50,9 +49,9 @@ RUN touch /root/.bash_profile
 SHELL ["/bin/bash", "-c"]
 
 # Copy build automation script
-COPY docker-automation.sh /build/
-RUN chmod +x /build/docker-automation.sh
+COPY os-build.sh /build/
+RUN chmod +x /build/os-build.sh
 
 # Set the entrypoint
-ENTRYPOINT ["/build/docker-automation.sh"]
+ENTRYPOINT ["/build/os-build.sh"]
 CMD ["auto"]
