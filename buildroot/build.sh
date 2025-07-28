@@ -72,15 +72,15 @@ check_docker() {
         exit 1
     fi
     
-    # ARM64 detection
+    # Architecture check
     ARCH=$(uname -m)
-    if [[ "$ARCH" == "arm64" || "$ARCH" == "aarch64" ]]; then
-        print_warning "ARM64 detected - using x86_64 emulation (may be slow)"
-        PLATFORM_ARGS="--platform linux/amd64"
-    else
-        PLATFORM_ARGS=""
+    if [[ "$ARCH" != "x86_64" ]]; then
+        print_error "ARM64 Macs not supported due to Docker emulation issues"
+        echo "Use GitHub Actions or x86_64 machine for building"
+        exit 1
     fi
     
+    PLATFORM_ARGS=""
     print_success "Docker available"
 }
 
