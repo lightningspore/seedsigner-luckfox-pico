@@ -33,9 +33,7 @@ jobs:
     - name: Build SeedSigner OS
       run: |
         cd buildroot
-        echo "🚀 Starting SeedSigner self-contained build..."
-        echo "✅ All repos cloned inside container - no CI pollution!"
-        echo "✅ Persistent Docker volumes for faster subsequent builds!"
+        echo "🚀 Starting SeedSigner build..."
         
         # Set build options
         BUILD_ARGS=""
@@ -53,19 +51,19 @@ jobs:
         ls -la build-artifacts/ || echo "No build artifacts found"
         
         echo ""
-        echo "🔍 Searching for generated images:"
-        find build-artifacts -name "*.img" -type f 2>/dev/null || echo "No .img files found"
+        echo "🔍 Searching for SeedSigner images:"
+        find build-artifacts -name "seedsigner-luckfox-pico-*.img" -type f 2>/dev/null || echo "No seedsigner-luckfox-pico images found"
         
         echo ""
-        echo "📊 Artifact sizes:"
-        du -sh build-artifacts/* 2>/dev/null || echo "No artifacts to measure"
+        echo "📊 Image sizes:"
+        find build-artifacts -name "seedsigner-luckfox-pico-*.img" -exec du -sh {} \; 2>/dev/null || echo "No images to measure"
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: seedsigner-os-${{ github.run_number }}
-        path: build-artifacts/
+        path: build-artifacts/seedsigner-luckfox-pico-*.img
         retention-days: 30
         if-no-files-found: warn
     
@@ -76,39 +74,30 @@ jobs:
         echo "- **Status**: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
         echo "- **Run Number**: ${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
         echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-        echo "- **Build System**: ✅ Self-contained, ✅ No CI pollution, ✅ Persistent volumes" >> $GITHUB_STEP_SUMMARY
         
-        if [ -d "build-artifacts" ]; then
+        # Find and highlight seedsigner-luckfox-pico .img files specifically
+        IMG_FILES=$(find build-artifacts -name "seedsigner-luckfox-pico-*.img" 2>/dev/null || true)
+        if [ -n "$IMG_FILES" ]; then
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 📦 Generated Files:" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎯 Ready to Flash:" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          ls -la build-artifacts/ >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "No files found" >> $GITHUB_STEP_SUMMARY
+          echo "$IMG_FILES" | xargs -I {} basename {} >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           
-          # Find and highlight .img files
-          IMG_FILES=$(find build-artifacts -name "*.img" 2>/dev/null || true)
-          if [ -n "$IMG_FILES" ]; then
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### 🎯 Ready to Flash:" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "$IMG_FILES" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            
-            # Add flashing instructions
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### 💾 How to Use:" >> $GITHUB_STEP_SUMMARY
-            echo "1. Download the artifact from this build" >> $GITHUB_STEP_SUMMARY
-            echo "2. Extract the .img file" >> $GITHUB_STEP_SUMMARY
-            echo "3. Flash to SD card using Raspberry Pi Imager or dd" >> $GITHUB_STEP_SUMMARY
-            echo "4. Insert SD card into device and boot!" >> $GITHUB_STEP_SUMMARY
-          fi
+          # Add flashing instructions
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 💾 How to Use:" >> $GITHUB_STEP_SUMMARY
+          echo "1. Download the artifact from this build" >> $GITHUB_STEP_SUMMARY
+          echo "2. Extract the .img file" >> $GITHUB_STEP_SUMMARY
+          echo "3. Flash to SD card using Raspberry Pi Imager or dd" >> $GITHUB_STEP_SUMMARY
+          echo "4. Insert SD card into device and boot!" >> $GITHUB_STEP_SUMMARY
+          
+          # Show file size
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📊 Image Size:" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "$IMG_FILES" | xargs -I {} du -sh {} >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
         else
-          echo "- **Artifacts**: ❌ None found" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image**: ❌ No seedsigner-luckfox-pico image found" >> $GITHUB_STEP_SUMMARY
         fi
-        
-        # Add performance info
-        echo "" >> $GITHUB_STEP_SUMMARY
-        echo "### ⚡ Build Performance:" >> $GITHUB_STEP_SUMMARY
-        echo "- **Repository Cloning**: Inside container (no CI pollution)" >> $GITHUB_STEP_SUMMARY
-        echo "- **Persistence**: Docker volumes for subsequent builds" >> $GITHUB_STEP_SUMMARY
-        echo "- **Portability**: Self-contained, works anywhere" >> $GITHUB_STEP_SUMMARY
