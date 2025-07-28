@@ -23,11 +23,10 @@ SeedSigner Self-Contained Build System
 Usage: ./build.sh [command] [options]
 
 Commands:
-  build       - Run full automated build (default)
+  build       - Run full automated build (artifacts automatically available)
   interactive - Start container in interactive mode  
   shell       - Start container with direct shell access
   clean       - Clean build artifacts and containers
-  extract     - Extract build artifacts from last build
   status      - Show build system status
 
 Options:
@@ -37,11 +36,15 @@ Options:
   --output DIR   - Set output directory (default: ./build-output)
 
 Examples:
-  ./build.sh build             # Standard build
+  ./build.sh build             # Standard build (artifacts in ./build-output)
   ./build.sh build --jobs 8    # Use 8 parallel jobs
   ./build.sh interactive       # Debug build issues
-  ./build.sh extract           # Extract build artifacts
   ./build.sh status            # Check volume and image status
+
+Build Output:
+  - Build artifacts are automatically available in the output directory
+  - Artifacts appear immediately after build completes
+  - Perfect for GitHub Actions and CI/CD systems
 
 Repository Persistence:
   - First build: Clones repos to Docker volume 'seedsigner-repos'
@@ -142,7 +145,9 @@ run_build() {
                 print_warning "Build will take 30-90 minutes"
             fi
             print_success "Repository volume: $volume_name (persists between builds)"
+            print_success "Output directory: $abs_output_dir (artifacts automatically available)"
             docker run $docker_args "$IMAGE_NAME" auto
+            print_success "Build completed! Artifacts are available in: $abs_output_dir"
             ;;
         "interactive")
             print_success "Starting interactive mode..."
@@ -200,29 +205,6 @@ clean_environment() {
     fi
     
     print_success "Environment cleaned"
-}
-
-extract_artifacts() {
-    print_header "Extracting Build Artifacts"
-    
-    local output_dir="${1:-./build-output}"
-    mkdir -p "$output_dir"
-    
-    # Look for running or stopped containers with our name pattern
-    local container=$(docker ps -a --format "{{.Names}}" | grep "seedsigner-build" | head -1)
-    
-    if [[ -n "$container" ]]; then
-        print_success "Found container: $container"
-        docker cp "$container:/build/output/." "$output_dir/"
-        print_success "Artifacts extracted to: $output_dir"
-        echo ""
-        echo "Build artifacts:"
-        ls -la "$output_dir/"
-    else
-        print_error "No build container found"
-        echo "Available containers:"
-        docker ps -a --format "table {{.Names}}\t{{.Image}}\t{{.Status}}"
-    fi
 }
 
 show_status() {
@@ -339,9 +321,6 @@ main() {
             ;;
         "clean")
             clean_environment
-            ;;
-        "extract")
-            extract_artifacts "$output_dir"
             ;;
         *)
             print_error "Unknown command: $command"

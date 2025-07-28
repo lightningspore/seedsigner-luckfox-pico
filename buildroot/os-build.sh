@@ -241,7 +241,7 @@ menu "SeedSigner"
 endmenu
 CONFIGMENU
     
-    # Apply SeedSigner configuration
+    # Select a minimal set of packages to run seedsigner using a defconfig
     print_step "Applying SeedSigner Configuration"
     if [[ -f "/build/configs/luckfox_pico_defconfig" ]]; then
         cp -v "/build/configs/luckfox_pico_defconfig" \
@@ -368,13 +368,3 @@ main() {
 
 # Run main function
 main "$@"
-
-# For auto mode, keep container alive for artifact extraction
-if [[ "${1:-auto}" == "auto" ]]; then
-    print_success "Build process completed!"
-    echo ""
-    echo "Container staying alive for artifact extraction..."
-    echo "To extract artifacts run: docker cp <container-name>:/build/output/ ./build-output/"
-    echo "Press Ctrl+C to stop the container"
-    sleep infinity
-fi
